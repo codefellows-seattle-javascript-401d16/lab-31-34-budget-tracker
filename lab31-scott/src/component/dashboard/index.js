@@ -1,5 +1,8 @@
 import React from 'react';
 import {connect} from 'redux';
+///import classes
+import CategoryForm from '../category/category-form';
+
 
 class DashboardContainer extends React.Component{
   constructor(props){
@@ -13,6 +16,7 @@ class DashboardContainer extends React.Component{
     return(
       <div className='dashboard'>
         This is the dashboard
+        <CategoryForm />
       </div>
     );
   }

@@ -6,7 +6,7 @@ import DashboardContainer from '../dashboard';
 //import store module that creates our store based on the app state
 import createAppStore from '../../lib/store.js';
 
-//assing the store to a varible to pass in to the Provider component
+//assigning the store to a varible to pass in to the Provider component
 const store = createAppStore();
 
 class App extends React.Component{
@@ -19,7 +19,7 @@ class App extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className="app">
         <Provider
           store={store}
         >
