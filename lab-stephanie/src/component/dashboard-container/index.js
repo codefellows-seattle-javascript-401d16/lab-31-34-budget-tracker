@@ -7,30 +7,25 @@ import {
   categoryDelete,
 } from '../../action/category-actions.js'
 
-import CategoryForm from '../category-form'
+import CategoryForm from '../category-form-component'
 
 class DashboardContainer extends React.Component {
-  componentDidMount() {
-    this.props.categoryCreate({ title: 'lul' })
-    this.props.categoryCreate({ title: 'wat' })
-    this.props.categoryCreate({ title: 'coo' })
-    this.props.categoryCreate({ title: 'bea' })
-  }
-
   render() {
-    console.log('categorys', this.props.categorys)
+    console.log('props', this.props)
     return (
       <main className="dashboard-container">
         <h2> dashboard </h2>
-        <CategoryForm
-          buttonText="create category"
-          onComplete={this.props.categoryCreate}
-        />
-
-        {this.props.categorys.map(item =>
+        <CategoryForm categoryCreate={this.props.categoryCreate} />
+        {this.props.categories.map(item =>
           <div key={item.id}>
             <h3>
-              {' '}{item.title}{' '}
+              Item Name:{item.name}
+            </h3>
+            <h3>
+              Item Budget: {item.budget}
+            </h3>
+            <h3>
+              Last Updated: {item.timestamp.toString()}
             </h3>
           </div>
         )}
@@ -41,7 +36,7 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    categorys: state,
+    categories: state,
   }
 }
 
