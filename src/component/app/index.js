@@ -1,0 +1,31 @@
+import Reacat from 'react'
+import {Provider} from 'react-redux'
+import {BrowserRouter, Route} from 'react-router-dom'
+import createAppStore from '../../lib/store.js'
+import DashboardContainer from '../dashboard-container'
+
+const store = createAppStore()
+
+class App extends React.Component {
+  componentDidMount(){
+    store.subscribe(() => {
+      console.log('__STATE__', store.getState());
+    })
+
+    store.dispatch({type: null})
+  }
+
+  render(){
+    return (
+      <div>
+        <Provider store={store}>
+        <BrowserRouter>
+          <Route exact patch='/' component={DashboardContainer} />
+        </BrowserRouter>
+      </Provider>
+    </div>
+    )
+  }
+}
+
+export default App
