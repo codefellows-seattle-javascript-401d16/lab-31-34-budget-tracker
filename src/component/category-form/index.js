@@ -2,16 +2,19 @@ import React from 'react'
 
 class CategoryForm extends React.Component {
   constructor(props){
-    super(props){
-      this.state = {
-        title: props.category ? props.category.title : ''
-      }
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
+    super(props)
+    this.state = {
+      name: props.category ? props.category.name : '',
+      budget: props.category ? props.category.budget : 0,
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
   handleChange(e){
-    this.setState({title: e.target.value})
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
 
   handleSubmit(e){
@@ -19,18 +22,25 @@ class CategoryForm extends React.Component {
     this.props.onComplete(Object.assign({}, this.state))
   }
 
-  render() {
+  render(){
     return (
       <form className='category-form' onSubmit={this.handleSubmit} >
         <input
-          name='title'
+          name='name'
           type='text'
-          placeholder='title'
-          value={this.state.title}
+          placeholder='name'
+          value={this.state.name}
+          onChange={this.handleChange}
+          />
+
+        <input
+          name='budget'
+          type='number'
+          placeholder='budget'
+          value={this.state.budget}
           onChange={this.handleChange}
         />
-
-        <button type='submit'> {this.props.buttonText}</button>
+        <button type='submit'> {this.props.buttonText} </button>
       </form>
     )
   }

@@ -1,4 +1,4 @@
-import Reacat from 'react'
+import React from 'react'
 import {Provider} from 'react-redux'
 import {BrowserRouter, Route} from 'react-router-dom'
 import createAppStore from '../../lib/store.js'
@@ -9,7 +9,7 @@ const store = createAppStore()
 class App extends React.Component {
   componentDidMount(){
     store.subscribe(() => {
-      console.log('__STATE__', store.getState());
+      console.log('__STATE__', store.getState())
     })
 
     store.dispatch({type: null})
@@ -19,11 +19,11 @@ class App extends React.Component {
     return (
       <div>
         <Provider store={store}>
-        <BrowserRouter>
-          <Route exact patch='/' component={DashboardContainer} />
-        </BrowserRouter>
-      </Provider>
-    </div>
+          <BrowserRouter>
+            <Route exact path='/' component={DashboardContainer} />
+          </BrowserRouter>
+        </Provider>
+      </div>
     )
   }
 }

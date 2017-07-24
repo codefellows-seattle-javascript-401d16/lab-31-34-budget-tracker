@@ -1,4 +1,9 @@
 import uuid from 'uuid/v1'
+// action creators are helper function to create
+// actions.
+//
+// you should only use action createors thoughout your app
+// you should NEVER hard code action literals in your app
 
 export const categoryCreate = (category) => {
   category.id = uuid()
@@ -15,6 +20,8 @@ export const categoryUpdate = (category) => ({
 })
 
 export const categoryDelete = (category) => ({
-  type: 'CATEGORY_DETELE',
+  type: 'CATEGORY_DELETE',
   payload: category,
 })
+
+export const categoryReset = () => ({type: 'CATEGORY_RESET'})

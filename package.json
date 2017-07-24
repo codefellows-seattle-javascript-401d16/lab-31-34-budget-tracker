@@ -1,9 +1,7 @@
 {
-  "name": "lab-31-34-budget-tracker",
+  "name": "react-redux",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Cadburylion/lab-31-34-budget-tracker.git",
-  "author": "Matthew Parker <cadburylion@outlook.com>",
   "license": "MIT",
   "jest": {
     "globals": {
@@ -14,12 +12,12 @@
     }
   },
   "scripts": {
-   "test": "jest --coverage",
-   "test-watch": "jest --watchAll",
-   "lint": "eslint .",
-   "build": "webpack",
-   "watch": "webpack-dev-server --inline --hot"
- },
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll",
+    "lint": "eslint .",
+    "build": "webpack",
+    "watch": "webpack-dev-server --inline --hot"
+  },
   "dependencies": {
     "babel-core": "^6.25.0",
     "babel-jest": "^20.0.3",
@@ -31,7 +29,7 @@
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "enzyme": "^2.9.1",
-    "eslint": "^4.3.0",
+    "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
@@ -49,7 +47,8 @@
     "superagent": "^3.5.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
+    "uuid": "^3.1.0",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^2.5.1"
   }
 }
