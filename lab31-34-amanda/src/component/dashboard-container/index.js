@@ -21,6 +21,7 @@ class DashboardContainer extends React.Component {
         {this.props.categorys.map((item) =>
           <div key={item.id}>
             <h3> {item.name} </h3>
+            <h3> {item.budget} </h3>
           </div>
         )}
       </main>

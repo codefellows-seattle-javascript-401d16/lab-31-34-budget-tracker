@@ -6,7 +6,7 @@ class CategoryForm extends React.Component {
 
     this.state = {
       name: props.category ? props.category.name : '',
-      budget: props.budget ? props.category.budget: 0,
+      budget: props.budget ? props.category.budget: '',
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -14,33 +14,35 @@ class CategoryForm extends React.Component {
   }
 
   handleChange(e){
-    this.setState({name: e.target.value})
+    this.setState({[e.target.name] : e.target.value})
   }
 
   handleSubmit(e){
     e.preventDefault()
     console.log('this is rendering!',this.props.category)
     this.props.onComplete(Object.assign({}, this.state))
-    //clear the form if not being used for update
+
+    if(!this.props.category) //how do I clear this form?
+      this.setState({name: ''})
   }
 
   render(){
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input
-          className='title-input'
-          title='name'
-          type='text'
-          placeholder='title'
-          value={this.state.title}
+          className='name-input'
+          name ='name'
+          type ='text'
+          placeholder='category'
+          value={this.state.name}
           onChange={this.handleChange} />
 
         <input
-          className='price-input'
-          title= 'budget'
+          className='budget-input'
+          name = 'budget'
           type='number'
-          placeholder='#'
-          value={this.state.price}
+          placeholder='expense'
+          value={this.state.budget}
           onChange={this.handleChange} />
 
         <button
