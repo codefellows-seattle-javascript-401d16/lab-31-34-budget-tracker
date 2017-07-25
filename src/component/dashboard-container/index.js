@@ -8,15 +8,14 @@ import {
 } from '../../action/category-actions.js'
 
 import CategoryForm from '../category-form'
+import CategoryItem from '../category-item'
 
 class DashboardContainer extends React.Component {
   componentDidMount(){
     console.log('componentDidMount')
-
   }
 
   render(){
-    console.log('categories', this.props.categories)
     return (
       <main className='dashboard-container'>
         <h2> dashboard </h2>
@@ -26,10 +25,13 @@ class DashboardContainer extends React.Component {
           />
 
         {this.props.categories.map((item) =>
-          <div key={item.id}>
-            <h3> item name: {item.name} </h3>
-            <h3> item budget: {item.budget} </h3>
-          </div>
+          <CategoryItem
+            key={item.id}
+            category={item}
+            buttonText='update budget'
+            categoryUpdate={this.props.categoryUpdate}
+            categoryDelete={this.props.categoryDelete}
+          />
         )}
       </main>
     )
@@ -51,4 +53,4 @@ const mapDispatchToProps = (dispatch, getState) => {
   }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(DashboardContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer)
