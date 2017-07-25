@@ -7,21 +7,31 @@ import {
   budgetCategoryDelete,
 } from '../../action/budget-category-actions.js';
 
+import {
+  expenseItemCreate,
+  expenseItemUpdate,
+  expenseItemDelete,
+} from '../../action/expenses-actions.js';
+
 import BudgetForm from '../budget-form';
+import ExpenseForm from '../expense-form';
 
 class DashboardContainer extends React.Component {
   render() {
     return (
       <main className='dashboard-container'>
         <h2>Budget Manager</h2>
-        <BudgetForm
-          submitText='Add Budget Category'
-          handleSubmit={this.props.budgetCreate}
-        />
+        <BudgetForm handleSubmit={this.props.budgetCreate} />
         {this.props.budgetCategories.map(budgetCategory =>
           <div key={budgetCategory.id}>
-            <h3>{budgetCategory.title}</h3>
-            <h4>Budget: {budgetCategory.budget}</h4>
+            <h3>{budgetCategory.title}: ${budgetCategory.budget}</h3>
+            <ul>
+              {this.props.expenses.filter(expense => expense.categoryId === budgetCategory.id).map(expense => <li key={expense.id}>{expense.title}: ${expense.price}</li>)}
+            </ul>
+            <ExpenseForm
+              handleSubmit={this.props.expenseCreate}
+              categoryId={budgetCategory.id}
+            />
           </div>
         )}
       </main>
@@ -30,8 +40,10 @@ class DashboardContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    budgetCategories: state,
+    budgetCategories: state.budgetCategories,
+    expenses: state.expenses,
   };
 };
 
@@ -40,6 +52,9 @@ const mapDispatchToProps = (dispatch, getState) => {
     budgetCreate: budgetCategory => dispatch(budgetCategoryCreate(budgetCategory)),
     budgetUpdate: budgetCategory => dispatch(budgetCategoryUpdate(budgetCategory)),
     budgetDelete: budgetCategory => dispatch(budgetCategoryDelete(budgetCategory)),
+    expenseCreate: expense => dispatch(expenseItemCreate(expense)),
+    expenseUpdate: expense => dispatch(expenseItemUpdate(expense)),
+    expenseDelete: expense => dispatch(expenseItemDelete(expense)),
   };
 };
 

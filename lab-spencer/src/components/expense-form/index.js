@@ -1,11 +1,12 @@
 import React from 'react';
 
-class BudgetForm extends React.Component {
+class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      budget: 0,
+      price: 0,
+      categoryId: props.categoryId,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,31 +23,31 @@ class BudgetForm extends React.Component {
 
   render() {
     return (
-      <form className='budget-form' onSubmit={this.handleSubmit}>
+      <form className='expense-form' onSubmit={this.handleSubmit}>
         <input
           name='title'
           type='text'
-          placeholder='Add Budget Category'
+          placeholder='Expense'
           value={this.state.title}
           onChange={this.handleChange}
           required
         />
         <input
-          name='budget'
+          name='price'
           type='number'
           step={0.01}
-          placeholder='Budgeted Money'
-          value={this.state.budget}
+          placeholder='Price'
+          value={this.state.price}
           onChange={this.handleChange}
           required
         />
         <button
-          name='submit-budget'
+          name='submit-expense'
           type='submit'
-        >Add Category</button>
+        >Add Expense</button>
       </form>
     );
   }
 }
 
-export default BudgetForm;
+export default ExpenseForm;
