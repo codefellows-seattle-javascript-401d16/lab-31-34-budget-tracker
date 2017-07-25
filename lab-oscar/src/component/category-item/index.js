@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import CategoryForm from '../category-form';
+import ExpenseForm from '../expense-form';
 
 import {
   categoryDelete,
@@ -37,6 +38,7 @@ class CategoryItem extends React.Component {
                />
             </div>
           </div>
+          <ExpenseForm />
         </div>
     )
   }
