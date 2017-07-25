@@ -8,7 +8,7 @@ const store = createAppStore()
 
 class App extends React.Component {
   componentDidMount(){
-    store.subscript(() => {
+    store.subscribe(() => {
       console.log('__STATE__', this.state)
     })
     store.dispatch({type: null})
