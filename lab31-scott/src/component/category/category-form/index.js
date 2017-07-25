@@ -4,7 +4,7 @@ class CategoryForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      id: '',
+      id: this.props.id,
       timestamp: '',
       name: '',
       budget: 0,
@@ -20,9 +20,10 @@ class CategoryForm extends React.Component{
   }
 
   handleSubmit(e){
+    console.log('FORM thisstate', this.state);
     console.log('form', this.props);
     e.preventDefault();
-    this.props.onComplete(this.state);
+    this.props.onComplete(Object.assign({},this.state));
   }
 
   render(){
@@ -30,7 +31,7 @@ class CategoryForm extends React.Component{
       <form className='category-form' onSubmit={this.handleSubmit}>
        This is category form
         <input
-          type= {this.props.buttonText === 'Delete Category'? 'hidden' : 'text'}
+          type={this.props.buttonText === 'Delete Category'? 'hidden' : 'text'}
           name='name'
           placeholder='Name'
           value={this.state.name}

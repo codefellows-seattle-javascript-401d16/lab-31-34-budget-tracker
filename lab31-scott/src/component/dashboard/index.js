@@ -17,6 +17,7 @@ class DashboardContainer extends React.Component{
 
 
   render(){
+    console.log('DASH PROPS', this.props.categories);
     return(
       <main className='dashboard'>
         This is the dashboard
@@ -34,11 +35,12 @@ class DashboardContainer extends React.Component{
             <CategoryForm
               buttonText='Update Category'
               onComplete={this.props.categoryUpdate}
+              id={item.id}
             />
-            <CategoryForm
-              buttonText='Delete Category'
-              onComplete={this.props.categoryDestroy}
-            />
+            <button
+              onClick={()=> this.props.categoryDestroy}>
+              Delete Category
+            </button>
           </div>
         )}
       </main>

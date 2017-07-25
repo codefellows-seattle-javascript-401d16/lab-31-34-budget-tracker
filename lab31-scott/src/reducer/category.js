@@ -16,12 +16,14 @@ export default (state = initialState, action) => {
   //case for update
   case 'CATEGORY_UPDATE':
     return state.map(item => {
-      item.id === payload.id ? payload : item;
+      console.log('ACTION: ', item);
+      console.log('ACTION: ', payload);
+      return item.id === payload.id ? payload : item;
     });
   //case for destroy
   case 'CATEGORY_DESTROY':
     return state.filter(item => {
-      item.id !== payload.id;
+      return item.id !== payload.id;
     });
   //case for a reset categories to empty array
   case 'CATEGORY_RESET':
