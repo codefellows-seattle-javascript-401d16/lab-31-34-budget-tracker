@@ -7,7 +7,7 @@ import {
   budgetDelete,
 } from '../../actions/budget-category-actions.js';
 
-import BudgetForm from '../budget-from.js';
+import BudgetForm from '../budget-form';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
@@ -20,14 +20,14 @@ class DashboardContainer extends React.Component {
         <h2> Budget Dashboard </h2>
         <BudgetForm
           submitText='Add Budget Category'
-          onSubmit={this.props.budgetCreate}
+          onComplete={this.props.budgetCreate}
         />
-        {this.props.budgets.map(budgetCategory => {
+        {this.props.budgetCategories.map((budgetCategory) =>
           <div key={budgetCategory.id}>
             <h3>{budgetCategory.title}</h3>
             <h4>Budget: {budgetCategory.budget}</h4>
-          </div>;
-        })}
+          </div>
+        )}
       </main>
     );
   }

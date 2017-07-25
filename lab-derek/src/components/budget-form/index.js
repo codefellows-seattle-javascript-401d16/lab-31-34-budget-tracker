@@ -3,7 +3,10 @@ import React from 'react';
 class BudgetForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = props.category ? {...props.budgetCategory} : {title: '', budget: 0};
+    this.state = {
+      title: props.category ? props.category.title : '',
+      budget: props.category ? props.category.budget : 0,
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,30 +22,29 @@ class BudgetForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleSubmit({...this.state});
-    if(!this.props.category) {
-      this.setState({title: '', budget: 0});
-    }
+    this.props.onComplete(Object.assign({}, this.state));
   }
 
   render() {
     return (
       <form className='budget-form' onSubmit={this.handleSubmit}>
-        <input>
+        <input
           name='title'
           type='text'
           placeholder='Budget Category'
           value={this.state.title}
           onChange={this.handleChange}
-        </input>
-        <input>
+        />
+        <input
           name='budget'
           type='number'
           step={0.1}
           placeholder='Budgeted Amount'
           value={this.state.budget}
           onChange={this.handleChange}
-        </input>
+        />
+
+        <button type='submit'> {this.props.submitText} </button>
       </form>
     );
   }

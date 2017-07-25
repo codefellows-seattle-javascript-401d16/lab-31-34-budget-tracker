@@ -1,4 +1,4 @@
 import {createStore} from 'redux';
-// import reducer from '../reducer/budgetCategory.js';
+import reducer from '../reducer/budget-category.js';
 
 export default () => createStore(reducer);

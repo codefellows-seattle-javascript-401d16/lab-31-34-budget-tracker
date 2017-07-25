@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 import CreateAppStore from '../../lib/store.js';
-// import DashboardContainer from '../dashboard-container';
+import DashboardContainer from '../dashboard-container';
 
 const store = CreateAppStore();
 
