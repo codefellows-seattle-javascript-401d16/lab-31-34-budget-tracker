@@ -5,13 +5,13 @@ import {
   budgetCreate,
   budgetUpdate,
   budgetDelete,
-} from '../../action/budget-actions.js';
+} from '../../action/budget-category-actions.js';
 
 import BudgetForm from '../budget-form';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
-    // this.props.budgetCreate({title: })
+    this.props.budgetCreate({title: 'yo'});
   }
 
   render() {
@@ -25,6 +25,7 @@ class DashboardContainer extends React.Component {
         {this.props.budgets.map(budgetCategory => {
           <div key={budgetCategory.id}>
             <h3>{budgetCategory.title}</h3>
+            <h4>Budget: {budgetCategory.budget}</h4>
           </div>;
         })}
       </main>

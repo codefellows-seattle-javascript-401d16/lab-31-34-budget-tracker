@@ -2,6 +2,7 @@ import uuid from 'uuid/v1';
 
 export const budgetCategoryCreate = budgetCategory => {
   budgetCategory.id = uuid();
+  budgetCategory.timeStamp = new Date();
   return {
     type: 'BUDGET_CATEGORY_CREATE',
     payload: budgetCategory,
