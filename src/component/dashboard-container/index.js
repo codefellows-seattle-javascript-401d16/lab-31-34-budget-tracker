@@ -5,19 +5,12 @@ import {
   categoryCreate,
 } from '../../action/category-actions.js'
 
-import {
-  expenseCreate,
-} from '../../action/expense-actions.js'
 
 import ExpenseForm from '../expense-form'
 import CategoryForm from '../category-form'
 import CategoryItem from '../category-item'
 
 class DashboardContainer extends React.Component {
-  componentDidMount(){
-    console.log('componentDidMount')
-  }
-
   render(){
     return (
       <main className='dashboard-container'>
@@ -44,12 +37,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: (category) => dispatch(categoryCreate(category)),
-    // categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-    // categoryDelete: (category) => dispatch(categoryDelete(category)),
   }
 }
 

@@ -10,6 +10,10 @@ import {
   categoryDelete,
 } from '../../action/category-actions.js'
 
+import {
+  expenseCreate,
+} from '../../action/expense-actions.js'
+
 class CategoryItem extends React.Component {
   constructor(props){
     super(props)
@@ -34,8 +38,15 @@ class CategoryItem extends React.Component {
           buttonText='update budget'
           />
         )}
+
         <ExpenseForm
           buttonText='add expense'
+          onComplete={(data) => {
+            data.categoryID = category.id
+            console.log('ON COMPLETE DATA', data)
+            this.props.expenseCreate(data)
+          }
+        }
         />
 
         <ExpenseItem />
@@ -50,11 +61,16 @@ class CategoryItem extends React.Component {
 
 
 
-let mapStateToProps = () => ({})
+let mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses,
+  }
+}
 
 let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
+  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps

@@ -10,9 +10,13 @@ export default (state=initialState, action) => {
     return {...state, [payload.id]: undefined}
 
   case 'EXPENSE_CREATE':
+    console.log('Expense Reducer', payload)
     {
       let {categoryID} = payload
       let categoryExpenses = [...state[categoryID]]
+      console.log('Expense Reducer categoryID', categoryID)
+      console.log('Expense Reducer categoryExpenses', categoryExpenses)
+
       return {...state, [categoryID]: [...categoryExpenses, payload]}
     }
 

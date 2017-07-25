@@ -3,10 +3,15 @@ import React from 'react'
 class ExpenseForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = props.expense ? {...props.category} : {name: '', price: 0}
+    this.state = props.expense ? {...props.expense} : {name: '', price: 0}
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(props){
+    if(props.expense)
+      this.setState(props.expense)
   }
 
   handleChange(e){
@@ -16,7 +21,11 @@ class ExpenseForm extends React.Component{
   }
 
   handleSubmit(e){
-    e.preventDefault
+    console.log('Expense-Form this.state', this.state)
+    console.log('Expense-Form this.onComplete', this.props.onComplete)
+
+    e.preventDefault()
+    // onComplete = this.props.expenseCreate
     this.props.onComplete({...this.state})
     // clear the form if it isn't being used to update
     if(!this.props.expense)
