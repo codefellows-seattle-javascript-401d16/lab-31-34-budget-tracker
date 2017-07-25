@@ -21,7 +21,10 @@ class CategoryItem extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     })
-    if (e.target.name == 'name') return (this.props.item.name = e.target.value)
+    if (e.target.name == 'name') {
+      this.props.item.name = e.target.value
+      this.props.item.updated = new Date()
+    }
     if (e.target.name == 'budget') {
       this.props.item.budget = e.target.value
       this.props.item.updated = new Date()
@@ -49,7 +52,7 @@ class CategoryItem extends React.Component {
             />
             <input
               name="budget"
-              type="text"
+              type="number"
               value={this.props.item.budget}
               onChange={this.handleChange}
               onBlur={() => this.props.categoryUpdate(this.props.item)}

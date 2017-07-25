@@ -1,4 +1,3 @@
-'use strict'
 let intialState = []
 export default (state = intialState, action) => {
   let { type, payload } = action
