@@ -38,7 +38,7 @@ class DashboardContainer extends React.Component{
               id={item.id}
             />
             <button
-              onClick={()=> this.props.categoryDestroy}>
+              onClick={() => this.props.categoryDestroy(item)}>
               Delete Category
             </button>
           </div>

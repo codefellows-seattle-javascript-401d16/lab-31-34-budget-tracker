@@ -4,6 +4,7 @@ class CategoryForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      // id: props.category.id ? props.category.id : '',
       id: this.props.id,
       timestamp: '',
       name: '',
@@ -24,6 +25,7 @@ class CategoryForm extends React.Component{
     console.log('form', this.props);
     e.preventDefault();
     this.props.onComplete(Object.assign({},this.state));
+
   }
 
   render(){
