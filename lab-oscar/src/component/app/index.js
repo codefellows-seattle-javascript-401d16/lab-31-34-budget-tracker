@@ -4,10 +4,6 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import createAppStore from '../../lib/store.js';
 import DashboardContainer from '../dashboard-container';
 
-
-
-
-
 const store = createAppStore();
 
 class App extends React.Component {

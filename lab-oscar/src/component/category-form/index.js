@@ -22,7 +22,8 @@ class CategoryForm extends React.Component {
     e.preventDefault()
     console.log('test!!!', this.state);
     this.props.onComplete(Object.assign({}, this.state))
-    this.setState({Name: '', Budget: ''})
+    if(!this.props.category)
+      this.setState({Name: '', Budget: ''})
   }
 
   render(){
