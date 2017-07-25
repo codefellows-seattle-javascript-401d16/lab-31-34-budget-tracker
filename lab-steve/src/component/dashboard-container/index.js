@@ -14,7 +14,8 @@ class DashboardContainer extends React.Component {
     this.props.categoryCreate({name: 'test2', budget: 400});
   }
   render() {
-    if (Array.isArray(this.props.categories)) console.log('categories: ', this.props.categories);
+    // if (Array.isArray(this.props.categories)) console.log('categories: ', this.props.categories);
+    console.log('categories: ', this.props.categories);
     return (
       <main className='dashboard-container'>
         <h2> Dashboard </h2>
@@ -22,12 +23,12 @@ class DashboardContainer extends React.Component {
           buttonText='Create Category'
           onComplete={this.props.categoryCreate}
         />
-        {Array.isArray(this.props.categories) ? this.props.categories.map((item) =>
+        {this.props.categories.map((item) =>
           <div key={item.id}>
             <h3> {item.name} </h3>
             <h4> ${item.budget} </h4>
           </div>
-        ): null}
+        )}
       </main>
     );
   }
