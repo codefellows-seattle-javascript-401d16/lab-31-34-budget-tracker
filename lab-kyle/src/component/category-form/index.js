@@ -1,10 +1,12 @@
 import React from 'react'
+//import uuid from 'uuid/v1'
 
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       name: props.category ? props.category.name : '',
+      id: props.category ? props.category.id : undefined,
       budget: props.category ? props.category.budget : 0,
     }
 
@@ -50,7 +52,7 @@ class CategoryForm extends React.Component {
             name="budget"
             type="number"
             placeholder="budget"
-            value={this.state.value}
+            value={this.state.budget}
             onChange={this.handleChange}
           />
           <button type="submit">
