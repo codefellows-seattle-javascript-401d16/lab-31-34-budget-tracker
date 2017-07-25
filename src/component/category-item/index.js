@@ -1,5 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {renderIf} from '../../lib/util.js'
 import CategoryForm from '../category-form'
+import ExpenseForm from '../expense-form'
+import ExpenseItem from '../expense-item'
+
+import {
+  categoryUpdate,
+  categoryDelete,
+} from '../../action/category-actions.js'
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -9,23 +18,29 @@ class CategoryItem extends React.Component {
     }
   }
   render() {
-    let {category} = this.props
+    let {category, categoryUpdate, categoryDelete} = this.props
     return (
-      <div>
+      <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
         <h3> item name: {category.name} </h3>
-        <h3> item budget: {category.budget} </h3>
+        <h3> item budget: ${category.budget} </h3>
 
-
-        <CategoryForm
-          category={category}
-          onComplete={(data) => {
-            data.id = category.id
-            this.props.categoryUpdate(data)
-          }}
-        buttonText='update budget'
+        {renderIf(this.state.editing === true,
+          <CategoryForm
+            category={category}
+            onComplete={(data) => {
+              data.id = category.id
+              categoryUpdate(data)
+            }}
+          buttonText='update budget'
+          />
+        )}
+        <ExpenseForm
+          buttonText='add expense'
         />
 
-        <button onClick = {() => this.props.categoryDelete(category)}>
+        <ExpenseItem />
+
+        <button onClick = {() => categoryDelete(category)}>
         -
         </button>
       </div>
@@ -33,4 +48,16 @@ class CategoryItem extends React.Component {
   }
 }
 
-export default CategoryItem
+
+
+let mapStateToProps = () => ({})
+
+let mapDispatchToProps = dispatch => ({
+  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+  categoryDelete: (category) => dispatch(categoryDelete(category)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps
+)(CategoryItem)
+
+// export default CategoryItem
