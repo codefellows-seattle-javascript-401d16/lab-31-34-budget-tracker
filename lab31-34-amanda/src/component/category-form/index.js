@@ -1,29 +1,29 @@
-import React from 'react'
+import React from 'react';
 
 class CategoryForm extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = {
       name: props.category ? props.category.name : '',
-      budget: props.budget ? props.category.budget: '',
-    }
+      budget: props.budget ? props.category.budget: 0,
+    };
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e){
-    this.setState({[e.target.name] : e.target.value})
+    this.setState({[e.target.name] : e.target.value});
   }
 
   handleSubmit(e){
-    e.preventDefault()
-    console.log('this is rendering!',this.props.category)
-    this.props.onComplete(Object.assign({}, this.state))
+    e.preventDefault();
+    console.log('this is rendering!',this.props.category);
+    this.props.onComplete(Object.assign({}, this.state));
 
     if(!this.props.category) //how do I clear this form?
-      this.setState({name: ''})
+      this.setState({name: '', budget: 0 });
   }
 
   render(){
@@ -51,8 +51,8 @@ class CategoryForm extends React.Component {
           submit
         </button>
       </form>
-    )
+    );
   }
 }
 
-export default CategoryForm
+export default CategoryForm;
