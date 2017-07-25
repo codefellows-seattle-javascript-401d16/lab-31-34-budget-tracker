@@ -12,7 +12,7 @@ class App extends React.Component {
       console.log('__state__', store.getState());
     });
 
-    store.dispatch({ type: null });
+    // store.dispatch({ type: null, budget: null });
   }
 
   render() {

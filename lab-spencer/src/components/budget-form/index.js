@@ -35,6 +35,7 @@ class BudgetForm extends React.Component {
           placeholder='Budget Category Name'
           value={this.state.title}
           onChange={this.handleChange}
+          required
         />
         <input
           name='budget'
@@ -43,8 +44,16 @@ class BudgetForm extends React.Component {
           placeholder='Budgeted Money'
           value={this.state.budget}
           onChange={this.handleChange}
+          required
         />
+        <button
+          name='submit-budget-category'
+          type='submit'
+          onSubmit={this.handleSubmit}
+        >Add Category</button>
       </form>
     );
   }
 }
+
+export default BudgetForm;
