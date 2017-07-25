@@ -8,6 +8,7 @@ import {
 } from '../../action/category-actions.js';
 
 import CategoryForm from '../category-form';
+import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component{
   componentDidMount(){
@@ -32,6 +33,11 @@ class DashboardContainer extends React.Component{
         {this.props.categories.map((item) =>
           <div key={item.id}>
             <h2> {item.title} </h2>
+            <CategoryItem
+              category={item}
+              onClick={this.props.categoryDelete}
+              onComplete={this.props.categoryUpdate}
+            />
           </div>
         )}
       </main>
