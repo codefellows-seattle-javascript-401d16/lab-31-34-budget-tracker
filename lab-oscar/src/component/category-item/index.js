@@ -16,8 +16,8 @@ class CategoryItem extends React.Component {
              <p><strong>Category Name:</strong> {item.Name}
                 <strong> Budget Amount:</strong> {item.Budget}
               <strong>Created On:</strong> {item.timestamp.format("MMM Do YYYY")}
+              <button type='button'  onClick={()=>{this.props.categoryDelete(item)}}> Delete</button>
             </p>
-             <button type='button'  onClick={()=>{this.props.categoryDelete(item)}}> Delete</button>
              <CategoryForm buttonText='Update Category'
               category={item}
               onComplete={(data) => {
