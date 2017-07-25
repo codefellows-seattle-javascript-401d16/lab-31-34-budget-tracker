@@ -21,23 +21,27 @@ class CategoryForm extends React.Component {
     e.preventDefault()
     console.log('this is rendering!',this.props.category)
     this.props.onComplete(Object.assign({}, this.state))
+    //clear the form if not being used for update
+    // if(!props.category)
+    //   this.setState({title: ''})
   }
 
   render(){
     return(
-      <form className='category form' onSubmit={this.handleSubmit}>
+      <form className='category-form' onSubmit={this.handleSubmit}>
         <input
           className='title-input'
           name='name'
           type='text'
           placeholder='title'
-          value={this.state.title}
+          value={this.state.name}
           onChange={this.handleChange} />
 
         <input
           className='price-input'
           name= 'budget'
           type='number'
+          placeholder='amout'
           value={this.state.price}
           onChange={this.handleChange} />
 

@@ -18,21 +18,23 @@ class DashboardContainer extends React.Component {
           onComplete={this.props.categoryCreate}
         />
 
-        <CategoryItem
-          categoryUpdate={this.props.categoryUpdate}
-          categoryDelete={this.props.categoryDelete}/>
+        {this.props.categorys.map((item) =>
+          <div key={item.id}>
+            <h3> {item.name} </h3>
+          </div>
+        )}
       </main>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => { //connect
   return {
     categorys:state,
   }
 }
 
-const mapDispatchToProps = (dispatch, getState) => {
+const mapDispatchToProps = (dispatch, getState) => { //connect
   return {
     categoryCreate: (category) => dispatch(categoryCreate(category)),
     categoryUpdate: (category) => dispatch(categoryUpdate(category)),
