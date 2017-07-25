@@ -14,6 +14,7 @@ import {
 } from '../../action/expenses-actions.js';
 
 import BudgetForm from '../budget-form';
+import ExpenseForm from '../expense-form';
 
 class DashboardContainer extends React.Component {
   render() {
@@ -23,13 +24,11 @@ class DashboardContainer extends React.Component {
         <BudgetForm handleSubmit={this.props.budgetCreate} />
         {this.props.budgetCategories.map(budgetCategory =>
           <div key={budgetCategory.id}>
-            <h3>{budgetCategory.title}</h3>
-            <h4>Budget: {budgetCategory.budget}</h4>
+            <h3>{budgetCategory.title}: ${budgetCategory.budget}</h3>
             <ul>
-        {  /*{this.props.expenses.filter(expense => expense.categoryId === budgetCategory.id).map(expense => <li key={expense.id}>{expense.title}: ${expense.price}</li>)}*/}
+              {this.props.expenses.filter(expense => expense.categoryId === budgetCategory.id).map(expense => <li key={expense.id}>{expense.title}: ${expense.price}</li>)}
             </ul>
-            <BudgetForm
-              submitText='Add Expense'
+            <ExpenseForm
               handleSubmit={this.props.expenseCreate}
               categoryId={budgetCategory.id}
             />
