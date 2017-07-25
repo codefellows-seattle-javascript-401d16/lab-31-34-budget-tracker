@@ -1,26 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import CategoryItem from '../category-item/';
+import CategoryForm from '../category-form';
+
 import {
   categoryCreate,
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js';
 
-import CategoryForm from '../category-form';
-
 class DashboardContainer extends React.Component {
   componentDidMount(){
-    this.props.categoryCreate({title: 'lul'});
-    this.props.categoryCreate({title: 'wat'});
-    this.props.categoryCreate({title: 'coo'});
-    this.props.categoryCreate({title: 'bea'});
   }
 
   render(){
-    console.log('categorys', this.props.categorys);
     return (
-      <main className='dashboard-container'>
+      <main className='dashboard'>
         <h2> dashboard </h2>
         <CategoryForm
           buttonText='create category'
@@ -28,9 +24,12 @@ class DashboardContainer extends React.Component {
         />
 
         {this.props.categorys.map((item) =>
-          <div key={item.id}>
-            <h3> {item.title} </h3>
-          </div>
+          <CategoryItem
+            key={item.id}
+            category={item}
+            buttonText='update budget'
+            categoryUpdate={this.props.categoryUpdate}
+            categoryDelete={this.props.categoryDelete}/>
         )}
       </main>
     );
