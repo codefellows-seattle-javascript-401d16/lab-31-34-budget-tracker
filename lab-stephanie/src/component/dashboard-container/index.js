@@ -8,6 +8,7 @@ import {
 } from '../../action/category-actions.js'
 
 import CategoryForm from '../category-form-component'
+import CategoryItem from '../category-item-component'
 
 class DashboardContainer extends React.Component {
   render() {
@@ -16,19 +17,11 @@ class DashboardContainer extends React.Component {
       <main className="dashboard-container">
         <h2> dashboard </h2>
         <CategoryForm categoryCreate={this.props.categoryCreate} />
-        {this.props.categories.map(item =>
-          <div key={item.id}>
-            <h3>
-              Item Name:{item.name}
-            </h3>
-            <h3>
-              Item Budget: {item.budget}
-            </h3>
-            <h3>
-              Last Updated: {item.timestamp.toString()}
-            </h3>
-          </div>
-        )}
+        <CategoryItem
+          categoryUpdate={this.props.categoryUpdate}
+          categoryDelete={this.props.categoryDelete}
+          categories={this.props.categories}
+        />
       </main>
     )
   }
