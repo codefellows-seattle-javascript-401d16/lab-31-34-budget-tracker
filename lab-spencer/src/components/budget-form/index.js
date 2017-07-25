@@ -3,12 +3,15 @@ import React from 'react';
 class BudgetForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: props.budgetCategory ? props.budgetCategory.title : '',
-      budget: props.budgetCategory ? props.budgetCategory.budget : 0,
-    };
+    this.state = props.category ? {...props.budgetCategory} : {title: '', budget: 0};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  // if a new category is being passed into props, update the state to reflect the change
+  componentWillReceiveProps(props) {
+    if(props.category)
+      this.setState(props.category);
   }
 
   handleChange(event) {
@@ -17,7 +20,10 @@ class BudgetForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleSubmit(Object.assign({}, this.state));
+    this.props.handleSubmit({...this.state});
+    if(!this.props.category) {
+      this.setState({ title: '', budget: 0 });
+    }
   }
 
   render() {
