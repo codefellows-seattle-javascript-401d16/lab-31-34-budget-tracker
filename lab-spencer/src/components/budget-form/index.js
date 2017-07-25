@@ -40,7 +40,7 @@ class BudgetForm extends React.Component {
         <input
           name='budget'
           type='number'
-          step={0.1}
+          step={0.01}
           placeholder='Budgeted Money'
           value={this.state.budget}
           onChange={this.handleChange}

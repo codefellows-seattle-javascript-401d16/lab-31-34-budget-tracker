@@ -22,6 +22,15 @@ class DashboardContainer extends React.Component {
           <div key={budgetCategory.id}>
             <h3>{budgetCategory.title}</h3>
             <h4>Budget: {budgetCategory.budget}</h4>
+            <ul>
+              {this.props.expenses.map(expense =>
+                <li key={expense.id}>{expense.title}: ${expense.cost}</li>
+              )}
+            </ul>
+            <BudgetForm
+              submitText='Add Expense'
+              handleSubmit={this.props.expenseCreate}
+            />
           </div>
         )}
       </main>
@@ -31,7 +40,8 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    budgetCategories: state,
+    budgetCategories: state.budgetCategories,
+    expenses: state.expenses,
   };
 };
 
