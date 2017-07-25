@@ -3,10 +3,7 @@ import React from 'react';
 class BudgetForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      budget: 0,
-    };
+    this.state = props.categoryId ? {title: '', budget: 0} : {title: '', price: 0, categoryId: props.categoryId};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,23 +23,24 @@ class BudgetForm extends React.Component {
         <input
           name='title'
           type='text'
-          placeholder='Add Budget Category'
+          placeholder={this.props.submitText === 'Add Budget Category' ? 'Budget Category Name' : 'Expense Name'}
           value={this.state.title}
           onChange={this.handleChange}
           required
         />
         <input
-          name='budget'
+          name={this.props.submitText === 'Add Budget Category' ? 'budget' : 'price'}
           type='number'
           step={0.01}
           placeholder='Budgeted Money'
-          value={this.state.budget}
+          value={this.props.submitText === 'Add Budget Category' ? this.state.budget : this.state.price}
           onChange={this.handleChange}
           required
         />
         <button
           name='submit-budget'
           type='submit'
+          onSubmit={this.handleSubmit}
         >Add Category</button>
       </form>
     );

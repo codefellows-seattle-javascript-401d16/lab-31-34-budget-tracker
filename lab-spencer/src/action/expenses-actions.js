@@ -1,26 +1,24 @@
 import uuid from 'uuid/v1';
 
-export const expenseCreate = expense => {
+export const expenseItemCreate = expense => {
   expense.id = uuid();
   expense.timeStamp = new Date();
-  expense.cost = parseFloat(expense.cost);
+  expense.price = parseFloat(expense.price);
   return {
     type: 'EXPENSE_CREATE',
     payload: expense,
   };
 };
 
-export const expenseUpdate = expense => {
-  expense.cost = parseFloat(expense.cost);
+export const expenseItemUpdate = expense => {
+  expense.price = parseFloat(expense.price);
   return {
     type: 'EXPENSE_UPDATE',
     payload: expense,
   };
 };
 
-export const expenseDelete = expense => {
-  return {
-    type: 'EXPENSE_DELETE',
-    payload: expense,
-  };
-};
+export const expenseItemDelete = expense => ({
+  type: 'EXPENSE_DELETE',
+  payload: expense,
+});

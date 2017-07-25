@@ -11,6 +11,6 @@ export default (state = initialState, action) => {
   case 'EXPENSE_DELETE':
     return state.expenses.filter(expense => expense.id !== payload.id);
   default:
-    return state.expenses;
+    return state;
   }
 };
