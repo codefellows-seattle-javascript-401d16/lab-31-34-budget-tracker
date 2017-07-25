@@ -23,7 +23,6 @@ class CategoryForm extends React.Component {
   }
 
   render() {
-    console.log('rendering')
     return (
       <form className="category-form" onSubmit={this.handleSubmit}>
         <input

@@ -12,7 +12,6 @@ import CategoryItem from '../category-item-component'
 
 class DashboardContainer extends React.Component {
   render() {
-    console.log('props', this.props)
     return (
       <main className="dashboard-container">
         <h2> dashboard </h2>
@@ -21,11 +20,10 @@ class DashboardContainer extends React.Component {
           {this.props.categories.map((item, i) => {
             return (
               <li key={i}>
-                {console.log('item in dashboard', item)}
                 <CategoryItem
                   item={item}
-                  categoryDelete={this.props.categoryDelete}
                   categoryUpdate={this.props.categoryUpdate}
+                  categoryDelete={this.props.categoryDelete}
                 />
               </li>
             )

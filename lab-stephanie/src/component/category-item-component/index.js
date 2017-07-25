@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 let renderIf = (t, c) => (t ? c : undefined)
 
@@ -7,23 +8,31 @@ class CategoryItem extends React.Component {
     super(props)
     this.state = {
       editing: false,
+      name: this.props.item.name,
+      budget: this.props.item.budget,
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
   handleChange(e) {
     this.setState({
-      content: e.target.value,
+      [e.target.name]: e.target.value,
     })
-    this.props.note.content = this.state.content
+    if (e.target.name == 'name') return (this.props.item.name = e.target.value)
+    if (e.target.name == 'budget') {
+      this.props.item.budget = e.target.value
+      this.props.item.updated = new Date()
+    }
   }
 
   handleUpdate() {
-    console.log('editing')
     this.setState({ editing: true })
   }
+
+  handleBlur() {}
 
   render() {
     return (
@@ -36,14 +45,14 @@ class CategoryItem extends React.Component {
               type="text"
               value={this.props.item.name}
               onChange={this.handleChange}
-              onDoubleClick={() => this.props.categoryUpdate(this)}
+              onBlur={() => this.props.categoryUpdate(this.props.item)}
             />
             <input
               name="budget"
               type="text"
               value={this.props.item.budget}
               onChange={this.handleChange}
-              onDoubleClick={() => this.props.categoryUpdate(this.pops.item)}
+              onBlur={() => this.props.categoryUpdate(this.props.item)}
             />
           </div>
         )}
