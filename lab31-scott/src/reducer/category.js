@@ -1,5 +1,3 @@
-'use strict';
-
 //set initial state to empty array. It will hold all categories as indicies.
 let initialState = [];
 
