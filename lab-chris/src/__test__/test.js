@@ -96,5 +96,6 @@ describe('reducer', () => {
     expect(reduce[0].budget).toEqual(100);
     reduce = reducer(reduce, reset);
     expect(reduce[0]).toBe(undefined);
+    expect(reduce).toEqual([]);
   });
 });
