@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    categoryCreate: (category) => dispatch(categoryCreate(category)),
+    categoryCreate: (category) => dispatch(categoryActionCreate(category)),
   }
 }
 export default connect( mapStateToProps, mapDispatchToProps)(DashboardContainer);
