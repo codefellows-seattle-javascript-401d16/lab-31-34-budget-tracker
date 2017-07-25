@@ -23,7 +23,7 @@ export default (state=initialState, action) => {
 
   case 'CATEGORY_RESET':
     return initialState
-    
+
   default:
     return state
   }

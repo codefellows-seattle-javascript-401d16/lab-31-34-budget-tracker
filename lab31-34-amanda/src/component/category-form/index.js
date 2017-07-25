@@ -22,8 +22,6 @@ class CategoryForm extends React.Component {
     console.log('this is rendering!',this.props.category)
     this.props.onComplete(Object.assign({}, this.state))
     //clear the form if not being used for update
-    // if(!props.category)
-    //   this.setState({title: ''})
   }
 
   render(){
@@ -31,24 +29,24 @@ class CategoryForm extends React.Component {
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input
           className='title-input'
-          name='name'
+          title='name'
           type='text'
           placeholder='title'
-          value={this.state.name}
+          value={this.state.title}
           onChange={this.handleChange} />
 
         <input
           className='price-input'
-          name= 'budget'
+          title= 'budget'
           type='number'
-          placeholder='amout'
+          placeholder='#'
           value={this.state.price}
           onChange={this.handleChange} />
 
         <button
           className='button-input'
           type='submit'>
-          {this.props.buttonName}
+          submit
         </button>
       </form>
     )

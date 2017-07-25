@@ -5,7 +5,7 @@ import { categoryCreate, categoryUpdate,categoryDelete}
   from '../../action/category-action.js'
 
 import CategoryForm from '../category-form'
-import CategoryItem from '../category-render'
+import CategoryItem from '../category-item'
 
 class DashboardContainer extends React.Component {
 
@@ -30,7 +30,7 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = (state) => { //connect
   return {
-    categorys:state,
+    categorys:state, //refactor: state.categories - categories, not the cards
   }
 }
 
