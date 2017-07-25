@@ -26,7 +26,7 @@ class CategoryItem extends React.Component{
             <CategoryForm
               buttonText='Update Category'
               onComplete={this.props.categoryUpdate}
-              id={item.id}
+              category={item}
             />
             <button
               onClick={() => this.props.categoryDestroy(item)}

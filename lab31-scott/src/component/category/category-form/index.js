@@ -4,14 +4,18 @@ class CategoryForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      // id: props.category.id ? props.category.id : '',
-      id: this.props.id,
+      id: props.category.id ? props.category.id : '',
       timestamp: '',
-      name: '',
-      budget: 0,
+      name: props.category.name ? props.category.name : '',
+      budget: props.category.budget ? props.category.budget : 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(props){
+    console.log('form', this.props);
+    if(props.category) this.setState(props.category);
   }
 
   handleChange(e){
@@ -22,9 +26,9 @@ class CategoryForm extends React.Component{
 
   handleSubmit(e){
     console.log('FORM thisstate', this.state);
-    console.log('form', this.props);
     e.preventDefault();
     this.props.onComplete(Object.assign({},this.state));
+    if(!this.props.category) this.setState({name: '', budget: ''});
 
   }
 
@@ -33,14 +37,14 @@ class CategoryForm extends React.Component{
       <form className='category-form' onSubmit={this.handleSubmit}>
        This is category form
         <input
-          type={this.props.buttonText === 'Delete Category'? 'hidden' : 'text'}
+          type='text'
           name='name'
           placeholder='Name'
           value={this.state.name}
           onChange={this.handleChange}
         />
         <input
-          type={this.props.buttonText === 'Delete Category'? 'hidden' : 'number'}
+          type='number'
           name='budget'
           placeholder='Budget Amount'
           value={this.state.budget}

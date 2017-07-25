@@ -26,6 +26,7 @@ class DashboardContainer extends React.Component{
         <CategoryForm
           buttonText='Create Category'
           onComplete={this.props.categoryCreate}
+          category={{}}
         />
         <CategoryItem
         />
