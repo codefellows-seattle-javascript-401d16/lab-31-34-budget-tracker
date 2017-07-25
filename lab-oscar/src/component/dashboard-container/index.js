@@ -8,6 +8,7 @@ import {
 } from '../../actions/category-actions.js';
 
 import CategoryForm from '../category-form';
+import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component {
 
@@ -19,25 +20,11 @@ class DashboardContainer extends React.Component {
         <CategoryForm buttonText='Create a Category'
           onComplete={this.props.categoryCreate}
         />
-
-
-        {this.props.categorys.map((item) =>
-          <div key={item.id}>
-          <p><strong>Category Name:</strong> {item.Name}
-             <strong> Budget Amount:</strong> {item.Budget}
-             <strong>Created On:</strong> {item.timestamp.format("MMM Do YYYY")}
-          </p>
-          <button type='button'  onClick={()=>{this.props.categoryDelete(item)}}> Delete</button>
-          <CategoryForm buttonText='Update Category'
-            category={item}
-            onComplete={(data) => {
-              data.id = item.id;
-              data.timestamp = item.timestamp;
-              this.props.categoryUpdate(data);
-            }}
-          />
-          </div>
-        )}
+        <CategoryItem
+          category={this.props.categorys}
+          categoryDelete={this.props.categoryDelete}
+          categoryUpdate={this.props.categoryUpdate}
+        />
       </main>
     )
   }

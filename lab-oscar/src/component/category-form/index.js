@@ -2,7 +2,6 @@ import React from 'react';
 
 class CategoryForm extends React.Component {
   constructor(props){
-    console.log('test!!!~~~', props.category);
     super(props)
     this.state = {
       Name: props.category ? props.category.Name : '',
