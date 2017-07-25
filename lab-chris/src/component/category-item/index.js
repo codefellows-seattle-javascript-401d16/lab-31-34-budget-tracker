@@ -17,7 +17,7 @@ class CategoryItem extends React.Component {
             data.id = category.id;
             this.props.categoryUpdate(data);
           }}
-          buttonText='update budget'
+          buttonText='update'
         />
 
         <button onClick = {() => this.props.categoryDelete(category)}> Delete </button>
