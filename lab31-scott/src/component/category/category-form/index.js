@@ -20,6 +20,7 @@ class CategoryForm extends React.Component{
   }
 
   handleSubmit(e){
+    console.log('form', this.props);
     e.preventDefault();
     this.props.onComplete(this.state);
   }
@@ -29,14 +30,14 @@ class CategoryForm extends React.Component{
       <form className='category-form' onSubmit={this.handleSubmit}>
        This is category form
         <input
-          type='text'
+          type= {this.props.buttonText === 'Delete Category'? 'hidden' : 'text'}
           name='name'
           placeholder='Name'
           value={this.state.name}
           onChange={this.handleChange}
         />
         <input
-          type='number'
+          type={this.props.buttonText === 'Delete Category'? 'hidden' : 'number'}
           name='budget'
           placeholder='Budget Amount'
           value={this.state.budget}

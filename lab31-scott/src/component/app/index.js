@@ -22,6 +22,7 @@ class App extends React.Component{
     store.subscribe(() => {
       console.log('--STATE-CHANGE--', store.getState());
     });
+    store.dispatch({type: null});
   }
 
   render(){
