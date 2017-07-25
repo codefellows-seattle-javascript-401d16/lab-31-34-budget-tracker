@@ -17,11 +17,21 @@ class DashboardContainer extends React.Component {
       <main className="dashboard-container">
         <h2> dashboard </h2>
         <CategoryForm categoryCreate={this.props.categoryCreate} />
-        <CategoryItem
-          categoryUpdate={this.props.categoryUpdate}
-          categoryDelete={this.props.categoryDelete}
-          categories={this.props.categories}
-        />
+        <ul id="categories">
+          {this.props.categories.map((item, i) => {
+            return (
+              <li key={i}>
+                {console.log('item in dashboard', item)}
+                <CategoryItem
+                  item={item}
+                  categoryDelete={this.props.categoryDelete}
+                  categoryUpdate={this.props.categoryUpdate}
+                />
+              </li>
+            )
+          })}
+        </ul>
+        ) }
       </main>
     )
   }

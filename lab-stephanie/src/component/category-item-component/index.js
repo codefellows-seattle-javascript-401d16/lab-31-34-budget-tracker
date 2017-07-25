@@ -2,7 +2,7 @@ import React from 'react'
 
 let renderIf = (t, c) => (t ? c : undefined)
 
-class NoteItem extends React.Component {
+class CategoryItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -10,8 +10,6 @@ class NoteItem extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
@@ -22,62 +20,55 @@ class NoteItem extends React.Component {
     this.props.note.content = this.state.content
   }
 
-  handleBlur(e) {
-    this.setState(state => ({ editing: !state.editing }))
-    this.handleUpdate(this.id)
-  }
-
-  handleDelete(e) {
-    this.props.categoryDelete(this.id)
-  }
-
   handleUpdate() {
-    this.props.categoryUpdate(this.id)
+    console.log('editing')
+    this.setState({ editing: true })
   }
 
   render() {
-    console.log('props', this.props.categories)
     return (
       <div onDoubleClick={this.handleUpdate}>
         {renderIf(
           this.state.editing,
           <div className="budget-item-update">
             <input
-              name="update"
+              name="name"
               type="text"
-              value={this.state.name}
+              value={this.props.item.name}
               onChange={this.handleChange}
-              onBlur={this.handleBlur}
+              onDoubleClick={() => this.props.categoryUpdate(this)}
+            />
+            <input
+              name="budget"
+              type="text"
+              value={this.props.item.budget}
+              onChange={this.handleChange}
+              onDoubleClick={() => this.props.categoryUpdate(this.pops.item)}
             />
           </div>
         )}
 
         {renderIf(
           !this.state.editing,
-          <div>
-            {this.props.categories.map(item =>
-              <div key={item.id}>
-                <h3>
-                  {console.log(item.id)}
-                  Item Name:{item.name}
-                </h3>
-                <h3>
-                  Item Budget: {item.budget}
-                </h3>
-                <h3>
-                  Item id: {item.id}
-                </h3>
-                <h3>
-                  Last Updated: {item.timestamp.toString()}
-                </h3>
-                <button
-                  onClick={this.handleDelete}
-                  className="note-item-delete"
-                >
-                  x
-                </button>
-              </div>
-            )}
+          <div key={this.props.item.id}>
+            <h3>
+              Item Name:{this.props.item.name}
+            </h3>
+            <h3>
+              Item Budget: {this.props.item.budget}
+            </h3>
+            <h3>
+              Item id: {this.props.item.id}
+            </h3>
+            <h3>
+              Last Updated: {this.props.item.timestamp.toString()}
+            </h3>
+            <button
+              onClick={() => this.props.categoryDelete(this.props.item)}
+              className="note-item-delete"
+            >
+              x
+            </button>
           </div>
         )}
       </div>
@@ -85,4 +76,4 @@ class NoteItem extends React.Component {
   }
 }
 
-export default NoteItem
+export default CategoryItem
