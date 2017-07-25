@@ -16,10 +16,10 @@ let plugins = [
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
   }),
-]
+];
 
 if (production)
-  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ])
+  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
 
 module.exports = {
   plugins,
@@ -79,4 +79,4 @@ module.exports = {
       },
     ],
   },
-}
+};

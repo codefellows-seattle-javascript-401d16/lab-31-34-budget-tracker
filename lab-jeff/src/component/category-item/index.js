@@ -14,7 +14,7 @@ class CategoryItem extends React.Component {
     return (
       <div>
         <h3>budget item: {category.title}</h3>
-        <h3>amount budgeted: {category.budget}</h3>
+        <h3>amount budgeted: ${category.budget}</h3>
 
         <CategoryForm
           category={category}
