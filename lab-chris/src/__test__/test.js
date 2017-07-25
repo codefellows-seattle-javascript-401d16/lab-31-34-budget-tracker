@@ -92,8 +92,6 @@ describe('reducer', () => {
     };
 
     let reduce = reducer(reduce, create);
-    console.log(create);
-    console.log(create.payload);
     expect(reduce[0].name).toEqual('Computer');
     expect(reduce[0].budget).toEqual(100);
     reduce = reducer(reduce, reset);
