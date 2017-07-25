@@ -9,9 +9,10 @@ export default (state=initialState, action) => {
     case 'CATEGORY_DELETE':
       return {...state, [payload.id]: undefined}
       break;
-    case 'CARD_CREATE':
+    case 'EXPENSE_CREATE':
       let {categoryID} = payload
-      let catogoryExpenses = state[categoryID]
+      console.log('@@@',payload);
+      let categoryExpenses = state[categoryID]
       return {...state, [categoryID]: [...categoryExpenses, payload]}
       break;
     default:
