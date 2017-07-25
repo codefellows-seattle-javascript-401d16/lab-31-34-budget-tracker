@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import {
   categoryCreate,
   categoryUpdate,
@@ -11,9 +10,11 @@ import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
   componentDidMount(){
-    this.props.categoryCreate({name: 'test'});
+    this.props.categoryCreate({name: 'test1', budget: 200});
+    this.props.categoryCreate({name: 'test2', budget: 400});
   }
   render() {
+    if (Array.isArray(this.props.categories)) console.log('categories: ', this.props.categories);
     return (
       <main className='dashboard-container'>
         <h2> Dashboard </h2>
@@ -21,11 +22,12 @@ class DashboardContainer extends React.Component {
           buttonText='Create Category'
           onComplete={this.props.categoryCreate}
         />
-        {this.props.categories.map((item) =>
+        {Array.isArray(this.props.categories) ? this.props.categories.map((item) =>
           <div key={item.id}>
             <h3> {item.name} </h3>
+            <h4> ${item.budget} </h4>
           </div>
-        )}
+        ): null}
       </main>
     );
   }
