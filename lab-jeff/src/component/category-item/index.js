@@ -13,8 +13,8 @@ class CategoryItem extends React.Component {
     let {category} = this.props;
     return (
       <div>
-        <h3>Budget Item: {category.title}</h3>
-        <h3>amount: {category.budget}</h3>
+        <h3>budget item: {category.title}</h3>
+        <h3>amount budgeted: {category.budget}</h3>
 
         <CategoryForm
           category={category}
