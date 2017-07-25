@@ -11,13 +11,6 @@ import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component{
-  componentDidMount(){
-    this.props.categoryCreate({title: 'living expenses'});
-    this.props.categoryCreate({title: 'rent'});
-    this.props.categoryCreate({title: 'clothes'});
-    this.props.categoryCreate({title: 'international travel'});
-  }
-
   render(){
     console.log('categories', this.props.categories);
     return (
@@ -36,8 +29,10 @@ class DashboardContainer extends React.Component{
             <CategoryItem
               category={item}
               onClick={this.props.categoryDelete}
-              onComplete={this.props.categoryUpdate}
-            />
+              categoryUpdate={(data) => {
+                data.id = item.id;
+                this.props.categoryUpdate(data);
+              }} />
           </div>
         )}
       </main>

@@ -13,13 +13,16 @@ let renderIf = (t, c) => t ? c : undefined;
 class CategoryItem extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      editing: false,
+    };
   }
 
   render(){
     let {category} = this.props;
     return (
-      <li onDoubleClick={() => this.props.categoryUpdate({editing: true})}>
-        {renderIf(!category.editing,
+      <li onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+        {renderIf(!this.state.editing,
           <div>
             <button onClick={() => this.props.categoryDelete(category)}>
               delete
@@ -31,21 +34,15 @@ class CategoryItem extends React.Component{
           </div>
         )}
 
-        {renderIf(category.editing,
-          <div>
-            <button onClick={() => this.props.categoryUpdate(category)}>
-              update
-            </button>
-
-            <CategoryForm
-              category={category}
-              buttonName='update category'
-              handleSubmit={(data) => {
-                data.id = category.id;
-                this.state.categoryUpdate(data);
-              }}
-            />
-          </div>
+        {renderIf(this.state.editing,
+          <CategoryForm
+            category={category}
+            buttonName='update category'
+            onComplete={(data) => {
+              data.id = category.id;
+              this.props.categoryUpdate(data);
+            }}
+          />
         )}
       </li>
     );
