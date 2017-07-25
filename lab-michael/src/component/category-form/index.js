@@ -4,21 +4,29 @@ import React from 'react'
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state ={
-      title: props.category ? props.category: ''
+    this.state = props.category ? {...props.category}:{title:''}
 
-    }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentWillReceiveProps(props){
+    if(props.category)
+    this.setState(props.category)
+  }
+
+  
   handleChange(e){
     this.setState({title: e.target.value})
+    console.log('this.propsssss',this.props);
   }
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.onComplete(Object.assign({}, this.state))
+    console.log('this.props on handleSubmit!',this.state);
+    // this.props.onComplete({...this.state})
+    if(!this.props.category)
+      this.setState({title:''})
   }
 
   render(){
@@ -32,7 +40,7 @@ class CategoryForm extends React.Component {
       onChange={this.handleChange}
       />
 
-      <button type='submit'>{this.props.buttonText}</button>
+      <button type='submit'>{this.props.buttonText} </button>
       </form>
     )
   }

@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import CategoryForm from '../category-form'
+import CategoryItem from '../category-item'
 
 import {
   categoryCreate,
@@ -7,7 +9,6 @@ import {
   categoryDelete,
 } from '../../action/category-action.js'
 
-import CategoryForm from '../category-form'
 
 class DashboardContainer extends React.Component{
   componentDidMount(){
@@ -26,6 +27,7 @@ class DashboardContainer extends React.Component{
     {this.props.categories.map((item)=>
       <div key={item.id}>
       <h3> {item.title}</h3>
+      <CategoryItem category={item}/>
       </div>
     )}
     </main>
@@ -35,7 +37,7 @@ class DashboardContainer extends React.Component{
 
 const mapStateToProps = (state)=> {
   return{
-    categories:state,
+    categories: state.categories,
   }
 }
 
