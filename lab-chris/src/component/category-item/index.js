@@ -4,9 +4,6 @@ import CategoryForm from '../category-form';
 class CategoryItem extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      editing: false,
-    };
   }
 
   render(){
