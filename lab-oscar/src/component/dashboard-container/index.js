@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import './_dashboard-container.scss';
+
 import {
   categoryCreate as categoryActionCreate,
 } from '../../actions/category-actions.js';
@@ -9,19 +11,38 @@ import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component {
-
+ constructor(props){
+   super(props)
+   this.state = {
+     categoryContainer: false,
+   }
+   this.handleCategoryView = this.handleCategoryView.bind(this);
+ }
+ handleCategoryView(view) {
+   this.setState({
+     categoryContainer: view,
+   })
+ }
   render() {
     return (
       <main className='dashboard-container'>
-        <h2>DashBoard</h2>
+        <div className='header'>
+          <h2>Expense Tracker</h2>
 
-        <CategoryForm buttonText='Create a Category'
-          onComplete={this.props.categoryCreate}
-        />
-        {this.props.categorys.map((item) =>
-          <CategoryItem key={item.id} category={item} />
-        )}
-
+          <CategoryForm buttonText='Create a Category'
+            onComplete={this.props.categoryCreate}
+            categoryContainer={this.handleCategoryView}
+          />
+        </div>
+        {this.state.categoryContainer ?
+        <div>
+          {this.props.categorys.map((item) =>
+            <CategoryItem key={item.id} category={item} />
+          )}
+        </div>
+        :
+        <div></div>
+        }
       </main>
     )
   }

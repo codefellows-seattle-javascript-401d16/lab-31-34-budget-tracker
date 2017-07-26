@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import './_category-item.scss';
 
 import CategoryForm from '../category-form';
 import ExpenseForm from '../expense-form';
@@ -17,32 +18,50 @@ import {
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      editView: false,
+    }
+    this.handleEditView = this.handleEditView.bind(this)
   }
-
+handleEditView(){
+  let currentSate = this.state.editView
+  this.setState({
+    editView: !currentSate,
+  })
+}
   render() {
     let {category, categoryUpdate, categoryDelete} = this.props
     return (
-      <div>
+      <div  className='category-container'>
         <div>
-            <div>
-               <p><strong>Category Name:</strong> {category.Name}
-                  <strong> Budget Amount:</strong> {category.Budget}
-                <strong>Created On:</strong> {category.timestamp.format("MMM Do YYYY")}
-                <button type='button'  onClick={()=>{categoryDelete(category)}}> Delete</button>
-              </p>
-            </div>
-            <div>
-
-               <CategoryForm
-                 buttonText='Update Category'
-                 category={category}
-                 onComplete={(data) => {
-                  data.id = category.id;
-                   data.timestamp = category.timestamp;
-                  categoryUpdate(data);
-                 }}
-               />
-            </div>
+          {!this.state.editView ?
+                 <div className='category-header'>
+                     <span><span><strong>NAME: </strong></span>{category.Name}</span>
+                     <span><span><strong>BUDGET: </strong></span>{category.Budget}</span>
+                     <img className='delete-button' src='https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-70-16.png' onClick={()=>{categoryDelete(category)}} />
+                     <img className='edit-button'
+                       src='https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png'
+                       onClick={this.handleEditView}
+                     />
+                     <img className='add-button'
+                       src='https://cdn3.iconfinder.com/data/icons/navigation-icons-1/32/add-16.png'
+                     />
+                 </div>
+                :
+                 <div className='category-header'>
+                   <CategoryForm
+                     handleEditView={this.handleEditView}
+                     classToggleName='category-edit-form'
+                     buttonText='Update Category'
+                     category={category}
+                     onComplete={(data) => {
+                     data.id = category.id;
+                     data.timestamp = category.timestamp;
+                     categoryUpdate(data);
+                     }}
+                   />
+                 </div>
+            }
           </div>
           <ExpenseForm
             buttonText='Submit Expense'

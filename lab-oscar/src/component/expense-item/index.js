@@ -12,13 +12,6 @@ class ExpenseItem extends React.Component {
   constructor(props) {
     super(props)
   }
-  // <ExpenseForm
-  //   buttonText='Submit Expense'
-  //   onComplete={(data) => {
-  //     data.categoryID = category.id;
-  //     this.props.expenseCreate(data);
-  //   }}
-  // />
 
   render() {
     let {expense, categoryUpdate, categoryDelete, expenseDelete} = this.props

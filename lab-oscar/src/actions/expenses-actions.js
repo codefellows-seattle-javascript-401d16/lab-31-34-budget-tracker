@@ -19,14 +19,3 @@ export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
   payload: expense,
 })
-
-//
-// export const categoryDelete = (category) => ({
-//   type: 'CATEGORY_DELETE',
-//   payload: category,
-// })
-//
-// export const categoryUpdate = (category) => ({
-//   type: 'CATEGORY_UPDATE',
-//   payload: category,
-// })

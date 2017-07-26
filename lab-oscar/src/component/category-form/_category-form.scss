@@ -1,0 +1,42 @@
+@import "../../style/_vars.scss";
+
+.category-form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.category-form input[type='text']{
+  border-radius: 10px;
+  display: inline-block;
+  width: 37%;
+  margin-right: 1%;
+  font-family: $fontface-main;
+}
+.category-form button {
+  display: inline-block;
+  width: 22%;
+  border-radius: 10px;
+  background: $color-button-add;
+  border: 1px solid $color-button-add-border;
+  font-family: $fontface-main;
+  font-size: 16px;
+}
+.category-edit-form {
+  width: 95%;
+  margin: 0 auto;
+}
+.category-edit-form input[type='text']{
+  width: 45%;
+  display: inline-block;
+  font-size: .7em;
+  height: 25px;
+  margin-top: -30px;
+  background: #fff;
+  font-family: $fontface-main;
+  border-radius: 10px;
+}
+.update-button {
+  display: inline-block;
+  width: auto;
+  float: right;
+}

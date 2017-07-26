@@ -1,0 +1,42 @@
+@import "../../style/_vars.scss";
+
+.category-container {
+  width: 20%;
+  display: inline-block;
+  margin-left: 1%;
+  margin-top: 1%;
+  border: 1px solid $color-category-container;
+  border-radius: 10px;
+}
+.delete-button{
+  display: inline-block;
+  width: auto;
+  float: right;
+  margin-left: 8px;
+}
+.edit-button {
+  display: inline-block;
+  width: auto;
+  float: right;
+  margin-left: 8px;
+}
+.add-button {
+  display: inline-block;
+  width: auto;
+  float: right;
+  margin-left: 8px;
+}
+.category-header{
+  display: inline-block;
+  background-color: $color-category-container;
+  height: 30px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  padding: .4em;
+}
+.category-header span {
+  font-family: $fontface-sans-serif;
+  font-size: .8em;
+  margin-right: .5em;
+
+}
