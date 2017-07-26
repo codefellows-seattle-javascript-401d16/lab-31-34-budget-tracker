@@ -1,6 +1,5 @@
-'use strict'
+import { createStore, applyMiddleware } from 'redux'
+import reducer from '../reducer'
+import reporter from './reporter.js'
 
-import { createStore } from 'redux'
-import reducer from '../reducer/index.js'
-
-export default () => createStore(reducer)
+export default () => createStore(reducer, applyMiddleware(reporter))

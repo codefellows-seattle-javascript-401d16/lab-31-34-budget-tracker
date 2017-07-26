@@ -9,6 +9,11 @@ import {
   expenseDelete,
 } from '../../action/expense-actions.js'
 
+import {
+  categoryUpdate,
+  categoryDelete,
+} from '../../action/category-actions.js'
+
 let renderIf = (t, c) => (t ? c : undefined)
 
 let expenseDoesExist = false
@@ -142,6 +147,12 @@ const mapDispatchToProps = (dispatch, getState) => {
     },
     expenseDelete: expense => {
       dispatch(expenseDelete(expense))
+    },
+    categoryUpdate: category => {
+      dispatch(categoryUpdate(category))
+    },
+    categoryDelete: category => {
+      dispatch(categoryDelete(category))
     },
   }
 }

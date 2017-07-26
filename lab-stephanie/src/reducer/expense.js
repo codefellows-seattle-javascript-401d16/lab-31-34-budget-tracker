@@ -1,5 +1,12 @@
 let initialState = {}
 
+let validatePayload = payload => {
+  if (!payload.id || !payload.name || !payload.price || !payload.timestamp)
+    throw new Error(
+      'VALIDATION ERROR: expense must have id, name, price, and timestamp'
+    )
+}
+
 export default (state = initialState, action) => {
   let { type, payload } = action
   switch (type) {
@@ -15,6 +22,7 @@ export default (state = initialState, action) => {
     return { ...state, [categoryId]: [...categoryExpenses, payload] }
   }
   case 'EXPENSE_UPDATE': {
+    validatePayload(payload)
     let { categoryId } = payload
     let categoryExpenses = [...state[categoryId]]
     return {
@@ -25,6 +33,7 @@ export default (state = initialState, action) => {
     }
   }
   case 'EXPENSE_DELETE': {
+    validatePayload(payload)
     let { categoryId } = payload
     let categoryExpenses = [...state[categoryId]]
     console.log('payload', payload)
