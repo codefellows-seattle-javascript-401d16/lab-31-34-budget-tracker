@@ -52,9 +52,11 @@ class CategoryItem extends React.Component {
             }}
           />
 
-          <ExpenseItem
-            category={category.id}
-          />
+
+          {this.props.expenses[category.id].map((item) => {
+              return <ExpenseItem key={item.id} expense={item}/>
+          })}
+
         </div>
     )
   }
@@ -76,10 +78,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CategoryItem)
-
-
-{/* <div className="test">
-  {this.props.expenses[category.id].map((item) => {
-      return <h2>{item.expenseName}</h2>
-  })}
-</div> */}

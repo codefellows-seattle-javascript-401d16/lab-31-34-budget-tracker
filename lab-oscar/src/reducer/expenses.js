@@ -11,10 +11,16 @@ export default (state=initialState, action) => {
       break;
     case 'EXPENSE_CREATE':
       let {categoryID} = payload
-      console.log('@@@',payload);
       let categoryExpenses = state[categoryID]
       return {...state, [categoryID]: [...categoryExpenses, payload]}
       break;
+    case 'EXPENSE_DELETE':
+      oldState = state[payload.categoryID].filter(expense => expense.id !== payload.id)
+      return {...state, [payload.categoryID]: oldState}
+      break;
+    case 'EXPENSE_UPDATE':
+      let oldState = state[payload.categoryID].map(expense => expense.id === payload.id ? payload : expense)
+      return {...state, [payload.categoryID]: oldState}
     default:
       return state;
       break;

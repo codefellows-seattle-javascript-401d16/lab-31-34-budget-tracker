@@ -10,23 +10,16 @@ export const expenseCreate = (expense) => {
   }
 }
 
+export const expenseDelete = (expense) => ({
+  type: 'EXPENSE_DELETE',
+  payload: expense,
+})
 
+export const expenseUpdate = (expense) => ({
+  type: 'EXPENSE_UPDATE',
+  payload: expense,
+})
 
-// import uuid from 'uuid/v1';
-// import Moment from 'moment'
-// //action creators are helper functions to create actions
-//
-// //you should only use actions creators throughtout your app
-// //you should never hard code actions literals in your app
-//
-// export const categoryCreate = (category) => {
-//   category.id = uuid();
-//   category.timestamp = Moment();
-//   return {
-//     type: 'CATEGORY_CREATE',
-//     payload: category,
-//   }
-// }
 //
 // export const categoryDelete = (category) => ({
 //   type: 'CATEGORY_DELETE',

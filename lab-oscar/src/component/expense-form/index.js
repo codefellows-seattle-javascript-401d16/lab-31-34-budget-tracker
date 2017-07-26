@@ -12,6 +12,11 @@ class ExpenseForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+componentWillReceiveProps(props){
+     if(props.category)
+       this.setState(props.category)
+   }
+
 handleChange(e){
   this.setState({
     [e.target.name]: e.target.value
@@ -24,6 +29,7 @@ handleSubmit(e){
   if(!this.props.expense)
     this.setState({expenseName: '', price: ''})
 }
+
 
   render() {
     return (
