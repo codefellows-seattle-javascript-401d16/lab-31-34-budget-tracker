@@ -2,7 +2,6 @@ import uuid from 'uuid';
 
 export const categoryCreate = (category) => {
   category.id = uuid();
-  category.editing = false,
   category.timestamp = new Date();
   return {
     type: 'CATEGORY_CREATE',

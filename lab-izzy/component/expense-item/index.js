@@ -2,60 +2,30 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
 
-import {
-  expenseCreate,
-  expenseUpdate,
-  expenseDelete,
-} from '../../action/expense-actions.js';
-
-let renderIf = (t, c) => t ? c : undefined;
+import {expenseUpdate, expenseDelete} from '../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      editing: false,
-    };
-  }
-
   render(){
-    let {expense, category, categoryID} = this.props;
-    console.log('this.props', this.props);
+    let {expense, expenseDelete, expenseUpdate} = this.props;
     return (
-
-      <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
-
-        {renderIf(!this.state.editing,
-          <div>
-            <button onClick={() => this.props.expenseDelete(expense)}>
-              delete
-            </button>
-
-            <h3> title: {expense.name} </h3>
-            <h3> price: {expense.price} </h3>
-          </div>
-        )}
-
-        {renderIf(this.state.editing,
-          <ExpenseForm
-            expense={expense}
-            buttonName='update expense'
-            onComplete={(data) => {
-              data.id = expense.id;
-              this.props.expenseUpdate(data);
-            }} />
-        )}
-      </div>
+      <li className='expense-item'>
+        <p> {expense.name} </p>
+        <p> {expense.price} </p>
+        <button onClick={() => expenseDelete(expense)}>
+          delete
+        </button>
+        <ExpenseForm
+          expense={expense}
+          buttonName='update expense'
+          onComplete={expenseUpdate}
+        />
+      </li>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  expenses: state,
-});
-
+const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch) => ({
-  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
   expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
   expenseDelete: (expense) => dispatch(expenseDelete(expense)),
 });

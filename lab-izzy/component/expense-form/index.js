@@ -1,13 +1,12 @@
 import React from 'react';
-import uuid from 'uuid';
 
 class ExpenseForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      title: props.expense ? props.expense.title : '',
-      price: props.expense ? props.expense.price : 0,
-    };
+    this.state = props.expense
+      ? {...props.expense}
+      : {name: '', price: 0, categoryID: props.categoryID};
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,31 +14,30 @@ class ExpenseForm extends React.Component{
   componentWillReceiveProps(props){
     console.log('yaaaas', props);
     if(props.expense)
-      this.setState(props.expense);
+      this.setState({...props.expense});
     if(props.categoryID)
       this.setState({categoryID: props.categoryID});
   }
 
   handleChange(e){
-    this.setState({title: e.target.value});
+    this.setState({name: e.target.value});
   }
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.onComplete({...this.state});
-    // clear the form if its not being used for update
+    this.props.onComplete(this.state);
     if(!this.props.expense)
-      this.setState({title: '', price: 0});
+      this.setState({name: '', price: 0});
   }
 
   render(){
     return (
       <form className='expense-form' onSubmit={this.handleSubmit}>
         <input
-          name='title'
+          name='name'
           type='text'
           placeholder='expense name'
-          value={this.state.title}
+          value={this.state.name}
           onChange={this.handleChange}
         />
         <input
