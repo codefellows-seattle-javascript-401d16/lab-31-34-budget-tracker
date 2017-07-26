@@ -5,7 +5,7 @@ import {
   categoryCreate,
   categoryUpdate,
   categoryDelete,
-} from '../../action/category-actions.js'
+} from '../../action/category-action.js'
 
 import CategoryForm from '../category-form-component'
 import CategoryItem from '../category-item-component'
@@ -29,7 +29,6 @@ class DashboardContainer extends React.Component {
             )
           })}
         </ul>
-        ) }
       </main>
     )
   }
