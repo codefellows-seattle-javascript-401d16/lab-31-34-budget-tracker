@@ -5,7 +5,7 @@ class ExpenseForm extends React.Component{
     super(props);
     this.state = {
       id: '',
-      categoryID: '',
+      categoryID: this.props.categoryID,
       timestamp: '',
       title: '',
       amount: '',
