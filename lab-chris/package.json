@@ -7,7 +7,8 @@
     "lint": "eslint.",
     "watch": "webpack-dev-server --inline --hot",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
