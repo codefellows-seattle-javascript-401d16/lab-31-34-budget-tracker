@@ -6,14 +6,9 @@ import CategoryForm from '../category-form';
 
 import {
   categoryCreate,
-  categoryUpdate,
-  categoryDelete,
 } from '../../action/category-actions.js';
 
 class DashboardContainer extends React.Component {
-  componentDidMount(){
-  }
-
   render(){
     return (
       <main className='dashboard'>
@@ -27,9 +22,7 @@ class DashboardContainer extends React.Component {
           <CategoryItem
             key={item.id}
             category={item}
-            buttonText='update budget'
-            categoryUpdate={this.props.categoryUpdate}
-            categoryDelete={this.props.categoryDelete}/>
+          />
         )}
       </main>
     );
@@ -46,8 +39,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: (category) => dispatch(categoryCreate(category)),
-    categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-    categoryDelete: (category) => dispatch(categoryDelete(category)),
   };
 };
 

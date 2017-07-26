@@ -9,10 +9,19 @@ export default (state=intialState, action) => {
   case 'CATEGORY_DELETE':
     return {...state, [payload.id]: undefined};
 
-  case 'CARD_CREATE':
+  case 'EXPENSE_CREATE':
     let {categoryID} = payload;
     let categoryCards= state[categoryID];
     return {...state, [categoryID]: [...categoryCards, payload]};
+
+  case 'EXPENSE_UPDATE':
+    return {...state, [payload.categoryID]:
+      state[payload.categoryID].map(expense =>
+        expense.id == payload.id ? payload : expense)};
+
+  case 'EXPENSE_DELETE':
+    return {...state, [payload.categoryID]: state[payload.categoryID].filter(expense =>
+      expense.id != payload.id)};
 
   default:
     return state;
