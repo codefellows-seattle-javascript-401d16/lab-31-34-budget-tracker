@@ -1,0 +1,5 @@
+export const Category = {
+  CREATE: 'CATEGORY_CREATE',
+  UPDATE: 'CATEGORY_UPDATE',
+  DELETE: 'CATEGORY_DELETE',
+};
