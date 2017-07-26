@@ -1,18 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {renderIf} from '../../lib/util.js'
-import CategoryForm from '../category-form'
 import ExpenseForm from '../expense-form'
 import ExpenseItem from '../expense-item'
+import {renderIf} from '../../lib/util.js'
+import CategoryForm from '../category-form'
+import {expenseCreate} from '../../action/expense-actions.js'
 
 import {
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js'
 
-import {
-  expenseCreate,
-} from '../../action/expense-actions.js'
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -22,22 +20,33 @@ class CategoryItem extends React.Component {
     }
   }
   render() {
-    console.log('Category Item this.props', this.props)
 
-    let {category, categoryUpdate, categoryDelete} = this.props
+    let {category, categoryUpdate, categoryDelete, expenses} = this.props
+    let totalExpenses = 0
+
+    if(expenses[category.id].length >= 1) {
+      for(let i = 0; i < expenses[category.id].length; i++){
+        totalExpenses += parseInt(expenses[category.id][i].price, 10)
+      }
+    }
+
     return (
-      <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
-        <h3> item name: {category.name} </h3>
-        <h3> item budget: ${category.budget} </h3>
+      <div>
+        <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+          <h3> item name: {
+            category.name
+          } </h3>
+          <h3> item budget: ${category.budget - totalExpenses} </h3>
+        </div>
 
         {renderIf(this.state.editing === true,
           <CategoryForm
             category={category}
+            buttonText='update budget'
             onComplete={(data) => {
               data.id = category.id
               categoryUpdate(data)
             }}
-          buttonText='update budget'
           />
         )}
 
@@ -45,29 +54,29 @@ class CategoryItem extends React.Component {
           buttonText='add expense'
           onComplete={(data) => {
             data.categoryID = category.id
-            console.log('ON COMPLETE DATA', data)
             this.props.expenseCreate(data)
           }
         }
         />
 
+        <ul>
         {this.props.expenses[category.id].map((item =>
+          <li key={item.id}>
           <ExpenseItem
-            key={item.id}
             categoryID = {this.props.category.id}
             expense={item}
           />
+          </li>
         ))}
+        </ul>
 
         <button onClick = {() => categoryDelete(category)}>
-        -
+        delete category
         </button>
       </div>
     )
   }
 }
-
-
 
 let mapStateToProps = (state) => {
   return {
@@ -83,5 +92,3 @@ let mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps
 )(CategoryItem)
-
-// export default CategoryItem
