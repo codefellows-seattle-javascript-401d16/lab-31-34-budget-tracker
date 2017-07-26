@@ -3,13 +3,15 @@ import React from 'react';
 class ExpenseForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      id: '',
-      categoryID: this.props.categoryID,
-      timestamp: '',
-      title: '',
-      amount: '',
-    };
+    this.state =
+      props.expense ? {...props.expense} :
+        {
+          id: '',
+          categoryID: this.props.categoryID,
+          timestamp: '',
+          title: '',
+          amount: '',
+        };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,6 +25,11 @@ class ExpenseForm extends React.Component{
     console.log('EXPENSE FORM props: ', this.props);
     console.log('EXPENSE FORM state: ', this.state);
     this.props.onComplete(Object.assign({}, this.state));
+    if(!this.props.expense) this.setState({title: '', amount: ''});
+  }
+
+  componentWillReceiveProps(props){
+    if(props.expense) this.setState(props.expense);
   }
 
   render(){

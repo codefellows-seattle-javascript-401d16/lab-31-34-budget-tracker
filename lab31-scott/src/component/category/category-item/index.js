@@ -4,7 +4,7 @@ import CategoryForm from '../category-form';
 import {categoryUpdate, categoryDestroy} from '../../../action/category-actions.js';
 import ExpenseForm from '../../expense/expense-form';
 import {expenseCreate, expenseReset} from '../../../action/expense-actions.js';
-
+import ExpenseItem from '../../expense/expense-item';
 
 class CategoryItem extends React.Component{
   constructor(props){
@@ -21,26 +21,28 @@ class CategoryItem extends React.Component{
       <div className='category-item'>
         Hello from category item
 
-        {this.props.categories.map(item => {
-          return <div key={item.id}>
-            <h3>{item.name}</h3>
-            <h3>{item.budget}</h3>
+        {this.props.categories.map(category => {
+          return <div key={category.id}>
+            <h3>{category.name}</h3>
+            <h3>{category.budget}</h3>
             <CategoryForm
               buttonText='Update Category'
               onComplete={this.props.categoryUpdate}
-              category={item}
+              category={category}
             />
             <button
-              onClick={() => this.props.categoryDestroy(item)}
+              onClick={() => this.props.categoryDestroy(category)}
             >
               Delete Category
             </button>
             <ExpenseForm
               onComplete={this.props.expenseCreate}
               buttonText='Create Expense'
-              categoryID={item.id}
+              categoryID={category.id}
             />
-
+            <ExpenseItem
+              categoryID={category.id}
+            />
           </div>;
         })}
 

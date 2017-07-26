@@ -14,7 +14,6 @@ class CategoryForm extends React.Component{
   }
 
   componentWillReceiveProps(props){
-    console.log('form', this.props);
     if(props.category) this.setState(props.category);
   }
 
