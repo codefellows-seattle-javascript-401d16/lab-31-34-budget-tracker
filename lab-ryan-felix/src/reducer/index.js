@@ -3,6 +3,7 @@ import expenseReducer from './expense.js';
 
 const initialState = {
   categories: [],
+  expenses: [],
 };
 const reducers = {...categoryReducer, ...expenseReducer};
 

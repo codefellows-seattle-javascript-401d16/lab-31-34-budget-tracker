@@ -5,6 +5,7 @@ export const createExpense = (expense) => ({
   type: Expense.CREATE,
   payload: {
     ...expense,
+    amount: Number(expense.amount),
     id: uuid(),
     timestamp: new Date(),
   },
@@ -14,6 +15,7 @@ export const updateExpense = (expense) => ({
   type: Expense.UPDATE,
   payload: {
     ...expense,
+    amount: Number(expense.amount),
     timestamp: new Date(),
   },
 });

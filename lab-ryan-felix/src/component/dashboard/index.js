@@ -21,6 +21,10 @@ const Dashboard = (props) => {
           category={category}
           update={props.updateCategory}
           remove={props.deleteCategory}
+          addExpense={props.createExpense}
+          updateExpense={props.updateExpense}
+          deleteExpense={props.deleteExpense}
+          expenses={props.expenses.filter(expense => expense.categoryId === category.id)}
         />
       ))}
     </main>
@@ -30,6 +34,7 @@ const Dashboard = (props) => {
 const mapStateToProps = (state) => {
   return {
     categories: state.categories,
+    expenses: state.expenses,
   };
 };
 
@@ -38,6 +43,9 @@ const mapDispatchToProps = (dispatch) => {
     createCategory: (category) => dispatch(Actions.createCategory(category)),
     updateCategory: (category) => dispatch(Actions.updateCategory(category)),
     deleteCategory: (category) => dispatch(Actions.deleteCategory(category)),
+    createExpense: (expense) => dispatch(Actions.createExpense(expense)),
+    updateExpense: (expense) => dispatch(Actions.updateExpense(expense)),
+    deleteExpense: (expense) => dispatch(Actions.deleteExpense(expense)),
   };
 };
 

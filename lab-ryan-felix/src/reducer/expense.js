@@ -8,6 +8,8 @@ const reducers = {
   },
 
   [Expense.UPDATE](state, action) {
+    console.log('updating expense');
+    console.log(action);
     return {
       expenses: state.expenses.map(expense => expense.id === action.payload.id
         ? action.payload
