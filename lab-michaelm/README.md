@@ -1,6 +1,6 @@
-# Reddit Search
+# Budget App
 
-An extremely basic application for searching subreddits and limiting the number of results.
+An extremely basic application for creating a budget.
 
 ## Getting Started
 
@@ -8,11 +8,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Node
+- Node or Yarn
 
 #### To install Node:
 
 <https://nodejs.org/en/download/package-manager/>
+
+#### To Install Yarn
+
+<https://yarnpkg.com/en/docs/install>
 
 ### Installing
 
@@ -23,11 +27,19 @@ From the root directory of the project, that is, the directory where the package
 ```
 npm install
 ```
-
-To serve the page on your local machine, enter the following command in your cli:
+or
 
 ```
+yarn install
+```
+
+To serve the page on your local machine, enter the following command in your cli:
+```
 npm run watch
+```
+or
+```
+yarn watch
 ```
 
 ## Authors
