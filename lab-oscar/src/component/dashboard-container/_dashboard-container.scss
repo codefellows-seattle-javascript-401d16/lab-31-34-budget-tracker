@@ -1,0 +1,31 @@
+@import "../../style/_vars.scss";
+
+.header {
+  text-align: center;
+  margin-top: 1%;
+  border-bottom: 2px solid $color-button-add-border;
+}
+h2 {
+  font-family: $fontface-fantasy;
+  margin-bottom: .5%;
+}
+
+.category-main-container {
+  display: inline-block;
+  margin-top: .5%;
+  // margin-left: .5%;
+
+  width: 100%;
+}
+.categories-container{
+  width: 20%;
+  margin-left: 1%;
+  margin-top: 1%;
+  border: 1px solid $color-black;
+  border-radius: 10px;
+  display: inline-block;
+  // text-align: center;
+  // height: 30px;
+  // padding: .4em;
+  // background-color: #f0ad4e;
+}
