@@ -6,6 +6,7 @@ import {
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js'
+import { expenseCreate } from '../../action/expense-actions.js'
 
 import CategoryForm from '../category-form-component'
 import CategoryItem from '../category-item-component'
@@ -29,7 +30,6 @@ class DashboardContainer extends React.Component {
             )
           })}
         </ul>
-        ) }
       </main>
     )
   }
@@ -37,7 +37,8 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state,
+    categories: state.categories,
+    expenses: state.expenses,
   }
 }
 

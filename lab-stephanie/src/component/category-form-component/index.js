@@ -40,7 +40,7 @@ class CategoryForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <button type="submit">add budget</button>
+        <button type="submit">add cost category</button>
       </form>
     )
   }

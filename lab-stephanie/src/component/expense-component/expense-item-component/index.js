@@ -2,19 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 let renderIf = (t, c) => (t ? c : undefined)
-
+let updateExpenseItem = false
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      editing: false,
       name: this.props.item.name,
       price: this.props.item.price,
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
+    this.handleUpdateCostItem = this.handleUpdateCostItem.bind(this)
   }
 
   handleChange(e) {
@@ -31,17 +29,15 @@ class ExpenseItem extends React.Component {
     }
   }
 
-  handleUpdate() {
-    this.setState({ editing: true })
+  handleUpdateCostItem() {
+    updateExpenseItem = true
   }
-
-  handleBlur() {}
 
   render() {
     return (
       <div onDoubleClick={this.handleUpdate}>
         {renderIf(
-          this.state.editing,
+          updateExpenseItem,
           <div className="price-item-update">
             <input
               name="name"
@@ -55,22 +51,22 @@ class ExpenseItem extends React.Component {
               type="number"
               value={this.props.item.price}
               onChange={this.handleChange}
-              onBlur={() => this.props.expenseUpdate(this.props.item)}
+              onBlur={() => {
+                this.props.expenseUpdate(this.props.item)
+                updateExpenseItem = false
+              }}
             />
           </div>
         )}
 
         {renderIf(
-          !this.state.editing,
+          !updateExpenseItem,
           <div key={this.props.item.id}>
             <h3>
-              Item Name:{this.props.item.name}
+              Expense Name:{this.props.item.name}
             </h3>
             <h3>
-              Item Budget: {this.props.item.price}
-            </h3>
-            <h3>
-              Item id: {this.props.item.id}
+              Item price: {this.props.item.price}
             </h3>
             <h3>
               Last Updated: {this.props.item.timestamp.toString()}

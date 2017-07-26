@@ -1,20 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ExpenseForm from '../expense-component/expense-form-component'
+import ExpenseItem from '../expense-component/expense-item-component'
+
+import { expenseCreate } from '../../action/expense-actions.js'
 
 let renderIf = (t, c) => (t ? c : undefined)
+let updateCategory = false
+let updateCostItem = false
+let expenseDoesExist = false
 
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      editing: false,
       name: this.props.item.name,
       budget: this.props.item.budget,
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
+    this.handleUpdateCategory = this.handleUpdateCategory.bind(this)
   }
 
   handleChange(e) {
@@ -31,61 +36,100 @@ class CategoryItem extends React.Component {
     }
   }
 
-  handleUpdate() {
-    this.setState({ editing: true })
+  handleUpdateCategory() {
+    updateCategory = true
   }
 
-  handleBlur() {}
-
   render() {
+    let categoryId = this.props.item.id
     return (
-      <div onDoubleClick={this.handleUpdate}>
-        {renderIf(
-          this.state.editing,
-          <div className="budget-item-update">
-            <input
-              name="name"
-              type="text"
-              value={this.props.item.name}
-              onChange={this.handleChange}
-              onBlur={() => this.props.categoryUpdate(this.props.item)}
-            />
-            <input
-              name="budget"
-              type="number"
-              value={this.props.item.budget}
-              onChange={this.handleChange}
-              onBlur={() => this.props.categoryUpdate(this.props.item)}
-            />
-          </div>
-        )}
+      <div className="container">
+        <div onDoubleClick={this.handleUpdateCategory}>
+          {renderIf(
+            updateCategory,
+            <div className="budget-item-update">
+              <input
+                name="name"
+                type="text"
+                value={this.props.item.name}
+                onChange={this.handleChange}
+                onBlur={() => this.props.categoryUpdate(this.props.item)}
+              />
+              <input
+                name="budget"
+                type="number"
+                value={this.props.item.budget}
+                onChange={this.handleChange}
+                onBlur={() => {
+                  this.props.categoryUpdate(this.props.item)
+                  updateCategory = false
+                }}
+              />
+            </div>
+          )}
 
+          {renderIf(
+            !updateCategory,
+            <div key={this.props.item.id}>
+              <h3>
+                Category Name:{this.props.item.name}
+              </h3>
+              <h3>
+                Item Budget: {this.props.item.budget}
+              </h3>
+              <h3>
+                Last Updated: {this.props.item.timestamp.toString()}
+              </h3>
+              <button
+                onClick={() => this.props.categoryDelete(this.props.item)}
+                className="note-item-delete"
+              >
+                x
+              </button>
+              <ExpenseForm
+                onComplete={data => {
+                  data.categoryId = this.props.item.id
+                  this.props.expenseCreate(data)
+                  expenseDoesExist = true
+                }}
+              />
+            </div>
+          )}
+        </div>
         {renderIf(
-          !this.state.editing,
-          <div key={this.props.item.id}>
-            <h3>
-              Item Name:{this.props.item.name}
-            </h3>
-            <h3>
-              Item Budget: {this.props.item.budget}
-            </h3>
-            <h3>
-              Item id: {this.props.item.id}
-            </h3>
-            <h3>
-              Last Updated: {this.props.item.timestamp.toString()}
-            </h3>
-            <button
-              onClick={() => this.props.categoryDelete(this.props.item)}
-              className="note-item-delete"
-            >
-              x
-            </button>
-          </div>
+          expenseDoesExist,
+          <ul id="category-expenses">
+            {this.props.expenses[categoryId].map((item, i) => {
+              return (
+                <li key={item.id}>
+                  <ExpenseItem
+                    item={item}
+                    expenseUpdate={this.props.categoryUpdate}
+                    expenseDelete={this.props.categoryDelete}
+                  />
+                </li>
+              )
+            })}
+          </ul>
         )}
       </div>
     )
   }
 }
 
-export default CategoryItem
+const mapStateToProps = state => {
+  return {
+    categories: state.categories,
+    expenses: state.expenses,
+  }
+}
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    expenseCreate: expense => {
+      dispatch(expenseCreate(expense))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem)

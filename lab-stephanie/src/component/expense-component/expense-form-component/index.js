@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { expenseCreate } from '../../../action/expense-actions.js'
 
 class ExpenseForm extends React.Component {
   constructor(props) {
@@ -19,10 +22,11 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.expenseCreate(Object.assign({}, this.state))
+    this.props.onComplete({ ...this.state })
   }
 
   render() {
+    let { expenses, categoryId } = this.props
     return (
       <form className="expense-form" onSubmit={this.handleSubmit}>
         <input
@@ -40,10 +44,24 @@ class ExpenseForm extends React.Component {
           onChange={this.handleChange}
         />
 
-        <button type="submit">add price</button>
+        <button type="submit">add cost item</button>
       </form>
     )
   }
 }
 
-export default ExpenseForm
+const mapStateToProps = state => {
+  return {
+    expense: state.expense,
+  }
+}
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    expenseCreate: expense => {
+      dispatch(expenseCreate(expense))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm)
