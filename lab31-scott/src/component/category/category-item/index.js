@@ -15,8 +15,8 @@ class CategoryItem extends React.Component{
   }
 
   render(){
-    console.log('ITEM PROPS: ', this.props);
-    console.log('ITEM STATE: ', this.state);
+    console.log('CAT ITEM props: ', this.props);
+    console.log('CAT ITEM state: ', this.state);
     return(
       <div className='category-item'>
         Hello from category item
@@ -47,8 +47,9 @@ class CategoryItem extends React.Component{
     );
   }
 }
-
+// is this mapping state of the module it's hosted in?
 const mapStateToProps = (state) => {
+  console.log('CAT MSTP: ', state);
   return {categories: state};
 };
 

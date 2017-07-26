@@ -13,12 +13,12 @@ class DashboardContainer extends React.Component{
     this.state = {
 
     };
-    console.log('DASH', this.props);
   }
 
 
   render(){
-    console.log('DASH PROPS', this.props.categories);
+    console.log('DASH props: ', this.props);
+    console.log('DASH state: ', this.state);
     return(
       <main className='dashboard'>
         This is the dashboard
@@ -36,7 +36,11 @@ class DashboardContainer extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  return {categories: state};
+  console.log('DASH MSTP: ', state);
+  return {
+    categories: state.categories,
+    expenses: state.expenses,
+  };
 };
 
 const mapDispatchToProps = (dispatch, getState) => {

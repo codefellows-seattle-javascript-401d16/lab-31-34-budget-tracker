@@ -25,7 +25,8 @@ class CategoryForm extends React.Component{
   }
 
   handleSubmit(e){
-    console.log('FORM thisstate', this.state);
+    console.log('CAT FORM state:', this.state);
+    console.log('CAT FORM props:', this.props);
     e.preventDefault();
     this.props.onComplete(Object.assign({},this.state));
     if(!this.props.category) this.setState({name: '', budget: ''});

@@ -1,4 +1,4 @@
-let initialState=[];
+let initialState={};
 
 export default (state = initialState, action) => {
   let {type, payload} = action;
@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
     return categoryExpenses.filter(item => {
       return item.id !== payload.id;
     });
-    
+
   default: return state;
   }
 };

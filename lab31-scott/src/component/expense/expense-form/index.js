@@ -20,11 +20,12 @@ class ExpenseForm extends React.Component{
 
   handleSubmit(e){
     e.preventDefault();
+    console.log('EXPENSE FORM props: ', this.props);
+    console.log('EXPENSE FORM state: ', this.state);
     this.props.onComplete(Object.assign({}, this.state));
   }
 
   render(){
-    console.log('EXPENSE form props: ', this.props);
     return(
       <form className='expense-form' onSubmit={this.handleSubmit}>
         EXPENSE FORM
