@@ -72,7 +72,8 @@ class CategoryItem extends React.Component{
             <div key={item.id}>
               <h2> {item.name} </h2>
               <ExpenseItem
-                category={item}
+                category={item.categoryID}
+                expense={item}
                 onClick={this.props.expenseDelete}
                 categoryID={this.props.category.id}
                 categoryUpdate={(data) => {

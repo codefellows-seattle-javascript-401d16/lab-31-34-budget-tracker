@@ -12,6 +12,7 @@ let renderIf = (t, c) => t ? c : undefined;
 
 class ExpenseItem extends React.Component {
   constructor(props){
+    console.log('$$$$', props);
     super(props);
     this.state = {
       editing: false,
@@ -19,7 +20,7 @@ class ExpenseItem extends React.Component {
   }
 
   render(){
-    let {expense, category} = this.props;
+    let {expense, category, categoryID} = this.props;
     console.log('this.props', this.props);
     return (
 
@@ -31,8 +32,8 @@ class ExpenseItem extends React.Component {
               delete
             </button>
 
-            <h3> title: {category.title} </h3>
-            <h3> price: {this.props.expenses.price} </h3>
+            <h3> title: {expense.name} </h3>
+            <h3> price: {expense.price} </h3>
           </div>
         )}
 
