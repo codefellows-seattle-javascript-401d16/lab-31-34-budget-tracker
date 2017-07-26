@@ -3,3 +3,9 @@ export const Category = {
   UPDATE: 'CATEGORY_UPDATE',
   DELETE: 'CATEGORY_DELETE',
 };
+
+export const Expense = {
+  CREATE: 'EXPENSE_CREATE',
+  UPDATE: 'EXPENSE_UPDATE',
+  DELETE: 'EXPENSE_DELETE',
+};

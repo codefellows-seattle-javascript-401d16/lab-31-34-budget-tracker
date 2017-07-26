@@ -1,9 +1,10 @@
 import categoryReducer from './category.js';
+import expenseReducer from './expense.js';
 
 const initialState = {
   categories: [],
 };
-const reducers = {...categoryReducer};
+const reducers = {...categoryReducer, ...expenseReducer};
 
 /*
     This is a different (and IMO more elegant) way of structuring reducers.
