@@ -14,10 +14,22 @@ export default (state = {}, action) => {
       ...state,
       [payload.categoryID]: [...state[payload.categoryID], payload],
     }
-    // returned array is not save under the categoryid property on app state
-    // it is just an array with no key, and comes back undefined.
+
+  case 'EXPENSE_UPDATE':
+    return {
+      ...state,
+      [payload.categoryID]: state[payload.categoryID].map(
+        item => (item.id === payload.id ? payload : item)
+      ),
+    }
+
   case 'EXPENSE_DELETE':
-    return state[payload.categoryID].filter(item => item.id !== payload.id)
+    return {
+      ...state,
+      [payload.categoryID]: state[payload.categoryID].filter(
+        item => item.id !== payload.id
+      ),
+    }
 
   default:
     return state

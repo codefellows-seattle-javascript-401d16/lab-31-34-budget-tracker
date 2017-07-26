@@ -3,6 +3,7 @@ import React from 'react'
 class ExpenseForm extends React.Component {
   constructor(props) {
     super(props)
+    console.log('expense-form props', props)
     this.state = props.expense
       ? { ...props.expense }
       : { name: '', price: 0, categoryID: props.categoryID }
@@ -13,6 +14,7 @@ class ExpenseForm extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.expense) this.setState(props.expense)
+    if (props.categoryID) this.setState({ categoryID: props.categoryID })
   }
 
   handleChange(e) {
@@ -35,7 +37,7 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.onComplete({ ...this.state })
+    this.props.onComplete(this.state)
     if (!this.props.expense) this.setState({ name: '', price: 0 })
   }
 
@@ -54,7 +56,7 @@ class ExpenseForm extends React.Component {
             name="price"
             type="number"
             placeholder="price"
-            value={this.state.budget}
+            value={this.state.price}
             onChange={this.handleChange}
           />
           <button type="submit">

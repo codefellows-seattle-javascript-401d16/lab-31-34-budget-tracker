@@ -7,10 +7,6 @@ import DashboardContainer from '../dashboard-container'
 const store = createAppStore()
 
 class App extends React.Component {
-  componentDidMount() {
-    store.subscribe(() => console.log('+++STATE+++', store.getState()))
-  }
-
   render() {
     console.log('app')
     return (

@@ -20,6 +20,11 @@ class ExpenseItem extends React.Component {
             Price: {this.props.expense.price}
           </p>
         </li>
+        <ExpenseForm
+          expense={this.props.expense}
+          buttonLabel="Update"
+          onComplete={this.props.expenseUpdate}
+        />
         <button onClick={() => this.props.expenseDelete(this.props.expense)}>
           Delete
         </button>
