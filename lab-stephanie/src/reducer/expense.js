@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
     let categoryExpenses = [...state[categoryId]]
     return {
       ...state,
-      [categoryId]: payload[categoryId].map(
+      [categoryId]: categoryExpenses.map(
         expense => (expense.id == payload.id ? payload : expense)
       ),
     }
@@ -27,9 +27,12 @@ export default (state = initialState, action) => {
   case 'EXPENSE_DELETE': {
     let { categoryId } = payload
     let categoryExpenses = [...state[categoryId]]
+    console.log('payload', payload)
+    console.log('categoryExpenses', categoryExpenses)
+    console.log('categoryId', categoryId)
     return {
       ...state,
-      [categoryId]: payload[categoryId].filter(
+      [categoryId]: categoryExpenses.filter(
         expense => expense.id !== payload.id
       ),
     }

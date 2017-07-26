@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import ExpenseForm from '../expense-component/expense-form-component'
 import ExpenseItem from '../expense-component/expense-item-component'
 
-import { expenseCreate } from '../../action/expense-actions.js'
+import {
+  expenseCreate,
+  expenseUpdate,
+  expenseDelete,
+} from '../../action/expense-actions.js'
 
 let renderIf = (t, c) => (t ? c : undefined)
-let updateCategory = false
-let updateCostItem = false
+
 let expenseDoesExist = false
 
 class CategoryItem extends React.Component {
@@ -16,6 +19,7 @@ class CategoryItem extends React.Component {
     this.state = {
       name: this.props.item.name,
       budget: this.props.item.budget,
+      updateCategory: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -37,17 +41,21 @@ class CategoryItem extends React.Component {
   }
 
   handleUpdateCategory() {
-    updateCategory = true
+    console.log('updateCategory')
+    this.setState(state => ({ updateCategory: !state.updateCategory }))
+    console.log('after updateCategory', this.state.updateCategory)
   }
 
   render() {
+    console.log('rendering after update')
     let categoryId = this.props.item.id
     return (
       <div className="container">
         <div onDoubleClick={this.handleUpdateCategory}>
           {renderIf(
-            updateCategory,
+            this.state.updateCategory,
             <div className="budget-item-update">
+              {console.log('rendering after update')}
               <input
                 name="name"
                 type="text"
@@ -62,14 +70,14 @@ class CategoryItem extends React.Component {
                 onChange={this.handleChange}
                 onBlur={() => {
                   this.props.categoryUpdate(this.props.item)
-                  updateCategory = false
+                  this.setState({ updateCategory: false })
                 }}
               />
             </div>
           )}
 
           {renderIf(
-            !updateCategory,
+            !this.state.updateCategory,
             <div key={this.props.item.id}>
               <h3>
                 Category Name:{this.props.item.name}
@@ -128,6 +136,12 @@ const mapDispatchToProps = (dispatch, getState) => {
   return {
     expenseCreate: expense => {
       dispatch(expenseCreate(expense))
+    },
+    expenseUpdate: expense => {
+      dispatch(expenseUpdate(expense))
+    },
+    expenseDelete: expense => {
+      dispatch(expenseDelete(expense))
     },
   }
 }

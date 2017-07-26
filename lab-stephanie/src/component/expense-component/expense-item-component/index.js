@@ -1,14 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import {
+  expenseCreate,
+  expenseUpdate,
+  expenseDelete,
+} from '../../../action/expense-actions.js'
+
 let renderIf = (t, c) => (t ? c : undefined)
-let updateExpenseItem = false
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       name: this.props.item.name,
       price: this.props.item.price,
+      updateExpenseItem: false,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -30,14 +36,15 @@ class ExpenseItem extends React.Component {
   }
 
   handleUpdateCostItem() {
-    updateExpenseItem = true
+    console.log('updateExpenseItem')
+    this.setState(state => ({ updateExpenseItem: !state.updateExpenseItem }))
   }
 
   render() {
     return (
-      <div onDoubleClick={this.handleUpdate}>
+      <div onDoubleClick={this.handleUpdateCostItem}>
         {renderIf(
-          updateExpenseItem,
+          this.state.updateExpenseItem,
           <div className="price-item-update">
             <input
               name="name"
@@ -53,14 +60,14 @@ class ExpenseItem extends React.Component {
               onChange={this.handleChange}
               onBlur={() => {
                 this.props.expenseUpdate(this.props.item)
-                updateExpenseItem = false
+                this.setState({ updateExpenseItem: false })
               }}
             />
           </div>
         )}
 
         {renderIf(
-          !updateExpenseItem,
+          !this.state.updateExpenseItem,
           <div key={this.props.item.id}>
             <h3>
               Expense Name:{this.props.item.name}
@@ -83,5 +90,25 @@ class ExpenseItem extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    categories: state.categories,
+    expenses: state.expenses,
+  }
+}
 
-export default ExpenseItem
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    expenseCreate: expense => {
+      dispatch(expenseCreate(expense))
+    },
+    expenseUpdate: expense => {
+      dispatch(expenseUpdate(expense))
+    },
+    expenseDelete: expense => {
+      dispatch(expenseDelete(expense))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseItem)
