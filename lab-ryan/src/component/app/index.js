@@ -10,24 +10,24 @@ class App extends React.Component {
   componentDidMount(){
     store.subscribe(() => {
       console.log('__STATE__', store.getState());
-});
+    });
 
-store.dispatch({type: null});
+    store.dispatch({type: null});
 
-};
+  }
 
-render() {
+  render() {
 
-  return (
-    <div>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Route exact path='/' component={DashboardContainer} />
+    return (
+      <div>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Route exact path='/' component={DashboardContainer} />
           </BrowserRouter>
-        </provider>
-    </div>
-    )
+        </Provider>
+      </div>
+    );
   }
 }
 
-export default App
+export default App;
