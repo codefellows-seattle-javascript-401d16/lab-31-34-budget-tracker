@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import CategoryItem from '../category-item/';
 import CategoryForm from '../category-form';
+import ExpenseItem from '../expense-item/';
+import ExpenseForm from '../expense-form';
 
 import {
   categoryCreate,
@@ -13,17 +15,33 @@ class DashboardContainer extends React.Component {
     return (
       <main className='dashboard'>
         <h2> Budget App </h2>
-        <CategoryForm
-          buttonText='create category'
-          onComplete={this.props.categoryCreate}
-        />
-
-        {this.props.categorys.map((item) =>
-          <CategoryItem
-            key={item.id}
-            category={item}
+        <div>
+          <CategoryForm
+            buttonText='create category'
+            onComplete={this.props.categoryCreate}
           />
-        )}
+
+          {this.props.categorys.map((item) =>
+            <CategoryItem
+              key={item.id}
+              category={item}
+            />
+          )}
+        </div>
+        <div>
+          <h3>Expense</h3>
+          <ExpenseForm
+            buttonText='create expense'
+            onComplete={this.props.expenseCreate}
+          />
+
+          {this.props.expense.map((item) =>
+            <ExpenseItem
+              key={item.id}
+              category={item}
+            />
+          )}
+        </div>
       </main>
     );
   }

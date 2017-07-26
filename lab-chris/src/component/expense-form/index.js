@@ -25,25 +25,25 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.onComplete(Object.assign({}, this.state));
+    this.props.onComplete(Object.assign({}, ...this.state));
     if(!this.props.category)
       this.setState({name: ''}), this.setState({budget: ''});
   }
 
   render(){
     return (
-      <form className='category-form' onSubmit={this.handleSubmit} >
+      <form className='expense-form' onSubmit={this.handleSubmit} >
         <input
           name='name'
           type='text'
-          placeholder='name'
+          placeholder='expense name'
           value={this.state.name}
           onChange={this.handleChange}
         />
         <input
           name='budget'
           type='number'
-          placeholder='budget amount'
+          placeholder='expense amount'
           value={this.state.budget}
           onChange={this.handleChange}
         />
