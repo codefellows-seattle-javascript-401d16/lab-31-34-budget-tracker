@@ -8,6 +8,7 @@ import {
 } from '../../action/category-actions.js'
 
 import ExpenseForm from '../expense-form'
+import ExpenseItem from '../expense-item'
 import CategoryForm from '../category-form'
 
 class CategoryItem extends React.Component {
@@ -16,7 +17,6 @@ class CategoryItem extends React.Component {
   }
 
   render() {
-    console.log('hewfuihdfw', this.props.category.id)
     return (
       <div className="category-item">
         <li>
@@ -45,18 +45,9 @@ class CategoryItem extends React.Component {
           />
         </div>
         <ul>
-          {this.props.expenses[this.props.category.id].map(item => {
-            return (
-              <li key={item.id}>
-                <p>
-                  Name: {item.name}
-                </p>
-                <p>
-                  Price: {item.price}
-                </p>
-              </li>
-            )
-          })}
+          {this.props.expenses[this.props.category.id].map(item =>
+            <ExpenseItem key={item.id} expense={item} />
+          )}
         </ul>
       </div>
     )
