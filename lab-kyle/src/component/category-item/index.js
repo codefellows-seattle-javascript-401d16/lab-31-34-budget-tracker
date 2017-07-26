@@ -17,6 +17,13 @@ class CategoryItem extends React.Component {
   }
 
   render() {
+    console.log('category-item this.props', this.props)
+    console.log('category-item this.props.expenses', this.props.expenses)
+    console.log('category-item this.props.category.id', this.props.category.id)
+    console.log(
+      'the array in question',
+      this.props.expenses[this.props.category.id]
+    )
     return (
       <div className="category-item">
         <li>

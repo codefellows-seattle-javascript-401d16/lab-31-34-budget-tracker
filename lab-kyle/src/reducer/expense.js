@@ -1,8 +1,7 @@
 export default (state = {}, action) => {
   let { type, payload } = action
-
-  console.log('expense state', state)
-
+  console.log('expense-reducer payload', payload)
+  console.log('expense-reducer state', state)
   switch (type) {
   case 'CATEGORY_CREATE':
     return { ...state, [payload.id]: [] }
@@ -15,7 +14,8 @@ export default (state = {}, action) => {
       ...state,
       [payload.categoryID]: [...state[payload.categoryID], payload],
     }
-
+    // returned array is not save under the categoryid property on app state
+    // it is just an array with no key, and comes back undefined.
   case 'EXPENSE_DELETE':
     return state[payload.categoryID].filter(item => item.id !== payload.id)
 

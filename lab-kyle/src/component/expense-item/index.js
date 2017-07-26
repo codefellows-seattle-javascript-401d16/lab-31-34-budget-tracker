@@ -10,7 +10,6 @@ class ExpenseItem extends React.Component {
   }
 
   render() {
-    console.log('expense item', this.props.expense)
     return (
       <div className="expense-item">
         <li>
