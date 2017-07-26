@@ -24,6 +24,7 @@ class ExpenseForm extends React.Component{
   }
 
   render(){
+    console.log('EXPENSE form props: ', this.props);
     return(
       <form className='expense-form' onSubmit={this.handleSubmit}>
         EXPENSE FORM

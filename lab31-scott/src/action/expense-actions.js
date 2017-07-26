@@ -19,3 +19,7 @@ export const expenseDestroy = (expense) => ({
   type: 'EXPENSE_DESTROY',
   payload: expense,
 });
+
+export const expenseReset = (expense) => ({
+  type: 'EXPENSE_RESET',
+});

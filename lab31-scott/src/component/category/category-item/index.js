@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import CategoryForm from '../category-form';
 import {categoryUpdate, categoryDestroy} from '../../../action/category-actions.js';
+import ExpenseForm from '../../expense/expense-form';
+import {expenseCreate, expenseReset} from '../../../action/expense-actions.js';
 
 
 class CategoryItem extends React.Component{
@@ -33,6 +35,11 @@ class CategoryItem extends React.Component{
             >
               Delete Category
             </button>
+            <ExpenseForm
+              onComplete={this.props.expenseCreate}
+              buttonText='Create Expense'
+            />
+
           </div>;
         })}
 
@@ -49,6 +56,8 @@ const mapDispatchToProps = (dispatch, action) => {
   return{
     categoryUpdate: (category) => dispatch(categoryUpdate(category)),
     categoryDestroy: (category) => dispatch(categoryDestroy(category)),
+    expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+    expenseReset: (expense) => dispatch(expenseReset(expense)),
   };
 };
 
