@@ -9,7 +9,7 @@ import {
 class CategoryList extends React.Component{
   render(){
     let{category, categoryUpdate, categoryDelete} = this.props
-    console.log('props', this.props.category)
+    console.log('props', this.props)
     return(
       <div className='category-list'>
         <div>
@@ -31,8 +31,8 @@ class CategoryList extends React.Component{
   }
 }
 
-const mapStateToProps = () => ({})
-const mapDispatchToProps = dispatch => ({
+let mapStateToProps = () => ({})
+let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
 })

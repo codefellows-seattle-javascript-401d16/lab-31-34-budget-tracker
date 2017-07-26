@@ -21,9 +21,9 @@ class DashboardContainer extends React.Component {
           submitText='Create Category'
           onComplete={this.props.categoryCreate}
         />
-        {this.props.categorys.map((item) =>
-          <CategoryList key={item.id} category={item} />
-        )}
+        {this.props.categorys.map((item) =>{
+          return <CategoryList key={item.id} category={item} />
+        })}
       </main>
     )
   }
