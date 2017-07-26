@@ -11,10 +11,6 @@ import CategoryForm from '../category-form'
 
 class DashboardContainer extends React.Component {
   componentDidMount(){
-    this.props.categoryCreate({title: 'lul'})
-    this.props.categoryCreate({title: 'wat'})
-    this.props.categoryCreate({title: 'coo'})
-    this.props.categoryCreate({title: 'bea'})
   }
 
   render(){
