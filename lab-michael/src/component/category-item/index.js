@@ -63,9 +63,9 @@ class CategoryItem extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state, props) => {
   return {
-    expenses: state.expenses,
+    expenses: state.expenses[props.category.id],
   }
 }
 
