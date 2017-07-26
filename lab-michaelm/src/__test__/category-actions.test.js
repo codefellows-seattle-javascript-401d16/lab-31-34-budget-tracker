@@ -6,10 +6,10 @@ import {
 
 describe('testing category actions', () => {
   test('categoryCreate returns a CATEGORY_CREATE action', () => {
-    let action = categoryCreate({title: 'cool'});
+    let action = categoryCreate({name: 'cool'});
     expect(action.type).toEqual('CATEGORY_CREATE');
     expect(action.payload.id).toBeTruthy();
     expect(action.payload.timestamp).toBeTruthy();
-    expect(action.payload.title).toBe('cool');
+    expect(action.payload.name).toBe('cool');
   });
 });
