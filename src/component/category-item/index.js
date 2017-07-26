@@ -60,7 +60,7 @@ class CategoryItem extends React.Component {
         />
 
         <ul>
-        {this.props.expenses[category.id].map((item =>
+        {expenses[category.id].map((item =>
           <li key={item.id}>
           <ExpenseItem
             categoryID = {this.props.category.id}

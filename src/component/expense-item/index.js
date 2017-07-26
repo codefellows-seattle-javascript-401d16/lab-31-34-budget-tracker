@@ -5,7 +5,6 @@ import CategoryForm from '../category-form'
 import ExpenseForm from '../expense-form'
 
 import {
-  // expenseCreate,
   expenseUpdate,
   expenseDelete,
 } from '../../action/expense-actions.js'
@@ -19,7 +18,6 @@ class ExpenseItem extends React.Component{
   }
   render(){
     let {expenses, categoryID, expense, expenseUpdate} = this.props
-    // console.log('expenseUpdate', expenseUpdate)
     return(
       <div>
         <h3>Expense: {expense.name}</h3>
@@ -46,7 +44,6 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = dispatch => ({
-  // expenseCreate: (expense) => dispatch(expenseCreate(expense)),
   expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
   expenseDelete: (expense) => dispatch(expenseDelete(expense)),
 })
