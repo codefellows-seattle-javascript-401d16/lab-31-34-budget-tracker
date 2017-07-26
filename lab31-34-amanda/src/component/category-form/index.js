@@ -7,6 +7,7 @@ class CategoryForm extends React.Component {
     this.state = {
       name: props.category ? props.category.name : '',
       budget: props.budget ? props.category.budget: 0,
+      id: props.category ? props.category.id: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,14 +20,14 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    console.log('this is rendering!',this.props.category);
     this.props.onComplete(Object.assign({}, this.state));
 
     if(!this.props.category) //how do I clear this form?
-      this.setState({name: '', budget: 0 });
+      this.setState({name: '', budget: undefined });
   }
 
   render(){
+    console.log('in category item', this.props);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input
@@ -48,7 +49,7 @@ class CategoryForm extends React.Component {
         <button
           className='button-input'
           type='submit'>
-          submit
+          {this.props.buttonText}
         </button>
       </form>
     );

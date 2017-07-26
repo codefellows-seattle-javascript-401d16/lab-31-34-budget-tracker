@@ -10,6 +10,7 @@ import CategoryItem from '../category-item';
 class DashboardContainer extends React.Component {
 
   render(){
+    console.log('in dash item');
     return (
       <main className='dashboard-container'>
         <h2> dashboard </h2>
