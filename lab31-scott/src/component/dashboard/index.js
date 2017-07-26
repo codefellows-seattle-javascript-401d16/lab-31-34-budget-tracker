@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 ///import classes
 import CategoryForm from '../category/category-form';
 import CategoryItem from '../category/category-item';
+import ExpenseForm from '../expense/expense-form';
 import {categoryCreate, categoryReset} from '../../action/category-actions.js';
 
 let renderIf = (test, component) => test ? component : undefined;
@@ -29,6 +30,9 @@ class DashboardContainer extends React.Component{
           category={{}}
         />
         <CategoryItem
+        />
+        <ExpenseForm
+          onComplete={this.props.expenseCreate}
         />
       </main>
     );
