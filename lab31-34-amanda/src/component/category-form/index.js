@@ -4,11 +4,15 @@ class CategoryForm extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      name: props.category ? props.category.name : '',
-      budget: props.budget ? props.category.budget: 0,
-      id: props.category ? props.category.id: '',
-    };
+    this.state = props.category
+      ? {...props.category}
+      : {  name: '',  budget: 0 };
+
+    // this.state = {
+    //   name: props.category ? props.category.name : '',
+    //   budget: props.budget ? props.category.budget: 0,
+    //   id: props.category ? props.category.id: '',
+    // };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
