@@ -6,13 +6,7 @@ class CategoryForm extends React.Component {
 
     this.state = props.category
       ? {...props.category}
-      : {  name: '',  budget: 0 };
-
-    // this.state = {
-    //   name: props.category ? props.category.name : '',
-    //   budget: props.budget ? props.category.budget: 0,
-    //   id: props.category ? props.category.id: '',
-    // };
+      : { name: '',  budget: 0 };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +21,7 @@ class CategoryForm extends React.Component {
     this.props.onComplete(Object.assign({}, this.state));
 
     if(!this.props.category) //how do I clear this form?
-      this.setState({name: '', budget: undefined });
+      this.setState({name: '', budget: 0 });
   }
 
   render(){

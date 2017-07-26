@@ -10,7 +10,6 @@ import CategoryItem from '../category-item';
 class DashboardContainer extends React.Component {
 
   render(){
-    console.log('in dash item');
     return (
       <main className='dashboard-container'>
         <h2> dashboard </h2>
@@ -22,7 +21,7 @@ class DashboardContainer extends React.Component {
         {this.props.categorys.map((item) =>
           <CategoryItem
             category={item}
-            key={item.id}/>
+            key={item.id} />
         )}
       </main>
     );
@@ -31,7 +30,7 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = (state) => { //connect
   return {
-    categorys:state, //refactor: state.categories - categories, not the cards
+    categorys:state.categorys,
   };
 };
 
