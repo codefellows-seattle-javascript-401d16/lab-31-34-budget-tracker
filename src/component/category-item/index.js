@@ -22,6 +22,8 @@ class CategoryItem extends React.Component {
     }
   }
   render() {
+    console.log('Category Item this.props', this.props)
+
     let {category, categoryUpdate, categoryDelete} = this.props
     return (
       <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
@@ -49,7 +51,13 @@ class CategoryItem extends React.Component {
         }
         />
 
-        <ExpenseItem />
+        {this.props.expenses[category.id].map((item =>
+          <ExpenseItem
+            key={item.id}
+            categoryID = {this.props.category.id}
+            expense={item}
+          />
+        ))}
 
         <button onClick = {() => categoryDelete(category)}>
         -
