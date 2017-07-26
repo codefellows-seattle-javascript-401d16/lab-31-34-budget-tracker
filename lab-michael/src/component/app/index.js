@@ -19,9 +19,9 @@ class App extends React.Component {
     return (
       <div>
         <Provider store={store}>
-        <BrowserRouter>
-        <Route exact path='/' component={DashboardContainer}/>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Route exact path='/' component={DashboardContainer}/>
+          </BrowserRouter>
         </Provider>
         <h1> Hello World! </h1>
         </div>

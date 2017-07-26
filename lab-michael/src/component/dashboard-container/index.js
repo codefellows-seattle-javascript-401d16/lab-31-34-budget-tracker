@@ -36,16 +36,16 @@ class DashboardContainer extends React.Component{
 }
 
 const mapStateToProps = (state)=> {
+  // console.log(state);
   return{
     categories: state.categories,
   }
 }
 
 const mapDispatchToProps = (dispatch, getState)=> {
+  // console.log(dispatch, getState);
   return {
     categoryCreate:(category)=> dispatch(categoryCreate(category)),
-    categoryUpdate:(category)=> dispatch(categoryUpdate(category)),
-    categoryDelete:(category)=> dispatch(categoryDelete(category)),
   }
 }
 
