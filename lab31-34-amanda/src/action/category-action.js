@@ -10,7 +10,6 @@ export const categoryCreate = (category) => {
 };
 
 export const categoryUpdate = (category) => {
-  console.log('in category ******', category);
   return {
     type: 'CATEGORY_UPDATE',
     payload: category,
