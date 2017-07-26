@@ -29,8 +29,7 @@ class DashboardContainer extends React.Component {
             category={item}
             buttonText='update budget'
             categoryUpdate={this.props.categoryUpdate}
-            categoryDelete={this.props.categoryDelete}
-          />
+            categoryDelete={this.props.categoryDelete}/>
         )}
       </main>
     );

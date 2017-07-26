@@ -1,27 +1,15 @@
 import React from 'react';
-import {shallow} from 'enzyme';
 import reducer from '../reducer/category.js';
 
-describe('test', () => {
-  test('should pass', () => {
-    expect(true).toBe(true);
-  });
-});
-
 describe('reducer', () => {
-  test('create', () => {
-    let create = {
-      type: 'CATEGORY_CREATE',
-      payload: {
-        name: 'Computer',
-        budget: 100,
-      },
+  test('initial', () => {
+    let first = {
+      type: null,
     };
 
-    let reduce = reducer(reduce, create);
-    expect(reduce[0].name).toEqual('Computer');
-    expect(reduce[0].budget).toEqual(100);
-    expect(reduce[1]).toBeUndefined();
+    let reduce = reducer(undefined, first);
+    expect(reduce).toEqual([]);
+
   });
 
   test('update', () => {
@@ -65,8 +53,6 @@ describe('reducer', () => {
       type: 'CATEGORY_DELETE',
       payload: {
         id: 123,
-        name: 'Computer',
-        budget: 100,
       },
     };
 
