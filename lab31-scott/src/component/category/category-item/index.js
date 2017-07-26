@@ -50,7 +50,7 @@ class CategoryItem extends React.Component{
 // is this mapping state of the module it's hosted in?
 const mapStateToProps = (state) => {
   console.log('CAT MSTP: ', state);
-  return {categories: state};
+  return {categories: state.categories};
 };
 
 const mapDispatchToProps = (dispatch, action) => {
