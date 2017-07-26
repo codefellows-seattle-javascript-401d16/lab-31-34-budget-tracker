@@ -25,24 +25,19 @@ class CategoryItem extends React.Component {
   render() {
     let {category, categoryUpdate, categoryDelete} = this.props;
     return (
-      <div className='category-item'>
-        <div>
-          <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))} className='content'>
-            <h2> item name: {category.name} </h2>
-            <h3> item budget: {category.budget} </h3>
-            <button onClick = {() => categoryDelete(category)}> delete </button>
-          </div>
+      <div className='category-item' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+        <h2> item name: {category.name} </h2>
+        <h3> item budget: {category.budget} </h3>
+
         {renderIf(this.state.editing === true,
-          <div className='editing'>
-            <CategoryForm
-              buttonText='update'
-              category={category}
-              onComplete={data => {
-                data.id = category.id;
-                categoryUpdate(data);
-              }}
-            />
-          </div>
+          <CategoryForm
+            category={category}
+            onComplete={(data) => {
+              data.id = category.id;
+              categoryUpdate(data);
+            }}
+          buttonText='update'
+          />
         )}
 
         <ExpenseForm
@@ -64,7 +59,6 @@ class CategoryItem extends React.Component {
         <button onClick = {() => categoryDelete(category)}>
         -
         </button>
-        </div>
       </div>
     );
   }

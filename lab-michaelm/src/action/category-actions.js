@@ -9,14 +9,19 @@ export const categoryCreate = (category) => {
   };
 };
 
-export const categoryUpdate = (category) => ({
+export const categoryUpdate = (category) =>
+({
   type: 'CATEGORY_UPDATE',
   payload: category,
 });
 
-export const categoryDelete = (category) => ({
+export const categoryDelete = (category) =>
+({
   type: 'CATEGORY_DELETE',
   payload: category,
 });
 
-export const categoryReset = () => ({type: 'CATEGORY_RESET'});
+export const categoryReset = () =>
+({
+  type: 'CATEGORY_RESET'
+});
