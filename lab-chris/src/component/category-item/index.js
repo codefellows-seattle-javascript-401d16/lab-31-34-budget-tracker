@@ -1,11 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CategoryForm from '../category-form';
+import ExpenseForm from '../expense-form';
 
 import{
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js';
+
+import{
+  expenseCreate,
+} from '../../action/expense-action.js';
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -29,6 +34,25 @@ class CategoryItem extends React.Component {
               }}
               buttonText='update'
             />
+
+            <div>
+              <ExpenseForm
+                onComplete={(data)=>{
+                  data.categoryID = category.id;
+                  expenseCreate(data);
+                }}
+                buttonText='create expense'
+              />
+
+              {this.props.expense.map((item) =>
+                <ExpenseItem
+                  key={item.id}
+                  expense={item}
+                />
+              )}
+
+            </div>
+
             <button onClick={() => categoryDelete(category)}>Delete</button>
           </div>
         </div>

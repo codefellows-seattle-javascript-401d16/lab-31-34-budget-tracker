@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
 
-import{
-  expenseUpdate,
-  expenseDelete,
-} from '../../action/expense-action.js';
+// import{
+//   expenseUpdate,
+//   expenseDelete,
+// } from '../../action/expense-action.js';
 
 class ExpenseItem extends React.Component {
   constructor(props){
@@ -18,7 +18,7 @@ class ExpenseItem extends React.Component {
       <div className='expense-item'>
         <div>
           <div className='content'>
-            <h4> Name: {expense.name} ---- Budget: ${expense.budget} </h4>
+            <h4> Name: {expense.name} ---- Budget: ${expense.price} </h4>
           </div>
           <div>
             <ExpenseForm
@@ -38,13 +38,15 @@ class ExpenseItem extends React.Component {
 }
 
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  expense: state.expense,
+});
 
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
-    expenseDelete: (expense) => dispatch(expenseDelete(expense)),
+    // expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
+    // expenseDelete: (expense) => dispatch(expenseDelete(expense)),
   };
 };
 
