@@ -6,15 +6,22 @@ class CategoryForm extends React.Component{
     this.state = {
       title: props.category ? props.category.title : '',
     }
-    this.handlChange = this.handlChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handlChange(e){
+  //
+  // componentWillReceiveProps(props){
+  //   if(props.category)
+  //     this.setState(props.category)
+  // }
+  handleChange(e){
     this.setState({title: e.target.value})
   }
   handleSubmit(e){
     e.preventDefault()
     this.props.onComplete(Object.assign({}, this.state))
+    if(!this.props.category)
+      this.setState({title: ''})
   }
   render(){
     return(
@@ -24,7 +31,7 @@ class CategoryForm extends React.Component{
           type='text'
           placeholder='title'
           value={this.state.title}
-          onChange={this.handlChange}
+          onChange={this.handleChange}
         />
         <button type='submit'>{this.props.submitText}</button>
       </form>

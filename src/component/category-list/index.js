@@ -1,26 +1,40 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import CategoryForm from '../category-form'
 import {
-  categoryCreate,
   categoryUpdate,
   categoryDelete,
-  categoryReset,
 } from '../../action/category-action.js'
 
 class CategoryList extends React.Component{
   render(){
+    let{category, categoryUpdate, categoryDelete} = this.props
+    console.log('props', this.props.category)
     return(
       <div className='category-list'>
-        {this.props.categorys.map((item, i) =>
-          <div key={i}>
-            <button onClick={() => {this.props.categoryDelete(item)}}>
+        <div>
+          <div className='remove'>
+            <h2>{category.title}</h2>
+            <button onClick={() => categoryDelete(category)}>
               delete
             </button>
           </div>
-        )}
+          <div className='edit'>
+            <CategoryForm
+              submitText='Update Category'
+              category={category}
+              onComplete={categoryUpdate} />
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default CategoryList
+const mapStateToProps = () => ({})
+const mapDispatchToProps = dispatch => ({
+  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+  categoryDelete: (category) => dispatch(categoryDelete(category)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList)
