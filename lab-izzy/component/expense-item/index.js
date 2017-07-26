@@ -12,7 +12,6 @@ let renderIf = (t, c) => t ? c : undefined;
 
 class ExpenseItem extends React.Component {
   constructor(props){
-    console.log('$$$$', props);
     super(props);
     this.state = {
       editing: false,
@@ -28,7 +27,7 @@ class ExpenseItem extends React.Component {
 
         {renderIf(!this.state.editing,
           <div>
-            <button onClick={() => this.props.expenseRemove(expense)}>
+            <button onClick={() => this.props.expenseDelete(expense)}>
               delete
             </button>
 
@@ -52,7 +51,7 @@ class ExpenseItem extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  expenses: state.expenses,
+  expenses: state,
 });
 
 const mapDispatchToProps = (dispatch) => ({

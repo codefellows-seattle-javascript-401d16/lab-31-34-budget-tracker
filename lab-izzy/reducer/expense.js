@@ -1,6 +1,6 @@
-let intialState = {};
+let initialState = {};
 
-export default (state=intialState, action) => {
+export default (state=initialState, action) => {
   let {type, payload} = action;
   switch(type){
   case 'CATEGORY_CREATE':
@@ -21,7 +21,7 @@ export default (state=intialState, action) => {
   case 'EXPENSE_DELETE':
     return state.filter(expense =>
       expense.id != payload.id);
-      
+
   default:
     return state;
   }

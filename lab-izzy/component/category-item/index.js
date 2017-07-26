@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CategoryForm from '../category-form';
-import ExpenseForm from '../expense-form';
+
 import ExpenseItem from '../expense-item';
+import ExpenseForm from '../expense-form';
+import CategoryForm from '../category-form';
 
 import {
   expenseCreate,
@@ -59,6 +60,7 @@ class CategoryItem extends React.Component{
           <div className='expense-form'>
 
             <ExpenseForm
+              category
               expense={expenses}
               buttonName='create expense'
               onComplete={(data) => {
@@ -72,8 +74,8 @@ class CategoryItem extends React.Component{
             <div key={item.id}>
               <h2> {item.name} </h2>
               <ExpenseItem
-                category={item.categoryID}
                 expense={item}
+                category={item.categoryID}
                 onClick={this.props.expenseDelete}
                 categoryID={this.props.category.id}
                 categoryUpdate={(data) => {
@@ -88,9 +90,8 @@ class CategoryItem extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => ({
-  // categories: state.categories,
-  expenses: state.expenses,
+const mapStateToProps = (state, props) => ({
+  expenses: state.expenses[props.category.id],
 });
 
 const mapDispatchToProps = (dispatch) => ({
