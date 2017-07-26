@@ -1,58 +1,63 @@
-import React from 'react'
+import React from 'react';
 
 class CategoryForm extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
 
-    this.state = {
-      name: props.category ? props.category.name : '',
-      budget: props.budget ? props.category.budget: 0,
-    }
+    this.state = props.category
+      ? {...props.category}
+      : {  name: '',  budget: 0 };
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.state = {
+    //   name: props.category ? props.category.name : '',
+    //   budget: props.budget ? props.category.budget: 0,
+    //   id: props.category ? props.category.id: '',
+    // };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e){
-    this.setState({name: e.target.value})
+    this.setState({[e.target.name] : e.target.value});
   }
 
   handleSubmit(e){
-    e.preventDefault()
-    console.log('this is rendering!',this.props.category)
-    this.props.onComplete(Object.assign({}, this.state))
-    //clear the form if not being used for update
-    // if(!props.category)
-    //   this.setState({title: ''})
+    e.preventDefault();
+    this.props.onComplete(Object.assign({}, this.state));
+
+    if(!this.props.category) //how do I clear this form?
+      this.setState({name: '', budget: undefined });
   }
 
   render(){
+    console.log('in category item', this.props);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input
-          className='title-input'
-          name='name'
-          type='text'
-          placeholder='title'
+          className='name-input'
+          name ='name'
+          type ='text'
+          placeholder='category'
           value={this.state.name}
           onChange={this.handleChange} />
 
         <input
-          className='price-input'
-          name= 'budget'
+          className='budget-input'
+          name = 'budget'
           type='number'
-          placeholder='amout'
-          value={this.state.price}
+          placeholder='expense'
+          value={this.state.budget}
           onChange={this.handleChange} />
 
         <button
           className='button-input'
           type='submit'>
-          {this.props.buttonName}
+          {this.props.buttonText}
         </button>
       </form>
-    )
+    );
   }
 }
 
-export default CategoryForm
+export default CategoryForm;

@@ -1,30 +1,27 @@
-// this reducer should support the following interactions
-// CATEGORY_CREATE
-// CATEGORY_UPDATE
-// CATEGORY_DESTORY
+'use strict';
 
-'use strict'
-
-let initialState = []
+let initialState = [];
 export default (state=initialState, action) => {
-  let {type, payload} = action
+  let {type, payload} = action;
 
   switch(type) {
   case 'CATEGORY_CREATE':
-    return [...state, payload]
+    return [...state, payload];
 
   case 'CATEGORY_UPDATE':
-    return state.map(category =>
-      category.id == payload.id  ? payload : category)
+    console.log('in reducer item', payload);
+    return state.map(category => {
+      console.log('in map reducer', category, payload);
+      return category.id == payload.id ? payload : category;});
 
   case 'CATEGORY_DELETE':
     return state.filter(category =>
-      category.id !== payload.id)
+      category.id !== payload.id);
 
   case 'CATEGORY_RESET':
-    return initialState
-    
+    return initialState;
+
   default:
-    return state
+    return state;
   }
-}
+};
