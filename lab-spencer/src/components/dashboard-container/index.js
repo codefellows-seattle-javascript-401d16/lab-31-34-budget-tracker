@@ -16,6 +16,8 @@ import {
 import BudgetForm from '../budget-form';
 import ExpenseForm from '../expense-form';
 
+import {log, logError} from '../../lib/util.js';
+
 class DashboardContainer extends React.Component {
   render() {
     return (
@@ -40,7 +42,7 @@ class DashboardContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  log(state);
   return {
     budgetCategories: state.budgetCategories,
     expenses: state.expenses,
