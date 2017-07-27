@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 
 import {renderIf} from '../../lib/util.js';
 
-import CategoryForm from '../category-form';
+import UpdateForm from '../update-form';
 import ExpenseForm from '../expense-form';
 import ExpenseItem from '../expense-item';
+import CategoryForm from '../category-form';
 import {
+  categoryCreate,
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js';
@@ -23,50 +25,53 @@ class CategoryItem extends React.Component {
     };
   }
   render() {
-    let {category, categoryUpdate, categoryDelete} = this.props;
+    let {category, categoryUpdate, categoryDelete, expenses} = this.props;
     return (
-      <div className='category-item' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
-        <h2> item name: {category.name} </h2>
-        <h3> item budget: {category.budget} </h3>
+      <div className='category-item'>
+        <header>
+          <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+            <h2> item name: {category.name} </h2>
+            <h3> item budget: {category.budget} </h3>
+          </div>
 
-        {renderIf(this.state.editing === true,
-          <CategoryForm
-            category={category}
+          {renderIf(this.state.editing,
+            <div className="update-form" onDoubleClick={() => this.setState(state => ({editing: state.editing}))}>
+              <UpdateForm
+                category={category}
+                onComplete={categoryUpdate}
+                buttonText='update category'
+              />
+            </div>
+          )}
+        </header>
+        <button onClick = {() => categoryDelete(category)}> delete </button>
+
+        <main>
+          <ExpenseForm
+            buttonText='add expense'
             onComplete={(data) => {
-              data.id = category.id;
-              categoryUpdate(data);
-            }}
-          buttonText='update'
-          />
-        )}
-
-        <ExpenseForm
-          buttonText='add expense'
-          onComplete={(data) => {
-            data.categoryID = category.id;
-            this.props.expenseCreate(data);
+              data.categoryID = category.id;
+              this.props.expenseCreate(data);
+            }
           }
-        }
-        />
-
-        {this.props.expenses[category.id].map((item =>
-          <ExpenseItem
-            key={item.id}
-            categoryID = {this.props.category.id}
-            expense={item}
           />
-        ))}
-        <button onClick = {() => categoryDelete(category)}>
-        -
-        </button>
+          <ul>
+            {expenses.map((expense =>
+              <ExpenseItem
+                key={expense.id}
+                expense={expense}
+              />
+            ))}
+          </ul>
+        </main>
       </div>
     );
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state, props) => {
   return {
-    expenses: state.expenses,
+    expenses: state.expenses[props.category.id],
   };
 };
 

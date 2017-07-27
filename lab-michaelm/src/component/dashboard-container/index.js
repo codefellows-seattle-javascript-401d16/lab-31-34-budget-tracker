@@ -5,7 +5,6 @@ import {
   categoryCreate,
 } from '../../action/category-actions.js';
 
-import ExpenseForm from '../expense-form';
 import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
@@ -18,10 +17,10 @@ class DashboardContainer extends React.Component {
           buttonText='create category'
           onComplete={this.props.categoryCreate}
           />
-        {this.props.categories.map((item) =>
+        {this.props.categories.map((category) =>
             <CategoryItem
-              key={item.id}
-              category={item}
+              key={category.id}
+              category={category}
             />
           )}
       </main>

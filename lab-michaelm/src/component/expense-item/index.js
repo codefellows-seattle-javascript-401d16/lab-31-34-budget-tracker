@@ -1,54 +1,38 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {renderIf} from '../../lib/util.js';
-import CategoryForm from '../category-form';
 import ExpenseForm from '../expense-form';
 
 import {
-  expenseCreate,
   expenseUpdate,
   expenseDelete,
 } from '../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      editing: false,
-    };
-  }
   render(){
-    let {expenses, categoryID, expense} = this.props;
+    let {expense, expenseDelete, expenseUpdate} = this.props;
     return(
-      <div>
-        <h2>Expense</h2>
-        <h3>Expense: {expense.name}</h3>
-        <h3>Price: ${expense.price}</h3>
-
-        <button onClick = {() => this.props.expenseUpdate(expense)}>
-        update expense
-        </button>
-
-        <button onClick = {() => this.props.expenseDelete(expense)}>
-        delete expense
-        </button>
-      </div>
+      <li>
+        <h3>{expense.name}</h3>
+        <h4>{expense.price}</h4>
+        <ExpenseForm
+          expense={expense}
+          buttonText='update expense'
+          onComplete={expenseUpdate}
+        />
+      </li>
     );
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-  };
-};
+let mapStateToProps = () => ({});
 
 let mapDispatchToProps = dispatch => ({
-  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
   expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
-
   expenseDelete: (expense) => dispatch(expenseDelete(expense)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps
-)(ExpenseItem);;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExpenseItem);
