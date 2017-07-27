@@ -7,6 +7,17 @@ import CategoryForm from '../category-form'
 import CategoryItem from '../category-item'
 
 class DashboardContainer extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    this.props.categoryCreate({ name: 'Housing', budget: 1000 })
+    this.props.categoryCreate({ name: 'Groceries', budget: 500 })
+    this.props.categoryCreate({ name: 'Transportation', budget: 500 })
+    this.props.categoryCreate({ name: 'Recreation', budget: 500 })
+  }
+
   render() {
     console.log('dashboard state', this.props.categories)
     return (
