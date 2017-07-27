@@ -29,7 +29,7 @@ class CategoryItem extends React.Component {
             <button
             className='delete-button'
             onClick={() =>{
-              categoryDelete(category)
+              this.props.categoryDelete(category)
             }}>
               Delete
             </button>
@@ -39,18 +39,18 @@ class CategoryItem extends React.Component {
            <CategoryForm
             category={category}
             buttonText='update'
-            onComplete={categoryUpdate}
+            onComplete={this.props.categoryUpdate}
             />
           </div>
 
           <div className='expense-form'>
           <ExpenseForm
-          buttonTest='creating an expense'
-          onComplete={data=> {
-            console.log('this is in the expense form on complete!!!');
-            data.categoryID = category.id
-            this.props.expenseCreate(data)
-          }}
+            buttonText='creating an expense'
+            onComplete={data=> {
+              console.log('this is in the expense form on complete!!!');
+              data.categoryID = category.id
+              this.props.expenseCreate(data)
+            }}
           />
           </div>
           {console.log('category.id!!!!!!',this.props.expenses)}
@@ -62,7 +62,6 @@ class CategoryItem extends React.Component {
 
         </div>
       </div>
-
     )
   }
 }

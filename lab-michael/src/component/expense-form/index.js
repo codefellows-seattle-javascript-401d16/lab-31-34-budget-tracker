@@ -18,7 +18,7 @@ class ExpenseForm extends React.Component {
 
   handleChange(e){
     this.setState({[e.target.name]: e.target.value})
-    console.log('this.propsssss',this.props);
+    console.log('this.propsssss',this.props.expense);
   }
 
   handleSubmit(e){
