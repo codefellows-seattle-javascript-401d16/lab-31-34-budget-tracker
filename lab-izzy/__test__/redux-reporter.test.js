@@ -24,7 +24,7 @@ describe('redux-reporter', () => {
     let action = {type: 'TEST_ACTION', payload: [1, 2, 3]};
     let result = mockStore.dispatch(action);
     expect(result).toEqual(action);
-    expect(mockStore.getState()).toEqual(1);
+    expect(mockStore.getState()).toEqual(0);
 
     action = {type: 'INC'};
     result = mockStore.dispatch(action);

@@ -1,6 +1,6 @@
 let validatePayload = (payload) => {
   if(!payload.id || !payload.title || !payload.timestamp)
-    throw new Error('VALIDATION ERROR: category must have id, title and timestamp');
+    throw new Error('VALIDATION ERROR: category must have id, title, and timestamp');
 };
 
 let initialState = [];
@@ -19,7 +19,7 @@ export default (state=initialState, action) => {
   case 'CATEGORY_DELETE':
     validatePayload(payload);
     return state.filter(category => category.id !== payload.id);
-    
+
   default:
     return state;
   }

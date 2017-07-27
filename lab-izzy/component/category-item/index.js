@@ -41,9 +41,11 @@ class CategoryItem extends React.Component{
 
           <ul>
             {expenses.map(expense =>
-              <ExpenseItem key={expense.id} expense={expense} />
+              <ExpenseItem key={expense.id} expense={expense}
+              />
             )}
           </ul>
+
         </main>
       </div>
     );
