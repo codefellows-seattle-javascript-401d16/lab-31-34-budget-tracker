@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import ExpenseForm from '../expense-form'
 import {
   expenseUpdate,
-  expenseUpdate,
+  expenseDelete,
 } from '../../action/expense-action.js'
 
 
@@ -11,7 +11,7 @@ import {
 
 class ExpenseItem extends React.Component {
   render(){
-    let {expense, expenseUpdate, expenseDelete} = this.props
+    let {expense} = this.props
     return (
           <div className='expense-item'>
           <div>
@@ -21,18 +21,23 @@ class ExpenseItem extends React.Component {
             <button
             className='delete-button'
             onClick={() =>{
-              expenseDelete(expense); console.log('hitting the delete button!')
+              this.props.expenseDelete(expense); console.log('hitting the delete button!')
             }}>
               Delete
             </button>
           </div>
 
           <div className='editing'>
-           <CategoryForm
+           <ExpenseForm
             expense={expense}
-            buttonText='update'
-            onComplete={expenseUpdate}
-            />
+            buttonText='Update Expense'
+            onComplete={(data)=> {
+              console.log('expense.id',expense.id);
+              data.categoryID = expense.categoryID
+              data.id = expense.id
+              console.log('data!!!!',data);
+              this.props.expenseUpdate(data);
+            }}/>
           </div>
         </div>
       </div>

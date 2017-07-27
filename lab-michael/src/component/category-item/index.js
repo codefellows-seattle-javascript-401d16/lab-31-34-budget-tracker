@@ -12,13 +12,15 @@ import {
 
 import ExpenseForm from '../expense-form'
 
+import ExpenseItem from '../expense-item'
+
 
 
 
 class CategoryItem extends React.Component {
   render(){
     console.log('this.propsssssssin category!!!',this.props)
-    let {category, categoryUpdate, categoryDelete} = this.props
+    let {category} = this.props
     return (
           <div className='category-item'>
           <div>
@@ -44,14 +46,16 @@ class CategoryItem extends React.Component {
           <div className='expense-form'>
           <ExpenseForm
           buttonTest='creating an expense'
-          onComplete={this.props.expenseCreate}
+          onComplete={data=> {
+            console.log('this is in the expense form on complete!!!');
+            data.categoryID = category.id
+            this.props.expenseCreate(data)
+          }}
           />
           </div>
-
-          {this.props.expenses[category.id].map((item)=>
+          {console.log('category.id!!!!!!',this.props.expenses)}
+          {this.props.expenses.map((item)=>
             <div key={item.id}>
-            <h3> {item.title}</h3>
-            <h3> {item.expense}</h3>
             <ExpenseItem expense={item}/>
             </div>
           )}
@@ -72,6 +76,7 @@ let mapStateToProps = (state, props) => {
 let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
+  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
 })
 
 export default connect(

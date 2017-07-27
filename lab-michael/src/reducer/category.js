@@ -1,10 +1,10 @@
 'use strict'
 let intialState = []
 
-function payloadValidator(payload){
-  if(!payload.id || !payload.title || !payload.timestamp)
-  throw new Error('yeah this is an error, must have id, title and timestamp')
-}
+// function payloadValidator(payload){
+//   if(!payload.id || !payload.title || !payload.timestamp)
+//   throw new Error('yeah this is an error, must have id, title and timestamp')
+// }
 //this needs to be in each case!!!^^^^
 
 
