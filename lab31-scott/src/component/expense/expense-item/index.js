@@ -17,6 +17,7 @@ class ExpenseItem extends React.Component{
             <ExpenseForm
               buttonText='Update Expense'
               onComplete={this.props.expenseUpdate}
+              expense={expense}
             />
           </li>;
         })}
