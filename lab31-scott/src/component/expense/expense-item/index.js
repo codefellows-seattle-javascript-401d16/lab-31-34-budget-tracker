@@ -19,6 +19,7 @@ class ExpenseItem extends React.Component{
               onComplete={this.props.expenseUpdate}
               expense={expense}
             />
+            <button onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
           </li>;
         })}
       </ul>
