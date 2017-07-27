@@ -9,7 +9,7 @@ export default (state=originalState, action) => {
     return [...state, payload]
   case 'CATEGORY_UPDATE':
     return state.map(category =>{
-      console.log('cat', category)
+      console.log('cat', payload)
       return category.id == payload.id ? payload : category})
 
   case 'CATEGORY_DELETE':
