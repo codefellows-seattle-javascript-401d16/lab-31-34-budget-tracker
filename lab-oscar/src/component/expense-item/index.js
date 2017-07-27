@@ -12,6 +12,9 @@ import {
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showExpenseOpts: false;
+    }
   }
 
   render() {
@@ -19,9 +22,9 @@ class ExpenseItem extends React.Component {
     return (
       <div className='expense-item-container'>
       <div className='expense-item-box'>
-        <h1>{expense.expenseName}</h1><h2>{expense.price}</h2>
-        <button type='button'  onClick={()=>{expenseDelete(expense), this.props.expenseCountDecrease()}}> Delete
-        </button>
+        <title><strong>Expense: </strong></title><span>{expense.expenseName}</span><br />
+
+        <amount><strong>Amount: </strong></amount><span>{expense.price}</span>
       </div>
 
       <div className='expense-item-menu'>
@@ -30,6 +33,8 @@ class ExpenseItem extends React.Component {
           src='https://cdn3.iconfinder.com/data/icons/flat-actions-icons-9/792/Menu_Icon-24.png'
         />
       </div>
+
+
       <div className='expense-item-menu-opts'>
         <img
           className='expense-item-opts-buttons'
@@ -37,17 +42,12 @@ class ExpenseItem extends React.Component {
           onClick={this.handleEditView}
         />
         <img
-          className='expense-item-opts-buttons' src='https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-70-16.png' onClick={()=>{categoryDelete(category)}}
+          className='expense-item-opts-buttons' src='https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-70-16.png' onClick={()=>{expenseDelete(expense), this.props.expenseCountDecrease()}}
         />
       </div>
-      <ExpenseForm
-        expense={expense}
-        onComplete={(data) => {
-          data.categoryID = expense.categoryID;
-          data.id = expense.id;
-          this.props.expenseUpdate(data);
-        }}
-      />
+
+
+
     </div>
     )
   }
