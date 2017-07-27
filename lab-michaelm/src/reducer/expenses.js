@@ -4,7 +4,7 @@ let validateCategory = (category) => {
 };
 
 let validateExpense = (expense) => {
-  if(!expense.id || !expense.content || !expense.categoryID || !expense.price)
+  if(!expense.id || !expense.name || !expense.categoryID || !expense.price)
     throw new Error('VALIDATION ERROR: expense must have id, content, categoryID, and price');
 };
 
