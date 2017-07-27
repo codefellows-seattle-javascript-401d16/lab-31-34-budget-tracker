@@ -1,0 +1,21 @@
+import uuid from 'uuid';
+
+export const categoryCreate = (category) => {
+  category.id = uuid();
+  category.editing = false,
+  category.timestamp = new Date();
+  return {
+    type: 'CATEGORY_CREATE',
+    payload: category,
+  };
+};
+
+export const categoryUpdate = (category) => ({
+  type: 'CATEGORY_UPDATE',
+  payload: category,
+});
+
+export const categoryDelete = (category) => ({
+  type: 'CATEGORY_DELETE',
+  payload: category,
+});
