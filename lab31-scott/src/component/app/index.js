@@ -17,14 +17,6 @@ class App extends React.Component{
     };
   }
 
-  componentDidMount(){
-    //anychanges in the store, use subscribe to register it. Use the getState method on the store.
-    store.subscribe(() => {
-      console.log('--STATE-CHANGE--', store.getState());
-    });
-    store.dispatch({type: null});
-  }
-
   render(){
     return(
       <div className="app">

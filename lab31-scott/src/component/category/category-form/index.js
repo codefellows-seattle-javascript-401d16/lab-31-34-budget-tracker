@@ -34,7 +34,6 @@ class CategoryForm extends React.Component{
   }
 
   render(){
-    console.log('CAT FORM REN props:', this.props);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
        This is category form
