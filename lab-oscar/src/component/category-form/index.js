@@ -9,6 +9,8 @@ class CategoryForm extends React.Component {
       Budget: props.category? props.category.Budget : '',
       categoryNameIputFieldPlaceholder: 'Enter a new Category',
       categoryBudgetInputFieldPalceholder: 'Enter a Budget',
+      categoryFormClassError: 'category-form',
+      submitCount: 0,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,29 +22,48 @@ class CategoryForm extends React.Component {
   }
 
   handleChange(e){
-    console.log('target', e.target.name );
+    let {categoryFormClassError, submitCount} = this.state;
+
     this.setState({
       [e.target.name]: e.target.value
     })
+    if(categoryFormClassError === 'category-form-error' && submitCount === 1)
+      this.setState({
+        categoryFormClassError: 'category-form-success'
+      })
   }
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.onComplete({...this.state})
+    let {Name, Budget, submitCount} = this.state;
     if(!this.props.category)
       this.setState({Name: '', Budget: ''})
     if(this.props.categoryContainer)
       this.props.categoryContainer('true')
-      if(this.props.handleEditView)
+    if(this.props.handleEditView)
       this.props.handleEditView('false')
+    if(!this.state.Name || !this.state.Budget)
+      this.setState({
+        categoryFormClassError: 'category-form-error',
+        categoryNameIputFieldPlaceholder: 'Category Name is Required',
+        categoryBudgetInputFieldPalceholder: 'Budget Amount is Required',
+        submitCount: 1,
+      })
+    if(this.state.Name && this.state.Budget) {
+    this.props.onComplete({Name, Budget})
+    this.setState({
+      categoryFormClassError: 'category-form',
+      submitCount: 0,
+    })
+    }
   }
 
   render(){
     let {classToggleName, buttonText} = this.props;
-    let {categoryNameIputFieldPlaceholder, categoryBudgetInputFieldPalceholder} = this.state;
+    let {categoryNameIputFieldPlaceholder, categoryBudgetInputFieldPalceholder, categoryFormClassError} = this.state;
 
     return(
-      <form className={classToggleName? classToggleName : 'category-form'} onSubmit={this.handleSubmit} >
+      <form className={classToggleName ? classToggleName : categoryFormClassError} onSubmit={this.handleSubmit} >
         <input
           name='Name'
           type='text'

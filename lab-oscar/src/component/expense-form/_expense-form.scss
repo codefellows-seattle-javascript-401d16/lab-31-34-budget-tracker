@@ -1,0 +1,28 @@
+@import "../../style/_vars.scss";
+
+.expense-form {
+  margin: 1%;
+}
+.expense-form input[name='expenseName'] {
+    width: 55%;
+    margin: 0 auto;
+    display: inline-block;
+    border-radius: 10px;
+    margin-left: 1px;
+    font-size: .8em;
+}
+.expense-form input[name='price'] {
+    width: 30%;
+    margin: 0 auto;
+    display: inline-block;
+    border-radius: 10px;
+    margin-left: 1px;
+    font-size: .8em;
+}
+.expense-submit-button {
+  display: inline-block;
+  width: auto;
+  float: right;
+  padding-right: 15px;
+  padding-top: 3px;
+}
