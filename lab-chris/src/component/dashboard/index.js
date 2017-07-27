@@ -20,10 +20,7 @@ class DashboardContainer extends React.Component {
           />
 
           {this.props.categorys.map((item) =>
-            <CategoryItem
-              key={item.id}
-              category={item}
-            />
+            <CategoryItem key={item.id} category={item} />
           )}
         </div>
       </main>

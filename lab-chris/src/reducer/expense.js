@@ -1,23 +1,46 @@
+// let validateCategory = (category) =>{
+//   if(!category.id||!category.name||!category.budget||!category.timestamp)
+//     throw new Error('VALIDATION ERROR: category must have id, name, budget, and timestamp');
+// };
+// let validateExpense = (expense) =>{
+//   if(!expense.categoryID||!expense.name||!expense.price)
+//     throw new Error('VALIDATION ERROR: category must have id, name, budget, and timestamp');
+// };
+
 let intialState = {};
 
 export default (state=intialState, action) => {
   let {type, payload} = action;
+  let categoryID, categoryExpenses;
 
   switch(type){
   case 'CATEGORY_CREATE':
+    // validateCategory(payload);
     return {...state, [payload.id]: []};
 
   case 'CATEGORY_DELETE':
+    // validateCategory(payload);
     return {...state, [payload.id]: undefined};
 
   case 'EXPENSE_CREATE':
-  {
-    let {categoryID} = payload;
-    let categoryExpenses = [...state[categoryID]];
+    // validateExpense(payload);
+    categoryID = payload.categoryID;
+    categoryExpenses = state[categoryID];
     return {...state, [categoryID]: [...categoryExpenses, payload]};
-  }
 
+  case 'EXPENSE_UPDATE':
+    // validateExpense(payload);
+    categoryID = payload.categoryID;
+    categoryExpenses = state[categoryID];
+    return {...state, [categoryID]: categoryExpenses.map(expense =>
+      expense.id === payload.id ? payload : expense)};
 
+  case 'EXPENSE_DELETE':
+    // validateExpense(payload);
+    categoryID = payload.categoryID;
+    categoryExpenses = state[categoryID];
+    return {...state, [categoryID]: categoryExpenses.filter(expense =>
+      expense.id !== payload.id)};
 
   default:
     return state;

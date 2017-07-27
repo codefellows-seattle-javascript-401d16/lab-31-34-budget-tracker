@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CategoryForm from '../category-form';
 import ExpenseForm from '../expense-form';
+import CategoryForm from '../category-form';
+import ExpenseItem from '../expense-item';
 
 import{
   categoryUpdate,
@@ -15,10 +16,11 @@ import{
 class CategoryItem extends React.Component {
   constructor(props){
     super(props);
+    console.log('props', props);
   }
 
   render(){
-    let {category, categoryUpdate, categoryDelete} = this.props;
+    let {category, categoryUpdate, categoryDelete, expense} = this.props;
     return(
       <div className='category-item'>
         <div>
@@ -28,29 +30,21 @@ class CategoryItem extends React.Component {
           <div>
             <CategoryForm
               category={category}
-              onComplete={(data) => {
-                data.id = category.id;
-                categoryUpdate(data);
-              }}
+              onComplete={categoryUpdate}
               buttonText='update'
             />
 
             <div>
+              <h4>Expense</h4>
               <ExpenseForm
-                onComplete={(data)=>{
-                  data.categoryID = category.id;
-                  expenseCreate(data);
-                }}
+                onComplete={this.props.expenseCreate}
                 buttonText='create expense'
               />
-
-              {this.props.expense.map((item) =>
-                <ExpenseItem
-                  key={item.id}
-                  expense={item}
-                />
-              )}
-
+              <ul>
+                {expense.map(expense =>
+                  <ExpenseItem key={expense.id} expense={expense} />
+                )}
+              </ul>
             </div>
 
             <button onClick={() => categoryDelete(category)}>Delete</button>
@@ -62,13 +56,16 @@ class CategoryItem extends React.Component {
 }
 
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state, props) => ({
+  expense: state.expense[props.category.id],
+});
 
 
-const mapDispatchToProps = (dispatch, getState) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     categoryUpdate: (category) => dispatch(categoryUpdate(category)),
     categoryDelete: (category) => dispatch(categoryDelete(category)),
+    expenseCreate: (expense) => dispatch(expenseCreate(expense)),
   };
 };
 

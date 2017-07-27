@@ -3,10 +3,9 @@ import React from 'react';
 class ExpenseForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      name: props.expense ? props.expense.name : '',
-      price: props.expense ? props.expense.price : '',
-    };
+    this.state = props.expense
+      ? {...props.expense}
+      : {name: '', price: '', categoryID: props.categoryID};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,6 +14,8 @@ class ExpenseForm extends React.Component {
   componentWillReceiveProps(props){
     if(props.expense)
       this.setState(props.expense);
+    if(props.categoryID)
+      this.setState({categoryID: props.categoryID});
   }
 
   handleChange(e){
