@@ -7,7 +7,6 @@ let initialState = [];
 
 export default (state = initialState, action) => {
   let {type, payload} = action;
-
   switch(type) {
   case 'BUDGET_CATEGORY_CREATE':
     validatePayload(payload);
@@ -17,7 +16,7 @@ export default (state = initialState, action) => {
     return state.map(budgetCategory => budgetCategory.id === payload.id ? payload : budgetCategory);
   case 'BUDGET_CATEGORY_DELETE':
     validatePayload(payload);
-    return state.budgetCategories.filter(budgetCategory => budgetCategory.id !== payload.id);
+    return state.filter(budgetCategory => budgetCategory.id !== payload.id);
   default:
     return state;
   }

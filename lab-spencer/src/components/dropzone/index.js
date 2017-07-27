@@ -8,11 +8,20 @@ class DropZone extends React.component {
       dropReady: false,
     };
 
+    this.handleDragEnter = this.handleDragEnter.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
-    this.handleDragEnter = this.handleDragEnter.bind(this);
-    this.handleDwatragLeave = this.handleDragLeave.bind(this);
   }
+
+  handleDragEnter(event) {
+    this.setState({dropReady: true});
+  }
+
+  handleDragLeave(event) {
+    this.setState({dropReady: false});
+  }
+
 
   handleDragOver(event) {
     event.preventDefault();
@@ -21,25 +30,21 @@ class DropZone extends React.component {
   handleDrop(event) {
     event.preventDefault;
     try {
-
+      let item = JSON.parse(event.dataTransfer.getData('application/json'));
+      this.props.onSubmit(null, item);
     } catch(error) {
-
+      this.props.onSubmit(error);
     }
+    this.setState({dropReady: false});
   }
 
-  handleDragEnter(event) {
-
-  }
-
-  handleDragLeave(event) {
-
-  }
 
   render() {
     let className = classToggler({
       'dropzone': true,
       'drop-ready': this.state.dropReady,
-    })
+    });
+
     return(
       <div
         className={className}
@@ -49,7 +54,11 @@ class DropZone extends React.component {
         onDragLeave={this.handleDragLeave}
       >
 
+        {this.props.children}
+
       </div>
     );
   }
 }
+
+export default DropZone;
