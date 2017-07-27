@@ -18,7 +18,7 @@ class DashboardContainer extends React.Component {
   render(){
     return (
       <main className='dashboard-container'>
-        <h2> dashboard </h2>
+        <h2> Budget Tracker </h2>
         <CategoryForm
           buttonText='create category'
           onComplete={this.props.categoryCreate}
