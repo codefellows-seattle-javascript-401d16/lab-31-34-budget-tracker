@@ -1,16 +1,16 @@
-import React from 'react'
-import {Provider} from 'react-redux'
-import {BrowserRouter, Route} from 'react-router-dom'
-import createAppStore from '../../lib/store.js'
-import DashboardContainer from '../dashboard-container'
+import React from 'react';
+import {Provider} from 'react-redux';
+import {BrowserRouter, Route} from 'react-router-dom';
+import createAppStore from '../../lib/store.js';
+import DashboardContainer from '../dashboard-container';
 
-const store = createAppStore()
+const store = createAppStore();
 
 class App extends React.Component {
   componentDidMount(){
     store.subscribe(() => {
-      console.log('__STATE__', store.getState())
-    })
+      console.log('__STATE__', store.getState());
+    });
 
   }
 
@@ -23,8 +23,8 @@ class App extends React.Component {
           </BrowserRouter>
         </Provider>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
