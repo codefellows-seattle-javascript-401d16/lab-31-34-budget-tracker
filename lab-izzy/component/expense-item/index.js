@@ -1,24 +1,60 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
+import Draggable from '../draggable';
 import ExpenseForm from '../expense-form';
 
+import {renderIf} from '../../lib/util.js';
 import {expenseUpdate, expenseDelete} from '../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      editing: false,
+    };
+
+    this.handleExpenseUpdate = this.handleExpenseUpdate.bind(this);
+  }
+
+  handleExpenseUpdate(expense){
+    this.props.expenseUpdate(expense);
+    this.setState({editing: false});
+  }
+
   render(){
     let {expense, expenseDelete, expenseUpdate} = this.props;
     return (
       <li className='expense-item'>
-        <p> {expense.name} </p>
-        <p> {expense.price} </p>
-        <button onClick={() => expenseDelete(expense)}>
-          delete
-        </button>
-        <ExpenseForm
-          expense={expense}
-          buttonName='update expense'
-          onComplete={expenseUpdate}
-        />
+
+        <Draggable dataTransferItem={expense}>
+
+          {renderIf(!this.state.editing,
+            <div onDoubleClick={() => this.setState({editing: true})}>
+              <p> {expense.name} </p>
+              <p> {expense.price} </p>
+              <button onClick={() => expenseDelete(expense)}>
+                delete
+              </button>
+            </div>
+          )}
+
+          {renderIf(this.state.editing,
+            <div>
+              <ExpenseForm
+                expense={expense}
+                buttonName='update expense'
+                onComplete={this.handleExpenseUpdate}
+              />
+
+              <button
+                onClick={() => this.setState({editing: false})}>
+                cancel
+              </button>
+
+            </div>
+          )}
+        </Draggable>
       </li>
     );
   }

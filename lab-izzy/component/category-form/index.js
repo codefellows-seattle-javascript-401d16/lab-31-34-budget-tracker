@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'uuid';
 
 class CategoryForm extends React.Component{
   constructor(props){
@@ -11,7 +10,6 @@ class CategoryForm extends React.Component{
   }
 
   componentWillReceiveProps(props){
-    console.log('yaaaas', props);
     if(props.category)
       this.setState(props.category);
   }

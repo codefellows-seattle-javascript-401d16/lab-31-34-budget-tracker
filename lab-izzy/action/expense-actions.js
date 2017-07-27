@@ -5,6 +5,11 @@ export const expenseCreate = (expense) => ({
   payload: {...expense, id: uuid()},
 });
 
+export const expenseInsert = (expense) => ({
+  type: 'EXPENSE_CREATE',
+  payload: {...expense},
+});
+
 export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
   payload: {...expense},

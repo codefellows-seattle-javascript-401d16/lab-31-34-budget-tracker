@@ -12,7 +12,6 @@ class ExpenseForm extends React.Component{
   }
 
   componentWillReceiveProps(props){
-    console.log('yaaaas', props);
     if(props.expense)
       this.setState({...props.expense});
     if(props.categoryID)

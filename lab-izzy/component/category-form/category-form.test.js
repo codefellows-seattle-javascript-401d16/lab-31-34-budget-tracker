@@ -26,9 +26,9 @@ describe('testing CategoryForm', () => {
     );
 
     wrapper.find('input').simulate('change', {
-      target: {name: 'title', value: 'cool', type: 'text'},
+      target: {name: 'title', value: 'code fellows', type: 'text'},
     });
 
-    expect(wrapper.state('title')).toEqual('cool');
+    expect(wrapper.state('title')).toEqual('code fellows');
   });
 });
