@@ -1,0 +1,20 @@
+@import '../../style/_vars.scss';
+
+.dashboard-category-form {
+  width: 33%;
+  float: right;
+}
+
+.dashboard-category-item {
+  width: 33%;
+}
+
+.dashboard-title {
+  // text-align: right;
+}
+
+.title {
+  display: inline-block;
+  padding-right: $pad;
+  color: $color-grey;
+}

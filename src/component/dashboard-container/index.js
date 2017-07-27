@@ -1,3 +1,5 @@
+import './_dashboard-container.scss'
+
 import React from 'react'
 import {connect} from 'react-redux'
 
@@ -14,18 +16,21 @@ class DashboardContainer extends React.Component {
   render(){
     return (
       <main className='dashboard-container'>
-        <h2> Dashboard </h2>
-        <CategoryForm
-          buttonText='create category'
-          onComplete={this.props.categoryCreate}
-          />
-
-        {this.props.categories.map((item) =>
-          <CategoryItem
-            key={item.id}
-            category={item}
-          />
-        )}
+        <div className='dashboard-category-form'>
+          <h2 className='dashboard-title'> Budg-It </h2>
+          <CategoryForm
+            buttonText='create category'
+            onComplete={this.props.categoryCreate}
+            />
+        </div>
+        <div className='dashboard-category-item'>
+          {this.props.categories.map((item) =>
+            <CategoryItem
+              key={item.id}
+              category={item}
+            />
+          )}
+        </div>
       </main>
     )
   }

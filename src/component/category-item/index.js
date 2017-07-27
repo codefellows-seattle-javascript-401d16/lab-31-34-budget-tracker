@@ -1,3 +1,5 @@
+import './_category-item.scss'
+
 import React from 'react'
 import {connect} from 'react-redux'
 import ExpenseForm from '../expense-form'
@@ -32,7 +34,7 @@ class CategoryItem extends React.Component {
 
     return (
       <div>
-        <div onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+        <div className='category-form' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
           <h3> item name: {
             category.name
           } </h3>
@@ -40,35 +42,41 @@ class CategoryItem extends React.Component {
         </div>
 
         {renderIf(this.state.editing === true,
-          <CategoryForm
-            category={category}
-            buttonText='update budget'
-            onComplete={(data) => {
-              data.id = category.id
-              categoryUpdate(data)
-            }}
-          />
+          <div className='category-form-update' >
+            <CategoryForm
+              category={category}
+              buttonText='update budget'
+              onComplete={(data) => {
+                data.id = category.id
+                categoryUpdate(data)
+              }}
+            />
+          </div>
         )}
 
-        <ExpenseForm
-          buttonText='add expense'
-          onComplete={(data) => {
-            data.categoryID = category.id
-            this.props.expenseCreate(data)
+        <div className='expense-form' >
+          <ExpenseForm
+            buttonText='add expense'
+            onComplete={(data) => {
+              data.categoryID = category.id
+              this.props.expenseCreate(data)
+            }
           }
-        }
-        />
-
-        <ul>
-        {expenses[category.id].map((item =>
-          <li key={item.id}>
-          <ExpenseItem
-            categoryID = {this.props.category.id}
-            expense={item}
           />
-          </li>
-        ))}
-        </ul>
+        </div>
+
+        <div className='expense-item' >
+          <ul>
+          {expenses[category.id].map((item =>
+            <li key={item.id}>
+            <ExpenseItem
+              categoryID = {this.props.category.id}
+              expense={item}
+            />
+            </li>
+          ))}
+          </ul>
+        </div>
 
         <button onClick = {() => categoryDelete(category)}>
         delete category
