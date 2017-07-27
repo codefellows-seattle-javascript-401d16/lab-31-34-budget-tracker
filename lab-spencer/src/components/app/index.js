@@ -9,11 +9,6 @@ import {log, logError} from '../../lib/util.js';
 const store = createAppStore();
 
 class App extends React.Component {
-  componentDidMount() {
-    store.subscribe(() => {
-      log('__state__', store.getState());
-    });
-  }
 
   render() {
     return (
