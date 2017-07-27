@@ -26,7 +26,7 @@ class CategoryItem extends React.Component {
         />
 
         <button onClick = {() => this.props.categoryDelete(category)}>
-        -
+        Delete
         </button>
       </div>
     );
