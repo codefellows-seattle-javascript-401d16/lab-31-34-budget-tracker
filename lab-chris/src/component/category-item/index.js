@@ -1,76 +1,66 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CategoryForm from '../category-form';
-import ExpenseForm from '../expense-form';
 
-import{
+import ExpenseForm from '../expense-form';
+import ExpenseItem from '../expense-item';
+import CategoryForm from '../category-form';
+
+import {
   categoryUpdate,
   categoryDelete,
 } from '../../action/category-actions.js';
-
-import{
-  expenseCreate,
-} from '../../action/expense-action.js';
+import {expenseCreate} from '../../action/expense-action.js';
 
 class CategoryItem extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   render(){
-    let {category, categoryUpdate, categoryDelete} = this.props;
-    return(
+    let {category, categoryUpdate, categoryDelete, expense} = this.props;
+    return (
       <div className='category-item'>
-        <div>
+        <header>
           <div className='content'>
-            <h3> Name: {category.name} ---- Budget: ${category.budget} </h3>
+            <h3> {category.title}:    ${category.budget} </h3>
           </div>
-          <div>
+          <div className='editing'>
             <CategoryForm
-              category={category}
-              onComplete={(data) => {
-                data.id = category.id;
-                categoryUpdate(data);
-              }}
               buttonText='update'
+              category={category}
+              onComplete={categoryUpdate}
             />
-
-            <div>
-              <ExpenseForm
-                onComplete={(data)=>{
-                  data.categoryID = category.id;
-                  expenseCreate(data);
-                }}
-                buttonText='create expense'
-              />
-
-              {this.props.expense.map((item) =>
-                <ExpenseItem
-                  key={item.id}
-                  expense={item}
-                />
-              )}
-
-            </div>
-
-            <button onClick={() => categoryDelete(category)}>Delete</button>
+            <button onClick={() => categoryDelete(category)}>
+            delete
+            </button>
           </div>
-        </div>
+        </header>
+
+        <main>
+          <h3>Expense</h3>
+          <ExpenseForm
+            categoryID={category.id}
+            buttonText='create expense'
+            onComplete={this.props.expenseCreate}
+          />
+
+          <ul>
+            {expense.map(expense =>
+              <ExpenseItem key={expense.id} expense={expense} />
+            )}
+          </ul>
+        </main>
+
       </div>
     );
   }
 }
 
+let mapStateToProps = (state, props) => ({
+  expense: state.expense[props.category.id],
+});
 
-const mapStateToProps = () => ({});
+let mapDispatchToProps = dispatch => ({
+  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+  categoryDelete: (category) => dispatch(categoryDelete(category)),
+  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+});
 
-
-const mapDispatchToProps = (dispatch, getState) => {
-  return {
-    categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-    categoryDelete: (category) => dispatch(categoryDelete(category)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps
-)(CategoryItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
