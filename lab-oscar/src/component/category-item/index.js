@@ -20,9 +20,32 @@ class CategoryItem extends React.Component {
     super(props)
     this.state = {
       editView: false,
+      showExpenseForm: false,
+      expenseCount: 0,
     }
     this.handleEditView = this.handleEditView.bind(this)
+    this.showExpenseForm = this.showExpenseForm.bind(this)
+    this.expenseCount = this.expenseCount.bind(this)
+    this.expenseDecrease = this.expenseDecrease.bind(this)
   }
+showExpenseForm() {
+    let currentSate = this.state.showExpenseForm
+    this.setState({
+      showExpenseForm: !currentSate,
+    })
+  }
+expenseCount(){
+  let expenseCount = this.state.expenseCount;
+  this.setState({
+    expenseCount: expenseCount + 1,
+  })
+}
+expenseDecrease() {
+  let expenseCount = this.state.expenseCount;
+  this.setState({
+    expenseCount: expenseCount - 1,
+  })
+}
 handleEditView(){
   let currentSate = this.state.editView
   this.setState({
@@ -45,6 +68,7 @@ handleEditView(){
                      />
                      <img className='add-button'
                        src='https://cdn3.iconfinder.com/data/icons/navigation-icons-1/32/add-16.png'
+                       onClick={this.showExpenseForm}
                      />
                  </div>
                 :
@@ -63,17 +87,44 @@ handleEditView(){
                  </div>
             }
           </div>
-          <ExpenseForm
-            buttonText='Submit Expense'
-            onComplete={(data) => {
-              data.categoryID = category.id;
-              this.props.expenseCreate(data);
-            }}
-          />
+          {this.state.showExpenseForm ?
+            <div>
+              <div>
+                <ExpenseForm
+                  buttonText='Submit Expense'
+                  showExpenseForm={this.showExpenseForm}
+                  expenseCounter={this.expenseCount}
+                  onComplete={(data) => {
+                    data.categoryID = category.id;
+                    this.props.expenseCreate(data);
+                  }}
+                />
+              </div>
+              <div className='form-container-bottom'></div>
+            </div>
+          :
+            <div>
+              {this.state.expenseCount <= 0 ?
+                <div>
+                  <div className='empty-expense-box-top-bottom'></div>
+                  <div className='empty-expense-box'>
+                    <h3>No Expenses</h3>
+                  </div>
+                  <div className='empty-expense-box-top-bottom'></div>
+                </div>
 
+              :
+                ''
+              }
+            </div>
+          }
 
           {this.props.expenses[category.id].map((item) => {
-              return <ExpenseItem key={item.id} expense={item}/>
+              return <ExpenseItem
+                        key={item.id}
+                        expense={item}
+                        expenseCountDecrease={this.expenseDecrease}
+                      />
           })}
 
         </div>

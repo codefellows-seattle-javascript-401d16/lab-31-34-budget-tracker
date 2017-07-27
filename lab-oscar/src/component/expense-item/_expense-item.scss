@@ -1,0 +1,40 @@
+@import "../../style/_vars.scss";
+
+.expense-item-container {
+  margin: 0 auto;
+  margin-top: 1%;
+  width: 98%;
+  height: 100px;
+  border: 1px solid $color-lightgrey;
+  border-radius: 5px;
+
+}
+.expense-item-box {
+  float: left;
+  background: #f7f8f9;
+  width: 85%;
+  height: 100%;
+}
+.expense-item-menu {
+  float: left;
+  background: #f7f8f9;
+  width: 15%;
+  height: 40%;
+}
+.expense-item-menu-img {
+  width: auto;
+  margin-top: 8px;
+  margin-left: 15px;
+}
+.expense-item-menu-opts {
+  float: left;
+  width: 15%;
+  height: 60%;
+  background: #f7f8f9;
+}
+.expense-item-opts-buttons {
+  width: auto;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
