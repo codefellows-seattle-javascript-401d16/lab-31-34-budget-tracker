@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ExpenseForm from '../expense-form';
 import {expenseUpdate, expenseDestroy} from '../../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component{
@@ -13,6 +14,10 @@ class ExpenseItem extends React.Component{
           return <li key={expense.id} className='expense-item'>
             <h3>{expense.title}</h3>
             <h3>{expense.amount}</h3>
+            <ExpenseForm
+              buttonText='Update Expense'
+              onComplete={this.props.expenseUpdate}
+            />
           </li>;
         })}
       </ul>
