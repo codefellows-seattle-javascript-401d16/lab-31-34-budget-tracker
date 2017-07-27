@@ -9,7 +9,9 @@
 #### Feature Tasks 
 * complete the lab 31, 32, and 33 tasks
 ##### SCSS
-Style your application to look nice  
+Style the application using sass best practices  
+ * Create a _reset.scss _vars.scss and _base.scss
+ * style your components 
 
 ##### Components
 add and refactor  the following components and organzie them according to the following tree
