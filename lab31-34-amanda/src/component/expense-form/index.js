@@ -21,7 +21,6 @@ class ExpenseForm extends React.Component {
   }
 
   handelChange(e){
-    console.log(e.target);
     this.setState({[e.target.name] : e.target.value});
   }
 
@@ -33,7 +32,6 @@ class ExpenseForm extends React.Component {
   }
 
   render(){
-    console.log('in expense form', this.props);
     return(
       <form className='expense-form' onSubmit={this.handelSubmit}>
         <input
