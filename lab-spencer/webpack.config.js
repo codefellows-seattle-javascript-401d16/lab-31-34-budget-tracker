@@ -29,8 +29,8 @@ module.exports = {
   },
   entry: `${__dirname}/src/main.js`,
   output: {
-    filename: `bundle-[hash].js`,
     path: `${__dirname}/build`,
+    filename: `bundle-[hash].js`,
     publicPath: process.env.CDN_URL ? process.env.CDN_URL : '/',
   },
   plugins,
@@ -46,7 +46,7 @@ module.exports = {
         loader: ExtractPlugin.extract(['css-loader', 'sass-loader']),
       },
       {
-        test: /.(woff|woff2|ttf|eot|glyph\.svg)$/,
+        test: /\.(woff|woff2|ttf|eot|glyph\.svg)$/,
         use: [
           {
             loader: 'url-loader',
@@ -58,7 +58,7 @@ module.exports = {
         ],
       },
       {
-        test: /.(jpg|jpeg|gif|png|tiff|svg)$/,
+        test: /\.(jpg|jpeg|gif|png|tiff|svg)$/,
         exclude: /\.glyph.svg/,
         use: [
           {
@@ -70,18 +70,16 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /.()$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         limit: 60000,
-      //         name: 'audio/[name].[ext]',
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.(mp3|aac|aiff|wav|flac|m4a|ogg)$/,
+        exclude: /\.glyph.svg/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: 'audio/[name].[ext]'},
+          },
+        ],
+      },
     ],
   },
 };
