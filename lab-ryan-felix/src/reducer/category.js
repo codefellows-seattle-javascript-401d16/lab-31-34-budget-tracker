@@ -1,4 +1,5 @@
 import {Category} from '../actions/action-names.js';
+import validateCategory from './validation/validate-category.js';
 
 const reducers = {
   [Category.CREATE](state, action) {
@@ -18,6 +19,8 @@ const reducers = {
       categories: state.categories.filter(category => category.id !== action.payload.id),
     };
   },
+
+  validator: validateCategory,
 };
 
 export default reducers;

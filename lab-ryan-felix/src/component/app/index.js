@@ -1,13 +1,14 @@
 import React from 'react';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import reducer from '../../reducer';
+import reduxReporterMiddleware from '../../lib/redux-reporter-middleware.js';
 import Dashboard from '../dashboard';
 
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(reduxReporterMiddleware));
 
 export default class App extends React.Component {
   constructor(props) {

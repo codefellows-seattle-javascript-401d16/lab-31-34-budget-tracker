@@ -14,7 +14,6 @@ export default class ExpenseItem extends React.Component {
   }
 
   handleDoubleClick(evt) {
-    console.log('hihi')
     evt.preventDefault();
     this.setState({
       editing: true,

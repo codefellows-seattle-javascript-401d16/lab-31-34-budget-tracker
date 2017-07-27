@@ -1,4 +1,5 @@
 import {Expense} from '../actions/action-names.js';
+import validateExpense from './validation/validate-expense.js';
 
 const reducers = {
   [Expense.CREATE](state, action) {
@@ -8,8 +9,6 @@ const reducers = {
   },
 
   [Expense.UPDATE](state, action) {
-    console.log('updating expense');
-    console.log(action);
     return {
       expenses: state.expenses.map(expense => expense.id === action.payload.id
         ? action.payload
@@ -22,6 +21,8 @@ const reducers = {
       expenses: state.expenses.filter(expense => expense.id !== action.payload.id),
     };
   },
+
+  validator: validateExpense,
 };
 
 export default reducers;

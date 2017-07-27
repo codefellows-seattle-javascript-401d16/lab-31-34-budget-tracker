@@ -47,7 +47,6 @@ export default class CategoryItem extends React.Component {
   render() {
     const expenses = this.props.expenses;
     const total = expenses.reduce((sum, expense) => sum += expense.amount, 0);
-    console.log('total: ', total);
     return (
       <div className='category-item'>
         {!this.state.editing &&
