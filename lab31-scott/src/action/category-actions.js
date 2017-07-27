@@ -4,6 +4,7 @@ import uuid from 'uuid/v1';
 
 //export them as constants to use in the dispatch.
 export const categoryCreate = (category) => {
+  console.log('category: ', category);
   //add id and timestamps for every category created.
   category.id = uuid();
   category.timestamp = new Date();

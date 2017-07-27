@@ -10,7 +10,6 @@ class ExpenseItem extends React.Component{
       <ul className='expense-list'>
         Hello from expense ITEM.
         {this.props.expenses.map(expense => {
-          console.log('expense: ', expense);
           return <li key={expense.id} className='expense-item'>
             <h3>{expense.title}</h3>
             <h3>{expense.amount}</h3>

@@ -1,3 +1,11 @@
+//validation logic to validate the payload for each reducer
+let payloadValidator = (payload) => {
+  if (!payload.id) throw new Error('validation failed: must have an ID');
+  if (!payload.timestamp) throw new Error('validation failed: must have a timestamp');
+  if (!payload.name) throw new Error('validation failed: must have a name');
+  if (!payload.budget) throw new Error('validation failed: must have a budget');
+};
+
 //set initial state to empty array. It will hold all categories as indicies.
 let initialState = [];
 
@@ -10,6 +18,8 @@ export default (state = initialState, action) => {
   switch(type){
   //case for create
   case 'CATEGORY_CREATE':
+    console.log('payload: ', payload);
+    payloadValidator(payload);
     return [...state, payload];
   //case for update
   case 'CATEGORY_UPDATE':
