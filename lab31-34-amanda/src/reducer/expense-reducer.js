@@ -16,6 +16,7 @@ export default (state=initialState, action) => {
     return {...state,[categoryID]: [...categoryExpense, payload]};
 
   case 'EXPENSE_UPDATE':
+    console.log(payload, 'payloadreducer NNNNNNNNNN');
     categoryID = payload.categoryID;
     categoryExpense = state[categoryID];
     return {

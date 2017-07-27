@@ -6,7 +6,7 @@ export const expenseCreate = (expense) => ({
 });
 
 export const expenseUpdate = (expense) => ({
-  type: 'EXPENSE_UPDTAE',
+  type: 'EXPENSE_UPDATE',
   payload: {...expense},
 });
 

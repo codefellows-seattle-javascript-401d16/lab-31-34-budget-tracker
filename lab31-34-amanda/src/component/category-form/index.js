@@ -25,7 +25,6 @@ class CategoryForm extends React.Component {
   }
 
   render(){
-    console.log('in category item', this.props);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input

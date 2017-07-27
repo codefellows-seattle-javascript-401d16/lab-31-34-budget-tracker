@@ -21,12 +21,14 @@ class ExpenseForm extends React.Component {
   }
 
   handelChange(e){
-    this.setState({[e.target.name] : e.target.value});
+    this.setState({content: e.target.value});
   }
 
   handelSubmit(e){
     e.preventDefault();
+    console.log(this.state.content, 'this dot STATTTTE!' );
     this.props.onComplete(this.state);
+    console.log(this.props, 'this dot PROOOOOS!' );
     if(!this.props.expense)
       this.setState({content: ''});
   }
