@@ -14,16 +14,20 @@ describe ('testing CategoryForm', () => {
     wrapper.setState(mockState);
     wrapper.find('form').simulate('submit');
 
-    let{calls} =
-    mockHandleOnComplete.mock;
+    let {calls} = mockHandleOnComplete.mock;
     expect(calls.length).toBe(1);
     expect(calls[0][0]).toEqual(mockState);
   });
 
-  test('testing onchnage should update the title on the state', () => {
+  test('testing onchange should update the title on the state', () => {
     let wrapper = mount(
       <CategoryForm onComplete={() => {}} buttonText='submit' />
     );
 
+    wrapper.find('input').simulate('change', {
+      target: { name: 'title', value: 'cool' , type: 'text'},
+    });
+
+    expect(wrapper.state('title')).toEqual('cool');
   });
 });
