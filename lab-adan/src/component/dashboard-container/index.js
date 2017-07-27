@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import {
   categoryCreate,
-  categoryUpdate,
-  categoryDelete,
 } from '../../action/category-action.js'
 
 import CategoryForm from '../category-form-component'
@@ -15,7 +13,7 @@ class DashboardContainer extends React.Component {
     return (
       <main className="dashboard-container">
         <h2> dashboard </h2>
-        <CategoryForm categoryCreate={this.props.categoryCreate} />
+        <CategoryForm onComplete={this.props.categoryCreate} />
         <ul id="categories">
           {this.props.categories.map((item, i) => {
             return (
