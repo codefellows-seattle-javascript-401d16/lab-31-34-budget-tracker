@@ -1,0 +1,16 @@
+import uuid from 'uuid';
+
+export const expenseCreate = (expense) => ({
+  type: 'EXPENSE_CREATE',
+  payload: {...expense, id: uuid()},
+});
+
+export const expenseUpdate = (expense) => ({
+  type: 'EXPENSE_UPDATE',
+  payload: {...expense},
+});
+
+export const expenseDelete = (expense) => ({
+  type: 'EXPENSE_DELETE',
+  payload: {...expense},
+});
