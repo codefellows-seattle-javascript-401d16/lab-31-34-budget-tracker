@@ -63,8 +63,8 @@
 
 ###### CategoryItem
 * Wrap the contents of a category item in a dropzone
-* When the onComplete of a Dropzone is fired update the expense so that it appears on the correct category
+* When the onComplete of a Dropzone is fired the expense updates so that it appears on the correct category
 
 ##### SCSS
 * Styled the application using sass best practices  
- * Created a _reset.scss _vars.scss and _base.scss 
+ * Created a _reset.scss _vars.scss and _base.scss
