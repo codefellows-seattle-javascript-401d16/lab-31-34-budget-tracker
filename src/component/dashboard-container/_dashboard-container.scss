@@ -1,20 +1,18 @@
 @import '../../style/_vars.scss';
 
-.dashboard-category-form {
-  width: 33%;
-  float: right;
+.category-item {
+  float: left;
+  width: 250px;
+  height: 100vh;
+  border: 1px solid blue;
 }
 
-.dashboard-category-item {
-  width: 33%;
+.dropzone {
+  height: 100%;
+  width: 100%;
+  background: yellow;
 }
 
-.dashboard-title {
-  // text-align: right;
-}
-
-.title {
-  display: inline-block;
-  padding-right: $pad;
-  color: $color-grey;
+.drop-ready {
+  background: #0f0;
 }

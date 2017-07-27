@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {renderIf} from '../../lib/util.js'
-import CategoryForm from '../category-form'
+
+import Draggable from '../draggable'
 import ExpenseForm from '../expense-form'
+import {renderIf} from '../../lib/util.js'
 
 import {
   expenseUpdate,
@@ -15,33 +16,51 @@ class ExpenseItem extends React.Component{
     this.state = {
       editing: false,
     }
+
+    this.handleExpenseUpdate = this.handleExpenseUpdate.bind(this)
   }
+
+  handleExpenseUpdate(expense){
+    this.props.expenseUpdate(expense)
+    this.setState({editing: false})
+  }
+
   render(){
-    let {expenses, categoryID, expense, expenseUpdate} = this.props
+    let {expense, expenseDelete, expenseUpdate} = this.props
     return(
-      <div>
-        <h3>Expense: {expense.name}</h3>
-        <h3>Price: ${expense.price}</h3>
+      <li className='expense-item'>
+        <Draggable dataTransferItem={expense}>
+          {renderIf(!this.state.editing,
+            <div onDoubleClick={() => this.setState({editing: !this.state.editing})}>
+              <h3>Expense: {expense.name}</h3>
+              <h3>Price: ${expense.price}</h3>
+              <button onClick = {() => this.props.expenseDelete(expense)}>
+              delete expense
+              </button>
+            </div>
+          )}
 
-        <ExpenseForm
-          buttonText='updpate expense'
-          expense={expense}
-          onComplete={expenseUpdate}
-        />
+          {renderIf(this.state.editing,
+            <div onDoubleClick={() => this.setState({editing: !this.state.editing})}>
+              <ExpenseForm
+                expense={expense}
+                onComplete={expenseUpdate}
+                buttonText='updpate expense'
+                />
 
-        <button onClick = {() => this.props.expenseDelete(expense)}>
-        delete expense
-        </button>
-      </div>
+              <button
+                onClick={() => this.setState({editing: false})}>
+                cancel
+              </button>
+            </div>
+          )}
+        </Draggable>
+      </li>
     )
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-  }
-}
+let mapStateToProps = () => ({})
 
 let mapDispatchToProps = dispatch => ({
   expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),

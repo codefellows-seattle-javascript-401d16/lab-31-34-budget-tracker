@@ -3,7 +3,7 @@ import React from 'react'
 class ExpenseForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = props.expense ? {...props.expense} : {name: '', price: 0}
+    this.state = props.expense ? {...props.expense} : {name: '', price: 0, categoryID: props.categoryID}
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
