@@ -1,4 +1,4 @@
-import categoryReducer from '../reducer/category.js';
+import categoryReducer from '../reducer/category-reducer.js';
 
 describe('testing category reducer', () => {
   test('initial state shoudl be an empty array', () => {

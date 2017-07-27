@@ -7,7 +7,7 @@ import {
 describe('testing category action', () => {
   test('categoryCreate returns a CATEGORY_CREATE action', () => {
     let action = categoryCreate({title: 'cool'});
-    expect(action.type).toEqual('CATEGORY_CREATE action', () => {
+    expect(action.type).toEqual('CATEGORY_CREATE', () => {
       expect(action.payload.id).toBeTruthy();
       expect(action.payload.timestamp).toBeTruthy();
       expect(action.payload.title).toBe('payload title');
