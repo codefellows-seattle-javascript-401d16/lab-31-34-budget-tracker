@@ -3,7 +3,12 @@ import React from 'react';
 class UpdateForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = props.category ? {...props.category} : {name: '', budget: 0};
+    this.state = {
+      name: '',
+      budget: 0,
+      id: props.category.id,
+      timestamp: props.category.timestamp,
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

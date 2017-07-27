@@ -1,4 +1,5 @@
 let validatePayload = (payload) => {
+  console.log('PAYLOAD:\n', payload);
   if(!payload.id || !payload.name || !payload.timestamp || !payload.budget)
     throw new Error('VALIDATION ERROR: category must have id, name, timestamp, and budget');
 };
