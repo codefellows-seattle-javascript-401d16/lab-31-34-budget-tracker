@@ -3,7 +3,7 @@ import React from 'react';
 class CategoryForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = props.category ? {...props.category} : {title: ''};
+    this.state = props.category ? {...props.category} : {title: '', budget: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

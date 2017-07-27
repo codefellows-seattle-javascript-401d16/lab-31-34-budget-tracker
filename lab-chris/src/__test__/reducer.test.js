@@ -17,8 +17,9 @@ describe('reducer', () => {
       type: 'CATEGORY_CREATE',
       payload: {
         id: 123,
-        name: 'Computer',
+        title: 'Computer',
         budget: 100,
+        timestamp: new Date(),
       },
     };
 
@@ -26,16 +27,17 @@ describe('reducer', () => {
       type: 'CATEGORY_UPDATE',
       payload: {
         id: 123,
-        name: 'Computer-Mac',
+        title: 'Computer-Mac',
         budget: 1000,
+        timestamp: new Date(),
       },
     };
 
     let reduce = reducer(reduce, create);
-    expect(reduce[0].name).toEqual('Computer');
+    expect(reduce[0].title).toEqual('Computer');
     expect(reduce[0].budget).toEqual(100);
     reduce = reducer(reduce, update);
-    expect(reduce[0].name).toEqual('Computer-Mac');
+    expect(reduce[0].title).toEqual('Computer-Mac');
     expect(reduce[0].budget).toEqual(1000);
   });
 
@@ -44,8 +46,9 @@ describe('reducer', () => {
       type: 'CATEGORY_CREATE',
       payload: {
         id: 123,
-        name: 'Computer',
+        title: 'Computer',
         budget: 100,
+        timestamp: new Date(),
       },
     };
 
@@ -53,11 +56,14 @@ describe('reducer', () => {
       type: 'CATEGORY_DELETE',
       payload: {
         id: 123,
+        title: 'Computer',
+        budget: 100,
+        timestamp: new Date(),
       },
     };
 
     let reduce = reducer(reduce, create);
-    expect(reduce[0].name).toEqual('Computer');
+    expect(reduce[0].title).toEqual('Computer');
     expect(reduce[0].budget).toEqual(100);
     reduce = reducer(reduce, remove);
     expect(reduce[0]).toBeUndefined();
@@ -68,8 +74,9 @@ describe('reducer', () => {
       type: 'CATEGORY_CREATE',
       payload: {
         id: 123,
-        name: 'Computer',
+        title: 'Computer',
         budget: 100,
+        timestamp: new Date(),
       },
     };
 
@@ -78,7 +85,7 @@ describe('reducer', () => {
     };
 
     let reduce = reducer(reduce, create);
-    expect(reduce[0].name).toEqual('Computer');
+    expect(reduce[0].title).toEqual('Computer');
     expect(reduce[0].budget).toEqual(100);
     reduce = reducer(reduce, reset);
     expect(reduce[0]).toBe(undefined);

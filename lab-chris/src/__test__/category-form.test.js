@@ -10,7 +10,7 @@ describe('testing CategoryForm', () => {
       <CategoryForm onComplete={mockHandleOnComplete} buttonText='submit' />
     );
 
-    let mockState = {name: 'computer' , budget: 100};
+    let mockState = {title: 'computer' , budget: 100};
     wrapper.setState(mockState);
 
     wrapper.find('form').simulate('submit');
@@ -20,7 +20,7 @@ describe('testing CategoryForm', () => {
     expect(calls[0][0]).toEqual(mockState);
   });
 
-  // test.only('testing onchange should update the title on the state', () => {
+  // test('testing onchange should update the title on the state', () => {
   //   let wrapper = mount(
   //     <CategoryForm onComplete={() => {}} buttonText='submit' />
   //   );

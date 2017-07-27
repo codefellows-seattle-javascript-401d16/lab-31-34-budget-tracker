@@ -15,15 +15,11 @@ class CategoryItem extends React.Component {
 
   render(){
     let {category, categoryUpdate, categoryDelete, expense} = this.props;
-    console.log('expenses', expense);
     return (
       <div className='category-item'>
         <header>
           <div className='content'>
             <h3> {category.title}:    ${category.budget} </h3>
-            <button onClick={() => categoryDelete(category)}>
-            delete
-            </button>
           </div>
           <div className='editing'>
             <CategoryForm
@@ -31,6 +27,9 @@ class CategoryItem extends React.Component {
               category={category}
               onComplete={categoryUpdate}
             />
+            <button onClick={() => categoryDelete(category)}>
+            delete
+            </button>
           </div>
         </header>
 
