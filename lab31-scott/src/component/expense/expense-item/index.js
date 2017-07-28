@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
+import Draggable from '../../draggable';
 import {expenseUpdate, expenseDestroy} from '../../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component{
@@ -9,18 +10,20 @@ class ExpenseItem extends React.Component{
     return(
       <ul className='expense-list'>
         Hello from expense ITEM.
-        {this.props.expenses.map(expense => {
-          return <li key={expense.id} className='expense-item'>
-            <h3>Expense: {expense.title}</h3>
-            <h3>Amount: ${expense.amount}</h3>
-            <ExpenseForm
-              buttonText='Update Expense'
-              onComplete={this.props.expenseUpdate}
-              expense={expense}
-            />
-            <button onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
-          </li>;
-        })}
+        <Draggable dataTransferItem={this.props.expenses}>
+          {this.props.expenses.map(expense => {
+            return <li key={expense.id} className='expense-item'>
+              <h3>Expense: {expense.title}</h3>
+              <h3>Amount: ${expense.amount}</h3>
+              <ExpenseForm
+                buttonText='Update Expense'
+                onComplete={this.props.expenseUpdate}
+                expense={expense}
+              />
+              <button onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
+            </li>;
+          })}
+        </Draggable>
       </ul>
     );
   }
