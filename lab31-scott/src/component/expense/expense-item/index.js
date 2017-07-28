@@ -11,8 +11,8 @@ class ExpenseItem extends React.Component{
         Hello from expense ITEM.
         {this.props.expenses.map(expense => {
           return <li key={expense.id} className='expense-item'>
-            <h3>{expense.title}</h3>
-            <h3>{expense.amount}</h3>
+            <h3>Expense: {expense.title}</h3>
+            <h3>Amount: ${expense.amount}</h3>
             <ExpenseForm
               buttonText='Update Expense'
               onComplete={this.props.expenseUpdate}

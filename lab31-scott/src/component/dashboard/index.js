@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import CategoryForm from '../category/category-form';
 import CategoryItem from '../category/category-item';
 import {categoryCreate, categoryReset} from '../../action/category-actions.js';
+// import '../../style/main.scss';
 
 let renderIf = (test, component) => test ? component : undefined;
 

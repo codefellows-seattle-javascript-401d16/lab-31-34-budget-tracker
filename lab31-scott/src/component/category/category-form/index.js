@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../style/main.scss';
 
 class CategoryForm extends React.Component{
   constructor(props){
@@ -36,7 +37,6 @@ class CategoryForm extends React.Component{
   render(){
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
-       This is category form
         <input
           type='text'
           name='name'
