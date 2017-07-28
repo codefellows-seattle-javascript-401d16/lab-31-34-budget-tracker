@@ -14,16 +14,22 @@ describe('testing category action', () => {
     });
 
     test('categoryDelete returns a CATEGORY_DELETE action', () => {
-      let mockCategory= {id:'1234', timestamp:new Date() , title:'mockcategory-delete'};
+      let mockCategory = {id :'123', timestamp: new Date(), title: 'delete'};
       let action = categoryDelete(mockCategory);
       expect(action).toEqual({
-        tyle: 'CATEGORY_DELETE',
+        type: 'CATEGORY_DELETE',
         payload: mockCategory,
       });
     });
 
     // test('categoryUpdate returns a CATEGORY_UPDATE action', () => {
-    //   let mockCategory = {id: '1234', timestamp: new Date() , title: 'mock'}
-    // })
+    //   let mockCategory = {id: '1234', timestamp: new Date() , title: 'mock'};
+    //   let action = categoryUpdate(mockCategory);
+    //   expect(action).toEqual({
+    //     type: 'CATEGORY_UPDATE',
+    //     payload: mockCategory,
+    //   });
+    // });
+
   });
 });

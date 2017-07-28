@@ -22,15 +22,15 @@ describe ('testing CategoryForm', () => {
     expect(calls[0][0]).toEqual(mockState);
   });
 
-  // test('testing onchange should update the title on the state', () => {
-  //   let wrapper = mount(
-  //     <CategoryForm onComplete={() => {}} buttonText='submit' />
-  //   );
-  //
-  //   wrapper.find('input').simulate('change', {
-  //     target: { name: 'title', value: 'cool' , type: 'text'},
-  //   });
+  test('testing onchange should UPDATE the TITLE on the state', () => {
+    let wrapper = mount(
+      <CategoryForm onComplete={() => {}} buttonText='submit' />
+    );
 
-  // expect(wrapper.state('title')).toEqual('cool');
-  // });
+    wrapper.find('input').simulate('change', { //ERROR: "Method “simulate” is only meant to be run on a single node. 2 found instead."
+      target: { name: 'title', value: 'cool' , type: 'text'},
+    });
+
+    expect(wrapper.state('title')).toEqual('cool');
+  });
 });

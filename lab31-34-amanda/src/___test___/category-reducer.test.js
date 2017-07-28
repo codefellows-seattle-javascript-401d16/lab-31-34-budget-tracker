@@ -44,4 +44,24 @@ describe('testing category reducer', () => {
     expect(state[0]).toBe(actionOne.payload);
     expect(state[1]).toBe(actionTwo.payload);
   });
+
+  test('CATEGORY_DELETE should delete a category from the array', () => {
+    let mockState = [
+      {id: '123', title: 'delete', timestamp: new Date()},
+      {id: '456', title: 'delete', timestamp: new Date()},
+      {id: '789', title: 'delete', timestamp: new Date()},
+      {id: '234', title: 'delete', timestamp: new Date()},
+    ];
+
+    let actionOne={
+      type: 'CATEGORY_DELETE',
+      payload: 'mockState[1]',
+    };
+
+    let state = categoryReducer(mockState, actionOne);
+
+    expect(state.length).toBe(3);
+    expect(state).toEqual(mockState.filter(item => item.id != 'aaa'));
+
+  });
 });
