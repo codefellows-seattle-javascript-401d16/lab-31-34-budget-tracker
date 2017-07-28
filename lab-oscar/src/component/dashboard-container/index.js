@@ -23,6 +23,7 @@ class DashboardContainer extends React.Component {
      categoryContainer: view,
    })
  }
+
   render() {
     return (
       <main className='dashboard-container'>

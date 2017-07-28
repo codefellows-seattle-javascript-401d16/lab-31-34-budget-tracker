@@ -27,7 +27,6 @@ handleSubmit(e){
   e.preventDefault()
   if(!this.props.expense){
   this.setState({expenseName: '', price: ''})
-  this.props.expenseCounter()
   this.props.showExpenseForm()
   this.props.onComplete({...this.state})
   }

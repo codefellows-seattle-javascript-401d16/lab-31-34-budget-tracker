@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './_category-item.scss';
 
-import CategoryForm from '../category-form';
-import ExpenseForm from '../expense-form';
+import Dropzone from '../dropzone';
 import ExpenseItem from '../expense-item';
+import ExpenseForm from '../expense-form';
+import CategoryForm from '../category-form';
 
 import {
   categoryDelete,
@@ -13,48 +14,65 @@ import {
 
 import {
   expenseCreate,
+  expenseDelete,
+  expenseInsert,
 } from '../../actions/expenses-actions.js';
 
 class CategoryItem extends React.Component {
   constructor(props) {
+console.log('^^^', props);
     super(props)
     this.state = {
       editView: false,
       showExpenseForm: false,
       expenseCount: 0,
+      dropReady: false
     }
-    this.handleEditView = this.handleEditView.bind(this)
-    this.showExpenseForm = this.showExpenseForm.bind(this)
-    this.expenseCount = this.expenseCount.bind(this)
-    this.expenseDecrease = this.expenseDecrease.bind(this)
+
+    this.handleEditView = this.handleEditView.bind(this);
+    this.showExpenseForm = this.showExpenseForm.bind(this);
+    this.handleDropzoneComplete = this.handleDropzoneComplete.bind(this);
+    this.handledropzone = this.handledropzone.bind(this);
   }
+
+  componentWillReceiveProps(props){
+    let {expenses, category} = props;
+    this.setState({expenseCount: expenses[category.id].length})
+  }
+handledropzone(){
+  let current = this.state.dropReady;
+  this.setState({dropReady: !current})
+}
 showExpenseForm() {
     let currentSate = this.state.showExpenseForm
     this.setState({
       showExpenseForm: !currentSate,
     })
   }
-expenseCount(){
-  let expenseCount = this.state.expenseCount;
-  this.setState({
-    expenseCount: expenseCount + 1,
-  })
-}
-expenseDecrease() {
-  let expenseCount = this.state.expenseCount;
-  this.setState({
-    expenseCount: expenseCount - 1,
-  })
-}
+
 handleEditView(){
   let currentSate = this.state.editView
   this.setState({
     editView: !currentSate,
   })
 }
+
+handleDropzoneComplete(err, expense){
+
+  if(err)
+    return console.error(err)
+
+  this.props.expenseDelete(expense)
+
+
+  expense.categoryID = this.props.category.id
+
+  this.props.expenseInsert(expense)
+}
   render() {
-    let {category, categoryUpdate, categoryDelete} = this.props
+    let {category, categoryUpdate, categoryDelete, expenses} = this.props
     return (
+
       <div  className='category-container'>
         <div>
           {!this.state.editView ?
@@ -93,7 +111,6 @@ handleEditView(){
                 <ExpenseForm
                   buttonText='Submit Expense'
                   showExpenseForm={this.showExpenseForm}
-                  expenseCounter={this.expenseCount}
                   onComplete={(data) => {
                     data.categoryID = category.id;
                     this.props.expenseCreate(data);
@@ -104,30 +121,34 @@ handleEditView(){
             </div>
           :
             <div>
-              {this.state.expenseCount <= 0 ?
+              {this.state.expenseCount === 0 ?
+                <Dropzone onComplete={this.handleDropzoneComplete} dropzone={this.handledropzone}>
                 <div>
                   <div className='empty-expense-box-top-bottom'></div>
-                  <div className='empty-expense-box'>
+                  <div className={this.state.dropReady ?  'dropzone' : 'empty-expense-box'}>
                     <h3>No Expenses</h3>
                   </div>
                   <div className='empty-expense-box-top-bottom'></div>
                 </div>
-
+                </Dropzone>
               :
                 ''
               }
             </div>
           }
-
+          <div>
+          <Dropzone onComplete={this.handleDropzoneComplete} dropzone={this.handledropzone}>
           {this.props.expenses[category.id].map((item) => {
               return <ExpenseItem
                         key={item.id}
                         expense={item}
-                        expenseCountDecrease={this.expenseDecrease}
+                        dropzone={this.state.dropReady}
                       />
           })}
-
+        </Dropzone>
+          </div>
         </div>
+
     )
   }
 }
@@ -139,9 +160,11 @@ const mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = dispatch => ({
+  expenseDelete: (expense) => dispatch(expenseDelete(expense)),
+  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+  expenseInsert: (expense) => dispatch(expenseInsert(expense)),
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
-  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
 })
 
 export default connect(

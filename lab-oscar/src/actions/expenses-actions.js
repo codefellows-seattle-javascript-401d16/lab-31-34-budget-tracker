@@ -19,3 +19,8 @@ export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
   payload: expense,
 })
+
+export const expenseInsert = (expense) => ({
+  type: 'EXPENSE_CREATE',
+  payload: {...expense},
+})
