@@ -1,12 +1,18 @@
 'use strict'
 
-require('dotenv').config({path: `${__dirname}/.dev.env`})
-const production = process.env.NODE_ENV === 'production'
+require('dotenv').config({path: `${__dirname}/.env`})
 
+// do this stuff unless in production
+const production = process.env.NODE_ENV === 'production'
+// DefinePlug = define global variables, EnvironmentPlugin = define global environment variables front end(look into this more)
 const {DefinePlugin, EnvironmentPlugin} = require('webpack')
+
 const HTMLPlugin = require('html-webpack-plugin')
+
 const CleanPlugin = require('clean-webpack-plugin')
+// uglify and minify code
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
+
 const ExtractPlugin = require('extract-text-webpack-plugin')
 
 let plugins = [

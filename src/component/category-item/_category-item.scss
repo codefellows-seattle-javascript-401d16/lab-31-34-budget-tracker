@@ -1,0 +1,26 @@
+@import '../../style/_vars.scss';
+
+
+.category-item {
+  float: left;
+  width: 23.5%;
+  margin: $pad;
+  height: 80vh;
+  overflow-y: scroll;
+  background: $color-primary;
+  border: 1px solid $color-lightgrey;
+
+}
+
+.category-item ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.category-item-name {
+  text-align: center;
+}
+
+.category-item-budget {
+  text-align: center;
+}

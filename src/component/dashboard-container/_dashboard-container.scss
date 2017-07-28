@@ -1,0 +1,21 @@
+@import '../../style/_vars.scss';
+
+.dashboard-title-and-form {
+  width: 33%;
+  margin-left: 66%;
+  float: right;
+  margin-right: $pad * 2;
+}
+
+.dashboard-title {
+  text-align: left;
+}
+
+.dropzone {
+  height: 100%;
+  width: 100%;
+}
+
+.drop-ready {
+  background: #0f0;
+}

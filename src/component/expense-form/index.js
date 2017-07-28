@@ -1,9 +1,10 @@
+import './_expense-form.scss'
 import React from 'react'
 
 class ExpenseForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = props.expense ? {...props.expense} : {name: '', price: 0}
+    this.state = props.expense ? {...props.expense} : {name: '', price: 0, categoryID: props.categoryID}
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,7 +33,7 @@ class ExpenseForm extends React.Component{
   render(){
     return(
       <div>
-        <h3> Create Expense </h3>
+        <h4 className='expense-title'> {this.props.buttonText} </h4>
 
         <form className='expense-form' onSubmit={this.handleSubmit} >
           <input
