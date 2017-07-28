@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1501173999926" clover="3.2.0">
+  <project timestamp="1501173999926" name="All files">
+    <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2" elements="9" coveredelements="8" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1">
+      <file name="category-actions.js" path="/home/dustin/cf/401/lab-31-34-budget-tracker/lab-dustin/src/action/category-actions.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>
