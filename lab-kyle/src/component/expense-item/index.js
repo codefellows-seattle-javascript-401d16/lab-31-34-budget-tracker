@@ -10,6 +10,14 @@ class ExpenseItem extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.remainderUpdate(this.props.expense)
+  }
+
+  componentWillUnmount() {
+    this.props.remainderUpdateDelete(this.props.expense)
+  }
+
   render() {
     return (
       <Draggable dataTransferItem={this.props.expense}>

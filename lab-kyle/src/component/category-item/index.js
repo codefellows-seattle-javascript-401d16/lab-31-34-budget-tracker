@@ -20,7 +20,23 @@ import CategoryForm from '../category-form'
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      remainder: props.category.budget,
+    }
+
     this.handleDrop = this.handleDrop.bind(this)
+    this.remainderUpdate = this.remainderUpdate.bind(this)
+    this.remainderUpdateDelete = this.remainderUpdateDelete.bind(this)
+  }
+
+  remainderUpdate(expense) {
+    let result
+    this.setState(state => ({ remainder: state.remainder - expense.price }))
+  }
+
+  remainderUpdateDelete(expense) {
+    let result
+    this.setState(state => ({ remainder: state.remainder + expense.price }))
   }
 
   handleDrop(err, expense) {
@@ -42,6 +58,9 @@ class CategoryItem extends React.Component {
             <p>
               Budget: {this.props.category.budget}
             </p>
+            <p>
+              Budget Remaining: {this.state.remainder}
+            </p>
             <CategoryForm
               buttonLabel="edit"
               category={this.props.category}
@@ -62,7 +81,12 @@ class CategoryItem extends React.Component {
           </div>
           <ul>
             {this.props.expenses.map(item =>
-              <ExpenseItem key={item.id} expense={item} />
+              <ExpenseItem
+                key={item.id}
+                expense={item}
+                remainderUpdate={this.remainderUpdate}
+                remainderUpdateDelete={this.remainderUpdateDelete}
+              />
             )}
           </ul>
         </div>

@@ -2,7 +2,11 @@ import uuid from 'uuid/v1'
 
 export const categoryCreate = category => ({
   type: 'CATEGORY_CREATE',
-  payload: { ...category, id: uuid(), timestamp: new Date() },
+  payload: {
+    ...category,
+    id: uuid(),
+    timestamp: new Date(),
+  },
 })
 
 export const categoryUpdate = category => ({
