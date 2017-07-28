@@ -1,0 +1,19 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: [left-edge] 25% [left-mid] 25% [mid] 25% [right-mid] 25% [right-edge];
+  grid-template-rows: [title-top] 75px [panel-top] auto [panel-bottom] 25% [footer-bottom];
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  justify-items: stretch;
+
+  & > .category-item {
+    grid-row-start: panel-top;
+    grid-row-end: panel-bottom;
+    width: 100%;
+    @for $i from 1 to 4 {
+      &:nth-of-type(4n + #{$i}) {
+        grid-column: $i;
+      }
+    }
+  }
+}
