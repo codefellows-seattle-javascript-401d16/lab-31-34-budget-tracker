@@ -10,16 +10,19 @@ export default (state = intialState, action) => {
     case 'EXPENSE_CREATE':
       let {categoryID} = payload
       let categoryExpenses = state[categoryID]
+      console.log('state[categoryID]',state[categoryID]);
       return {...state, [categoryID]:[...categoryExpenses, payload]}
     case 'EXPENSE_UPDATE':
-      return state.map(expense =>
-        expense.id = payload.id ? payload : expense)
-    // let oldState = state[payload.categoryID].map((expense)=> {
-    //     expense.id === payload.id ? payload : expense
-    //   })
-    //   return {...state, [payload.categoryID]:oldState}
+    categoryID = payload.categoryID
+    console.log('categoryID',categoryID);
+    console.log('state_____',state[categoryID]);
+    console.log('____STATE',state);
+    // category
+    return {...state, [categoryID]: state[categoryID].map(expense => (expense.id== payload.id ? payload : expense)
+    )}
     case 'EXPENSE_DELETE':
-      return {...state, [categoryID]:categoryExpenses.filter((expense)=> {
+    categoryID = payload.categoryID
+      return {...state, [categoryID]:state[categoryID].filter((expense)=> {
         expense.id !== payload.id
       })}
     default:

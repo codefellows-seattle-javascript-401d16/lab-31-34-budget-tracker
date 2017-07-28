@@ -47,7 +47,7 @@ class CategoryItem extends React.Component {
           <ExpenseForm
             buttonText='creating an expense'
             onComplete={data=> {
-              console.log('this is in the expense form on complete!!!');
+              console.log('this is in the expense form on complete!!!',category.id);
               data.categoryID = category.id
               this.props.expenseCreate(data)
             }}

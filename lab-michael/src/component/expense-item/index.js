@@ -17,6 +17,7 @@ class ExpenseItem extends React.Component {
           <div>
           <div className='content'>
             <p> Title: {expense.title} </p>
+            {console.log('this is expense!!',expense)}
             <p> Expense: {expense.expense} </p>
             <button
             className='delete-button'
@@ -32,10 +33,7 @@ class ExpenseItem extends React.Component {
             expense={expense}
             buttonText='Update Expense'
             onComplete={(data)=> {
-              console.log('expense.id',expense.id);
-              data.categoryID = expense.categoryID
-              data.id = expense.id
-              console.log('data!!!!',data);
+              data.id = expense.id;
               this.props.expenseUpdate(data);
             }}/>
           </div>
