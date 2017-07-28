@@ -16,6 +16,8 @@ import {
 import BudgetForm from '../budget-form';
 import ExpenseForm from '../expense-form';
 
+import {log, logError} from '../../lib/util.js';
+
 class DashboardContainer extends React.Component {
   render() {
     return (
@@ -24,14 +26,21 @@ class DashboardContainer extends React.Component {
         <BudgetForm handleSubmit={this.props.budgetCreate} />
         {this.props.budgetCategories.map(budgetCategory =>
           <div key={budgetCategory.id}>
-            <h3>{budgetCategory.title}: ${budgetCategory.budget}</h3>
+            <h3>{budgetCategory.title}: ${budgetCategory.budget}<button onClick={() => this.props.budgetDelete(budgetCategory)}>X</button></h3>
             <ul>
-              {this.props.expenses.filter(expense => expense.categoryId === budgetCategory.id).map(expense => <li key={expense.id}>{expense.title}: ${expense.price}</li>)}
+              {this.props.expenses.filter(expense =>
+                expense.categoryId === budgetCategory.id).map(expense =>
+                <li key={expense.id}>
+                  {expense.title}: ${expense.price}<button onClick={() => this.props.expenseDelete(expense)}>X</button>
+                </li>
+              )}
+              <li>
+                <ExpenseForm
+                  handleSubmit={this.props.expenseCreate}
+                  categoryId={budgetCategory.id}
+                />
+              </li>
             </ul>
-            <ExpenseForm
-              handleSubmit={this.props.expenseCreate}
-              categoryId={budgetCategory.id}
-            />
           </div>
         )}
       </main>
@@ -40,7 +49,7 @@ class DashboardContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  log(state);
   return {
     budgetCategories: state.budgetCategories,
     expenses: state.expenses,
