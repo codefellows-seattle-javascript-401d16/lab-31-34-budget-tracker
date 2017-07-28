@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import './_expense-item.scss';
+import Draggable from '../draggable';
 import ExpenseForm from '../expense-form';
 
 import {
@@ -31,6 +32,7 @@ handleShowItemOpts() {
   render() {
     let {expense, categoryUpdate, categoryDelete, expenseDelete} = this.props
     return (
+      <Draggable dataTransferItem={expense}>
       <div className='expense-item-container'>
 
         {this.state.showExpeses ?
@@ -80,6 +82,7 @@ handleShowItemOpts() {
 
 
     </div>
+     </Draggable>
     )
   }
 }

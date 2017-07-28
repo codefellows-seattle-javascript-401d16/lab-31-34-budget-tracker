@@ -12,32 +12,15 @@ class Draggable extends React.Component {
   }
   render(){
     return (
-      // <div
-      //   className='draggable'
-      //   draggable
-      //   onDragStart={this.handleDragStart}
-      // >
-      //   {this.props.children}
-      <div>
-      </div>
-    )
-  }
-}
-
-
-
-
-
-  render(){
-    return (
       <div
         className='draggable'
         draggable
-        onDragStart={this.handleDragStart}>
+        onDragStart={this.handleDragStart}
+      >
         {this.props.children}
       </div>
     )
   }
 }
 
-export default Draggable
+export default Draggable;
