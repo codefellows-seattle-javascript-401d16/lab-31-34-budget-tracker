@@ -25,7 +25,9 @@ console.log('^^^', props);
     this.state = {
       editView: false,
       showExpenseForm: false,
+      budget: props.category.Budget,
       expenseCount: 0,
+      totalExpenses: 0,
       dropReady: false
     }
 
@@ -35,10 +37,16 @@ console.log('^^^', props);
     this.handledropzone = this.handledropzone.bind(this);
   }
 
-  componentWillReceiveProps(props){
-    let {expenses, category} = props;
-    this.setState({expenseCount: expenses[category.id].length})
-  }
+componentWillReceiveProps(props){
+  let {expenses, category} = props;
+  let totalExpenes = expenses[category.id].reduce((prev, curr) => prev + curr.price, 0);
+  this.setState({
+    expenseCount: expenses[category.id].length,
+    // this property is not used but might get used in the future.
+    totalExpenes: totalExpenes,
+    budget: category.Budget - totalExpenes,
+  });
+}
 handledropzone(){
   let current = this.state.dropReady;
   this.setState({dropReady: !current})
@@ -71,6 +79,7 @@ handleDropzoneComplete(err, expense){
 }
   render() {
     let {category, categoryUpdate, categoryDelete, expenses} = this.props
+    let {budget, totalExpenes} = this.state
     return (
 
       <div  className='category-container'>
@@ -78,7 +87,7 @@ handleDropzoneComplete(err, expense){
           {!this.state.editView ?
                  <div className='category-header'>
                      <span><span><strong>NAME: </strong></span>{category.Name}</span>
-                     <span><span><strong>BUDGET: </strong></span>{category.Budget}</span>
+                     <span><span><strong>BUDGET: </strong></span>{budget}</span>
                      <img className='delete-button' src='https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-70-16.png' onClick={()=>{categoryDelete(category)}} />
                      <img className='edit-button'
                        src='https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png'

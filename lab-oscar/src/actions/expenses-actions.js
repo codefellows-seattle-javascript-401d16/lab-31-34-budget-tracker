@@ -4,6 +4,7 @@ import Moment from 'moment';
 export const expenseCreate = (expense) => {
   expense.id = uuid();
   expense.timestamp = Moment();
+  expense.price = parseInt(expense.price)
   return {
     type: 'EXPENSE_CREATE',
     payload: expense,
