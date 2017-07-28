@@ -65,9 +65,9 @@ button, input[type="submit"] {
 }
 
 // lists
-ul, ol, li {margin-left: $pad * 2;}
+ul, ol, li {margin-left: 0}
 li {display: list-item;}
-ul li {list-style: disc;}
+ul li {list-style: none;}
 ol li {list-style: decimal;}
 ol ul li, ul ul li {list-style: square;}
 ol ol li, ul ol li {list-style: lower-alpha;}

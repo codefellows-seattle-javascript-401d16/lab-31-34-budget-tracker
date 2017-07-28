@@ -1,3 +1,4 @@
+import './_expense-form.scss'
 import React from 'react'
 
 class ExpenseForm extends React.Component{
@@ -32,7 +33,7 @@ class ExpenseForm extends React.Component{
   render(){
     return(
       <div>
-        <h3> Create Expense </h3>
+        <h4 className='expense-title'> {this.props.buttonText} </h4>
 
         <form className='expense-form' onSubmit={this.handleSubmit} >
           <input

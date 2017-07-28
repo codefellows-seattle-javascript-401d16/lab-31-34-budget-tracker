@@ -1,4 +1,4 @@
-// import './_category-item.scss'
+import './_category-item.scss'
 
 import React from 'react'
 import {connect} from 'react-redux'
@@ -6,6 +6,7 @@ import Dropzone from '../dropzone'
 import ExpenseForm from '../expense-form'
 import ExpenseItem from '../expense-item'
 import CategoryForm from '../category-form'
+import {renderIf} from '../../lib/util.js'
 
 import {
   categoryUpdate,
@@ -51,25 +52,27 @@ class CategoryItem extends React.Component {
     }
 
     return (
-        <div className='category-item' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+        <div className='category-item-main'>
+        <div className='category-item' >
         <Dropzone onComplete={this.handleDropzoneComplete} >
-          <header>
+          <header onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
             <div className='content'>
-              <h3> item name: {category.name} </h3>
-              <h3> item budget: ${category.budget - expensesTotal} </h3>
+              <h3 className='category-item-name'> {category.name} </h3>
+              <h3 className='category-item-budget'> ${category.budget - expensesTotal} </h3>
               <button onClick = {() => categoryDelete(category)}>
               delete category
               </button>
             </div>
 
-
-            <div className='editing' >
-              <CategoryForm
-                category={category}
-                buttonText='update budget'
-                onComplete={categoryUpdate}
-                />
-            </div>
+            {renderIf(this.state.editing,
+              <div onDoubleClick={() => this.setState({editing: !this.state.editing})} className='editing' >
+                <CategoryForm
+                  category={category}
+                  buttonText='update budget'
+                  onComplete={categoryUpdate}
+                  />
+              </div>
+            )}
           </header>
 
         <main>
@@ -91,7 +94,7 @@ class CategoryItem extends React.Component {
         </main>
         </Dropzone>
       </div>
-
+      </div>
     )
   }
 }

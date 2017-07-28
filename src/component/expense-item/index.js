@@ -1,3 +1,5 @@
+import './_expense-item.scss'
+
 import React from 'react'
 import {connect} from 'react-redux'
 
@@ -32,8 +34,7 @@ class ExpenseItem extends React.Component{
         <Draggable dataTransferItem={expense}>
           {renderIf(!this.state.editing,
             <div onDoubleClick={() => this.setState({editing: !this.state.editing})}>
-              <h3>Expense: {expense.name}</h3>
-              <h3>Price: ${expense.price}</h3>
+              <h3 className='expense-name-and-price'>{expense.name}: ${expense.price}</h3>
               <button onClick = {() => this.props.expenseDelete(expense)}>
               delete expense
               </button>

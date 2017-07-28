@@ -1,14 +1,26 @@
 @import '../../style/_vars.scss';
 
 
-.expense-form {
-  // width: 66%;
+.category-item {
+  float: left;
+  width: 23.5%;
+  margin: $pad;
+  height: 80vh;
+  overflow-y: scroll;
+  background: $color-primary;
+  border: 1px solid $color-lightgrey;
+
 }
 
-.category-form-update {
-  // width: 33%;
+.category-item ul {
+  padding: 0;
+  list-style-type: none;
 }
 
-.expense-item {
-  // width: 33%;
+.category-item-name {
+  text-align: center;
+}
+
+.category-item-budget {
+  text-align: center;
 }

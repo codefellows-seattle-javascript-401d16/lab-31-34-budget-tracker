@@ -17,12 +17,15 @@ class DashboardContainer extends React.Component {
   render(){
     return (
       <main className='dashboard-container'>
-        <h2> Budget Dashboard </h2>
-        <CategoryForm
-          buttonText='create category'
-          onComplete={this.props.categoryCreate}
-          />
-
+        <div className='dashboard-whitespace'>
+          <div className='dashboard-title-and-form'>
+            <h2 className='dashboard-title'> Budget Dashboard </h2>
+            <CategoryForm
+              buttonText='create category'
+              onComplete={this.props.categoryCreate}
+              />
+          </div>
+        </div>
         {this.props.categories.map((item) =>
           <CategoryItem
             key={item.id}

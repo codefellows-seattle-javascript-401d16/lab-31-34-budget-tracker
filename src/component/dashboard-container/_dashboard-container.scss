@@ -1,16 +1,19 @@
 @import '../../style/_vars.scss';
 
-.category-item {
-  float: left;
-  width: 250px;
-  height: 100vh;
-  border: 1px solid blue;
+.dashboard-title-and-form {
+  width: 33%;
+  margin-left: 66%;
+  float: right;
+  margin-right: $pad * 2;
+}
+
+.dashboard-title {
+  text-align: left;
 }
 
 .dropzone {
   height: 100%;
   width: 100%;
-  background: yellow;
 }
 
 .drop-ready {
