@@ -67,6 +67,7 @@ class CategoryForm extends React.Component {
         <input
           name='Name'
           type='text'
+          maxLength='10'
           placeholder={categoryNameIputFieldPlaceholder}
           value={this.state.Name}
           onChange={this.handleChange}
@@ -74,6 +75,7 @@ class CategoryForm extends React.Component {
         <input
           name='Budget'
           type='text'
+          maxLength='4'
           placeholder={categoryBudgetInputFieldPalceholder}
           value={this.state.Budget}
           onChange={this.handleChange}

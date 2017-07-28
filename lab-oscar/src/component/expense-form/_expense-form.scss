@@ -26,3 +26,30 @@
   padding-right: 15px;
   padding-top: 3px;
 }
+.expense-form-update {
+  margin: 1%;
+}
+.expense-form-update input[name='expenseName'] {
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 15px;
+  display: inline-block;
+  border-radius: 10px;
+  background: #fff;
+  font-size: .8em;
+}
+.expense-form-update input[name='price'] {
+  width: 70%;
+  margin-top: 5px;
+  margin-left: 15px;
+  display: inline-block;
+  border-radius: 10px;
+  background: #fff;
+  font-size: .8em;
+}
+.expense-update-submit-button {
+  width: auto;
+  float: right;
+  padding-right: 18px;
+  padding-top: 8px;
+}

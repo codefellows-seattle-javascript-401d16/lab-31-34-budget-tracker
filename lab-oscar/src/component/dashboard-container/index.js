@@ -27,6 +27,12 @@ class DashboardContainer extends React.Component {
     return (
       <main className='dashboard-container'>
         <div className='header'>
+          <div>
+            <img className='app-logo'
+              src='https://cdn1.iconfinder.com/data/icons/business-237/65/icons-07-128.png'
+              alt='Exense Tracker'
+            />
+          </div>
           <h2>Expense Tracker</h2>
 
           <CategoryForm buttonText='Create a Category'
