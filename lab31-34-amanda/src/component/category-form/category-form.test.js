@@ -10,20 +10,27 @@ describe ('testing CategoryForm', () => {
       <CategoryForm onComplete={mockHandleOnComplete} buttonText='submit' />
     );
 
-    let mockState = {title: 'testing mockstate category form'};
+    let mockState = {
+      title: 'testing mockstate category form',
+      budget: 123,
+      name: 'category-name'};
     wrapper.setState(mockState);
     wrapper.find('form').simulate('submit');
 
-    let{calls} =
-    mockHandleOnComplete.mock;
+    let {calls} = mockHandleOnComplete.mock;
     expect(calls.length).toBe(1);
     expect(calls[0][0]).toEqual(mockState);
   });
 
-  test('testing onchnage should update the title on the state', () => {
+  test('testing onchange should UPDATE the TITLE on the state', () => {
     let wrapper = mount(
       <CategoryForm onComplete={() => {}} buttonText='submit' />
     );
 
+    wrapper.find('input').simulate('change', { //ERROR: "Method “simulate” is only meant to be run on a single node. 2 found instead."
+      target: { name: 'title', value: 'cool' , type: 'text'},
+    });
+
+    expect(wrapper.state('title')).toEqual('cool');
   });
 });

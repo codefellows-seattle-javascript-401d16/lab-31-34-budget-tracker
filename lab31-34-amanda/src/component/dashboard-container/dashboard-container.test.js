@@ -16,8 +16,8 @@ describe('dashboard-container', () => {
     let wrapper = shallow(<DashboardContainer store={mockStore} />);
 
     expect(wrapper.props().categorys).toEqual([]);
-    wrapper.props().categoryCreate({title: 'cool yez'});
+    wrapper.props().categoryCreate({title: 'cool'});
     let {categorys} = mockStore.getState();
-    expect(categorys[0].title).toEqual('more ool');
+    expect(categorys[0].title).toEqual('cool');
   });
 });
