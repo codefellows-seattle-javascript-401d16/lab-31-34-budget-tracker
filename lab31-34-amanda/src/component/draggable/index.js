@@ -24,5 +24,3 @@ class Draggable extends React.Component {
 }
 
 export default Draggable;
-
-//why is this chldren on line 20?
