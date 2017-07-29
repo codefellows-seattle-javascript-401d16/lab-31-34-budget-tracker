@@ -1,25 +1,25 @@
 import React from 'react';
 import uuid from 'uuid/v1';
 
-export const budgetCreate = budgetCategory => {
-  budgetCategory.id = uuid();
-  budgetCategory.timeStamp = new Date();
+export const budgetCreate = category => {
+  category.id = uuid();
+  category.timeStamp = new Date();
   return {
-    type: 'BUDGET_CATEGORY_CREATE',
-    payload: budgetCategory,
+    type: 'CATEGORY_CREATE',
+    payload: category,
   };
 };
 
-export const budgetUpdate = budgetCategory => {
+export const budgetUpdate = category => {
   return {
-    type: 'BUDGET_CATEGORY_UPDATE',
-    payload: budgetCategory,
+    type: 'CATEGORY_UPDATE',
+    payload: category,
   };
 };
 
-export const budgetDelete = budgetCategory => {
+export const budgetDelete = category => {
   return {
-    type: 'BUDGET_CATEGORY_DELETE',
-    payload: budgetCategory,
+    type: 'CATEGORY_DELETE',
+    payload: category,
   };
 };
