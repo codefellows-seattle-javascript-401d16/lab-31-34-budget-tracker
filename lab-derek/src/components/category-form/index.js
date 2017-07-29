@@ -5,7 +5,7 @@ class CategoryForm extends React.Component {
     super(props);
     this.state = {
       name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : 0,
+      budget: props.category ? props.category.budget : undefined,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,15 +17,20 @@ class CategoryForm extends React.Component {
   }
 
   handleChange(e) {
+    console.log('handleChangeBefore', this.state);
     this.setState({ [e.target.name]: e.target.value});
+    if(this.props.category){
+      this.props.category[e.target.name] = e.target.value;
+    }
+    console.log('handleChangeAfter', this.state);
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log('handleSubmit', this.state);
     this.props.onComplete(Object.assign({}, this.state));
+    this.setState({name: '', budget: 0});
   }
-
-//TODO: form should clear the value on submit.
 
   render() {
     return (
