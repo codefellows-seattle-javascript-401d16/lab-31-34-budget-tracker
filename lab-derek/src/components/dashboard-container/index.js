@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import DeleteButton from '../delete-button';
+import updateForm from '../update-form';
 
 import {
   budgetCreate,
@@ -7,25 +9,28 @@ import {
   budgetDelete,
 } from '../../actions/budget-category-actions.js';
 
-import BudgetForm from '../budget-form';
+import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
-  componentDidMount() {
-    this.props.budgetCreate({title: 'testCreate'});
-  }
+//TODO: check the .id on the category, it's not populating to the DOM.
 
   render() {
     return(
       <main className='dashboard-container'>
         <h2> Budget Dashboard </h2>
-        <BudgetForm
+        <CategoryForm
           submitText='Add Budget Category'
           onComplete={this.props.budgetCreate}
         />
-        {this.props.budgetCategories.map((budgetCategory) =>
-          <div key={budgetCategory.id}>
-            <h3>{budgetCategory.title}</h3>
-            <h4>Budget: {budgetCategory.budget}</h4>
+      {this.props.categories.map((category) =>
+          <div key={category.id}>
+            <h3>{category.name}</h3>
+            <h4>Budget: ${category.budget}</h4>
+            <DeleteButton
+              type='submit'
+              submitText='Delete'
+              onComplete={this.props.budgetDelete}
+              category={category} />
           </div>
         )}
       </main>
@@ -33,18 +38,22 @@ class DashboardContainer extends React.Component {
   }
 }
 
+//TODO: create a categoryForm for updating the category, underneath the category on line 26.
+
 const mapStateToProps = (state) => {
   return {
-    budgetCategories: state,
+    categories: state,
   };
 };
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    budgetCreate: budgetCategory => dispatch(budgetCreate(budgetCategory)),
-    budgetUpdate: budgetCategory => dispatch(budgetUpdate(budgetCategory)),
-    budgetDelete: budgetCategory => dispatch(budgetDelete(budgetCategory)),
+    budgetCreate: category => dispatch(budgetCreate(category)),
+    budgetUpdate: category => dispatch(budgetUpdate(category)),
+    budgetDelete: category => dispatch(budgetDelete(category)),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+
+//TODO: What is the (DashboardContainer) doing here?

@@ -1,10 +1,10 @@
 import React from 'react';
 
-class BudgetForm extends React.Component {
+class CategoryForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      title: props.category ? props.category.title : '',
+      name: props.category ? props.category.name : '',
       budget: props.category ? props.category.budget : 0,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,20 +25,22 @@ class BudgetForm extends React.Component {
     this.props.onComplete(Object.assign({}, this.state));
   }
 
+//TODO: form should clear the value on submit.
+
   render() {
     return (
-      <form className='budget-form' onSubmit={this.handleSubmit}>
+      <form className='category-form' onSubmit={this.handleSubmit}>
         <input
-          name='title'
+          name='name'
           type='text'
           placeholder='Budget Category'
-          value={this.state.title}
+          value={this.state.name}
           onChange={this.handleChange}
         />
         <input
           name='budget'
           type='number'
-          step={0.1}
+          step={0.01}
           placeholder='Budgeted Amount'
           value={this.state.budget}
           onChange={this.handleChange}
@@ -50,4 +52,4 @@ class BudgetForm extends React.Component {
   }
 }
 
-export default BudgetForm;
+export default CategoryForm;
