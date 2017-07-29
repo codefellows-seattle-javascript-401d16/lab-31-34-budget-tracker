@@ -4,7 +4,6 @@ let validateCategory = (category) => {
 };
 
 let validateExpense = (expense) => {
-  console.log('validate expense:\n',expense);
   if(!expense.id || !expense.name || !expense.categoryID || !expense.price)
     throw new Error('VALIDATION ERROR: expense must have id, name, categoryID, and price');
 };

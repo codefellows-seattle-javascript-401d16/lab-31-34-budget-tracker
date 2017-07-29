@@ -39,79 +39,105 @@ describe('testing expense reducer', () => {
   });
 
   test('EXPENSE_CREATE should append to the object', () => {
-    let state = {};
-    expect(state).toEqual({});
-
-    let actionOne = {
-      type: 'EXPENSE_CREATE',
-      payload: {
-        id:'12345',
-        name: 'expense 1',
-        categoryID: '654',
-        price: 200,
-      },
-    };
-
-    state = expenseReducer(state, actionOne);
-    console.log(state);
-    expect(state).toEqual(actionOne.payload);
-  });
-
-  test.only('EXPENSE_UPDATE should update a category in the array', () => {
     let mockState = expenseReducer({},{
+        type: 'CATEGORY_CREATE',
+        payload: {
+          id: 'abc',
+          name: 'horse',
+          budget: 20,
+          timestamp: new Date(),
+        },
+      }
+    );
+
+    mockState = expenseReducer(mockState,{
         type: 'EXPENSE_CREATE',
         payload: {
-          id:'1',
+          id: 1,
           name: 'horse',
-          categoryID: '12',
+          categoryID: 'abc',
           price: 20,
         },
       }
     );
-    console.log('update mockstate1:\n',mockState);
-    mockState = expenseReducer(mockState,{
+
+    let actionOne = {
         type: 'EXPENSE_CREATE',
         payload: {
-          id:'2',
+          id: 2,
           name: 'cat',
-          categoryID: '13',
+          categoryID: 'abc',
+          price: 21,
+        },
+      };
+
+    let state = expenseReducer(mockState, actionOne);
+
+    expect(state.abc[1]).toEqual(actionOne.payload);
+  });
+
+  test('EXPENSE_UPDATE should update a category in the array', () => {
+    let mockState = expenseReducer({},{
+        type: 'CATEGORY_CREATE',
+        payload: {
+          id: 'abc',
+          name: 'horse',
+          budget: 20,
+          timestamp: new Date(),
+        },
+      }
+    );
+
+    let mockState2 = expenseReducer(mockState,{
+        type: 'EXPENSE_CREATE',
+        payload: {
+          id: 1,
+          name: 'horse',
+          categoryID: 'abc',
+          price: 20,
+        },
+      }
+    );
+    mockState2 = expenseReducer(mockState2,{
+        type: 'EXPENSE_CREATE',
+        payload: {
+          id: 2,
+          name: 'cat',
+          categoryID: 'abc',
           price: 21,
         },
       }
     );
-    console.log('update mockstate2:\n',mockState);
-    mockState = expenseReducer(mockState,{
+    mockState2 = expenseReducer(mockState2,{
         type: 'EXPENSE_CREATE',
         payload: {
-          id:'3',
+          id: 3,
           name: 'dog',
-          categoryID: '14',
+          categoryID: 'abc',
           price: 22,
         },
       }
     );
-    console.log('update mockstate3:\n',mockState);
-    mockState = expenseReducer(mockState,{
+    mockState2 = expenseReducer(mockState2,{
         type: 'EXPENSE_CREATE',
         payload: {
-          id:'4',
+          id: 4,
           name: 'mouse',
-          categoryID: '15',
+          categoryID: 'abc',
           price: 23,
         },
       }
     );
-    console.log('update mockstate4:\n',mockState);
-
 
     let actionOne= {
       type: 'EXPENSE_UPDATE',
-      payload: {id: '123',  name: 'updated', price: 125, categoryID: 120},
+      payload: {id: 2,  name: 'updated', price: 125, categoryID: 'abc'},
     };
 
-    let state = expenseReducer(mockState, actionOne);
-    console.log('update state:\n',state);
-    expect(state).toEqual();
+    let state = expenseReducer(mockState2, actionOne);
+    expect(state.abc.map(item => {return item;})).toEqual(mockState2.abc.map(item =>
+      item.id == actionOne.payload.id ? actionOne.payload : item)
+    );
   });
 
   test('EXPENSE_CREATE should throw and error', () => {
