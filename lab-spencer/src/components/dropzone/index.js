@@ -1,7 +1,7 @@
 import React from 'react';
-import {classToggler} from '../../util.js';
+import {classToggler} from '../../lib/util.js';
 
-class DropZone extends React.component {
+class Dropzone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,9 +31,9 @@ class DropZone extends React.component {
     event.preventDefault;
     try {
       let item = JSON.parse(event.dataTransfer.getData('application/json'));
-      this.props.onSubmit(null, item);
+      this.props.onComplete(null, item);
     } catch(error) {
-      this.props.onSubmit(error);
+      this.props.onComplete(error);
     }
     this.setState({dropReady: false});
   }
@@ -61,4 +61,4 @@ class DropZone extends React.component {
   }
 }
 
-export default DropZone;
+export default Dropzone;
