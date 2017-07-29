@@ -29,8 +29,13 @@ class DashboardContainer extends React.Component {
             <DeleteButton
               type='submit'
               submitText='Delete'
-              onComplete={this.props.budgetDelete}
+              onClick={this.props.budgetDelete}
               category={category} />
+            <CategoryForm
+              category={category}
+              submitText='Update Budget Category'
+              onComplete={this.props.budgetUpdate}
+            />
           </div>
         )}
       </main>
