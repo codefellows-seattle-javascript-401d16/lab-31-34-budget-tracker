@@ -1,6 +1,6 @@
 
 import {createStore, applyMiddleware} from 'redux';
-import reporter from '../lib/redux-reporter.js';
+import reporter from './redux-reporter.js';
 
 let mockStoreCreate = () => {
   let reducer = (state=0, action) => {
@@ -15,7 +15,6 @@ let mockStoreCreate = () => {
   };
   return createStore(reducer, applyMiddleware(reporter));
 };
-
 
 describe('redux-reporter', () => {
   test('dispatch should return the action', () => {

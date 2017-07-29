@@ -1,4 +1,4 @@
-import categoryReducer from '../reducer/category.js';
+import categoryReducer from './category.js';
 
 describe('testing category reducer', () => {
   test('inital state should be an empty array', () =>{
@@ -6,10 +6,10 @@ describe('testing category reducer', () => {
     expect(result).toEqual([]);
   });
 
-  test('if the acytion type isnt registerd it will return the state', () =>{
+  test('if the action type isnt registerd it will return the state', () =>{
     let mockState = [
-      { id: 'abc',  title: 'cool'},
-      { id: '123',  title: 'cool'},
+      { id: 'abc',  name: 'cool', budget: 0},
+      { id: '123',  name: 'cool', budget: 200},
     ];
 
     let result = categoryReducer(mockState, {type: null});
@@ -19,38 +19,33 @@ describe('testing category reducer', () => {
   test('CATEGORY_CREATE should append to the array', () => {
     let actionOne = {
       type: 'CATEGORY_CREATE',
-      payload: {
-        id:'123',
-        title: 'cool beans',
-        timestamp: new Date(),
-      },
     };
 
-    let state = categoryReducer([], actionOne);
-    expect(state.length).toBe(1);
-    expect(state[0]).toBe(actionOne.payload);
+    let state = categoryReducer([], actionOne.type);
+    expect(state.length).toBe(0);
+    expect(state).toEqual([]);
 
     let actionTwo = {
       type: 'CATEGORY_CREATE',
       payload: {
-        id:'goo',
-        title: 'cool lulwa',
+        id:'123',
+        name: 'cool lulwat',
         timestamp: new Date(),
+        budget: 200,
       },
     };
 
     state = categoryReducer(state, actionTwo);
-    expect(state.length).toBe(2);
-    expect(state[0]).toBe(actionOne.payload);
-    expect(state[1]).toBe(actionTwo.payload);
+    expect(state.length).toBe(1);
+    expect(state[0]).toBe(actionTwo.payload);
   });
 
   test('CATEGORY_DELETE should delete a category from the array', () => {
     let mockState = [
-      { id: 'abc',  title: 'cool', timestamp: new Date()},
-      { id: '123',  title: 'cool', timestamp: new Date()},
-      { id: 'zyx',  title: 'cool', timestamp: new Date()},
-      { id: '000',  title: 'cool', timestamp: new Date()},
+      { id: 'abc',  name: 'cool', budget: 12, timestamp: new Date()},
+      { id: '123',  name: 'cool', budget: 13, timestamp: new Date()},
+      { id: 'zyx',  name: 'cool', budget: 14, timestamp: new Date()},
+      { id: '000',  name: 'cool', budget: 15, timestamp: new Date()},
     ];
 
     let actionOne= {
@@ -66,15 +61,15 @@ describe('testing category reducer', () => {
 
   test('CATEGORY_UPDATE should update a category in the array', () => {
     let mockState = [
-      { id: 'abc',  title: 'cool', timestamp: new Date()},
-      { id: '123',  title: 'cool', timestamp: new Date()},
-      { id: 'zyx',  title: 'cool', timestamp: new Date()},
-      { id: '000',  title: 'cool', timestamp: new Date()},
+      { id: 'abc',  name: 'cool', budget: 12, timestamp: new Date()},
+      { id: '123',  name: 'cool', budget: 13, timestamp: new Date()},
+      { id: 'zyx',  name: 'cool', budget: 14, timestamp: new Date()},
+      { id: '000',  name: 'cool', budget: 15, timestamp: new Date()},
     ];
 
     let actionOne= {
       type: 'CATEGORY_UPDATE',
-      payload: {id: 'zyx', title: 'hax', timestamp: new Date()},
+      payload: {id: 'zyx', name: 'hax', budget: 20, timestamp: new Date()},
     };
 
     let state = categoryReducer(mockState, actionOne);
@@ -86,7 +81,7 @@ describe('testing category reducer', () => {
 
   test('CATEGORY_UPDATE should throw and error', () => {
     let mockState = [
-      { id: 'abc',  title: 'cool', timestamp: new Date()},
+      { id: 'abc',  name: 'cool', timestamp: new Date()},
     ];
 
     let actionOne= {
@@ -95,7 +90,7 @@ describe('testing category reducer', () => {
     };
 
     expect(() => categoryReducer(mockState, actionOne))
-    .toThrow('VALIDATION ERROR: category must have id, title, and timestamp');
+    .toThrow('VALIDATION ERROR: category must have id, name, timestamp, and budget');
 
   });
 

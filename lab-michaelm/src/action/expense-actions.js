@@ -9,6 +9,12 @@ export const expenseCreate = (expense) => ({
   }
 });
 
+export const expenseInsert = (expense) => console.log('expense:\n',expense)
+({
+  type: 'EXPENSE_CREATE',
+  payload: { ...expense } ,
+});
+
 export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
   payload: {...expense},
@@ -20,3 +26,7 @@ export const expenseDelete = (expense) => {
     payload: {...expense},
   };
 };
+
+export const expenseReset = () => ({
+  type: 'EXPENSE_RESET'
+});
