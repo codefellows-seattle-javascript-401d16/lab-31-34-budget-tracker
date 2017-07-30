@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ExpenseForm from '../expense-form';
 import DeleteButton from '../delete-button';
-import updateForm from '../update-form';
+import CategoryForm from '../category-form';
 
 import {
   budgetCreate,
@@ -9,7 +10,11 @@ import {
   budgetDelete,
 } from '../../actions/budget-category-actions.js';
 
-import CategoryForm from '../category-form';
+import {
+  expenseCreate,
+  expenseUpdate,
+  expenseDelete,
+} from '../../actions/expense-actions.js';
 
 class DashboardContainer extends React.Component {
 //TODO: check the .id on the category, it's not populating to the DOM.
@@ -36,6 +41,10 @@ class DashboardContainer extends React.Component {
               submitText='Update Budget Category'
               onComplete={this.props.budgetUpdate}
             />
+            <ExpenseForm
+                submitText='Create Expense'
+                onComplete={this.props.expenseUpdate}
+              />
           </div>
         )}
       </main>
