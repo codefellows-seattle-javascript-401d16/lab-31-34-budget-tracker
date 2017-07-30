@@ -21,3 +21,8 @@ export const expenseDelete = expense => ({
 export const expenseReset = () => ({
   type: 'EXPENSE_RESET',
 })
+
+export const expenseInsert = expense => ({
+  type: 'EXPENSE_CREATE',
+  payload: { ...expense },
+})

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Draggable from '../../draggable'
 
 import {
   expenseCreate,
@@ -68,23 +69,25 @@ class ExpenseItem extends React.Component {
 
         {renderIf(
           !this.state.updateExpenseItem,
-          <div key={this.props.item.id}>
-            <h3>
-              Expense Name:{this.props.item.name}
-            </h3>
-            <h3>
-              Item price: {this.props.item.price}
-            </h3>
-            <h3>
-              Last Updated: {this.props.item.timestamp.toString()}
-            </h3>
-            <button
-              onClick={() => this.props.expenseDelete(this.props.item)}
-              className="note-item-delete"
-            >
-              x
-            </button>
-          </div>
+          <Draggable dataTransferItem={this.props.item}>
+            <div key={this.props.item.id}>
+              <h3>
+                Expense Name:{this.props.item.name}
+              </h3>
+              <h3>
+                Item price: {this.props.item.price}
+              </h3>
+              <h3>
+                Last Updated: {this.props.item.timestamp.toString()}
+              </h3>
+              <button
+                onClick={() => this.props.expenseDelete(this.props.item)}
+                className="note-item-delete"
+              >
+                x
+              </button>
+            </div>
+          </Draggable>
         )}
       </div>
     )
