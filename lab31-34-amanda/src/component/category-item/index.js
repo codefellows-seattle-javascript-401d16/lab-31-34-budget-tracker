@@ -17,7 +17,7 @@ class CategoryItem extends React.Component{
   handleDropzoneComplete(err, expense){
     if(err)
       return console.log(err);
-    this.props.expenseDelete;
+    this.props.expenseDelete(expense);
     expense.categoryID = this.props.category.id;
     this.props.expenseInsert(expense);
   }
@@ -28,7 +28,7 @@ class CategoryItem extends React.Component{
       <div className='category-item'>
         <Dropzone onComplete={this.handleDropzoneComplete} >
           <header>
-            <div className='category-delete'>
+            <div className='category-content'>
               <h2> {category.name} </h2>
               <h2> {category.budget} </h2>
               <button onClick={() => categoryDelete(category)}>
@@ -55,7 +55,6 @@ class CategoryItem extends React.Component{
                 <ExpenseItem key={expense.id} expense={expense} />
               )}
             </ul>
-
           </main>
         </Dropzone>
       </div>
