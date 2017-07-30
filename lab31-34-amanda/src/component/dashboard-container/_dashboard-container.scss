@@ -1,21 +1,39 @@
+@import "../../style/main.scss";
+
+
+.dashboard-container {
+    // margin: auto;
+    // padding: $pad;
+    // font-size: 1em;
+    // font-style: bold;
+    border: solid #FFE4E1;
+    font: $font-sans-serif;
+  }
 
 .category-item {
   float: left;
-  width: 250px;
-  height: 100%;
-  border: 1px solid black;
+  border: 1px $color-lightgrey;
 }
 
-.dashboard-container {
-    background: #0f0;
-}
+// .cat-form {
+//   textarea, input {
+//   padding: $pad;
+//   border: 1px solid $color-lightgrey;
+//   height: 100%;
+//   width: 25%;
+//
+//     &::placeholder {
+//       color: $color-lightgrey;
+//     }
+// }
+// }
 
-.dropzone {
-  height: 100%;
-  width: 100%;
-  background: pink;
-}
-
-.drop-ready {
-  background: #0f0;
+button,input[type="submit"] {
+  background: $color-primary;
+  padding: $pad;
+  font-size: 0.75em;
+  border-radius: 5px;
+    &:hover {
+      background: $color-secondary;
+    }
 }

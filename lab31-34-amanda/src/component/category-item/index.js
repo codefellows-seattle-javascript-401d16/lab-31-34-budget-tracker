@@ -4,6 +4,7 @@ import Dropzone from '../dropzone';
 import ExpenseForm from '../expense-form';
 import ExpenseItem from '../expense-item';
 import CategoryForm from '../category-form';
+import './_category-item.scss';
 
 import {categoryDelete,categoryUpdate} from '../../action/category-action.js';
 import {expenseCreate, expenseInsert, expenseDelete} from '../../action/expense-action.js';
@@ -28,14 +29,15 @@ class CategoryItem extends React.Component{
       <div className='category-item'>
         <Dropzone onComplete={this.handleDropzoneComplete} >
           <header>
-            <div className='category-content'>
-              <h2> {category.name} </h2>
-              <h2> {category.budget} </h2>
-              <button onClick={() => categoryDelete(category)}>
+            <div className='category-item-content'>
+              <h3> {category.name} </h3>
+              <h3> {category.budget} </h3>
+              <button
+                onClick={() => categoryDelete(category)}>
               delete
               </button>
             </div>
-            <div className='category-update'>
+            <div>
               <CategoryForm
                 buttonText='update'
                 category={category}
@@ -46,10 +48,10 @@ class CategoryItem extends React.Component{
 
           <main>
             <ExpenseForm
+
               categoryID={category.id}
               buttonText='create expense'
               onComplete={this.props.expenseCreate} />
-
             <ul>
               {expenses.map(expense =>
                 <ExpenseItem key={expense.id} expense={expense} />
