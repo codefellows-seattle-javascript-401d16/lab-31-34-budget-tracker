@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import Dropzone from '../dropzone';
 import ExpenseForm from '../expense-form';
 import ExpenseItem from '../expense-item';
 import CategoryForm from '../category-form';
@@ -9,6 +9,16 @@ import {categoryDelete,categoryUpdate} from '../../action/category-action.js';
 import {expenseCreate} from '../../action/expense-action.js';
 
 class CategoryItem extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleDropzoneComplete = this.handleDropzoneComplete.bind(this);
+  }
+
+  handleDropzoneComplete(err, data){
+    if(err)
+      return console.log(err);
+    console.log('drop', data);
+  }
 
   render() {
     let {category, categoryDelete, categoryUpdate, expenses} = this.props;
@@ -29,21 +39,20 @@ class CategoryItem extends React.Component{
               onComplete={categoryUpdate}
             />
           </div>
-
         </header>
 
         <main>
           <ExpenseForm
             categoryID={category.id}
             buttonText='create expense'
-            onComplete={this.props.expenseCreate}
-          />
-
-          <ul>
-            {expenses.map(expense =>
-              <ExpenseItem key={expense.id} expense={expense} />
-            )}
-          </ul>
+            onComplete={this.props.expenseCreate} />
+          <Dropzone onComplete={this.handleDropzoneComplete} >
+            <ul>
+              {expenses.map(expense =>
+                <ExpenseItem key={expense.id} expense={expense} />
+              )}
+            </ul>
+          </Dropzone>
         </main>
       </div>
 

@@ -8,14 +8,14 @@ class Draggable extends React.Component {
 
   handleDragStart(e){
     let jsonItem = JSON.stringify(this.props.dataTransferItem);
-    e.dataTransferItem.setData('application/json',jsonItem);
+    e.dataTransfer.setData('application/json',jsonItem);
   }
 
   render(){
     return(
       <div
         className='draggable'
-        Draggable
+        draggable
         onDragStart={this.handleDragStart}>
         {this.props.children}
       </div>
