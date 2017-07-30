@@ -2,13 +2,16 @@
 .category-item {
   float: left;
   width: 250px;
-  height: 50%;
+  height: 100%;
   border: 1px solid black;
-  background: pink;
 }
 
 .dropzone {
   height: 100%;
   width: 100%;
-  background: yellow;
+  background: pink;
+}
+
+.drop-ready {
+  background: #0f0;
 }
