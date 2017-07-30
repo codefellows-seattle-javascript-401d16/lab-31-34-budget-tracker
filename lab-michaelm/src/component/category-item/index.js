@@ -5,6 +5,7 @@ import Dropzone from '../dropzone';
 import ExpenseForm from '../expense-form';
 import ExpenseItem from '../expense-item';
 import CategoryForm from '../category-form';
+import {logError} from '../../lib/util.js'; 
 
 import {
   categoryUpdate,
@@ -26,7 +27,7 @@ class CategoryItem extends React.Component {
 
   handleDropzoneComplete(err, expense){
     if (err)
-      return console.error(err);
+      return logError(err);
     this.props.expenseDelete(expense);
 
     expense.categoryID = this.props.category.id;

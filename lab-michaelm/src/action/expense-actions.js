@@ -1,4 +1,5 @@
 import uuid from 'uuid/v1';
+import {log} from '../lib/util.js';
 
 export const expenseCreate = (expense) => ({
   type: 'EXPENSE_CREATE',
@@ -9,8 +10,7 @@ export const expenseCreate = (expense) => ({
   }
 });
 
-export const expenseInsert = (expense) => console.log('expense:\n',expense)
-({
+export const expenseInsert = (expense) => ({
   type: 'EXPENSE_CREATE',
   payload: { ...expense } ,
 });
