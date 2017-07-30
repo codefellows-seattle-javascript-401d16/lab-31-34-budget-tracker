@@ -23,3 +23,5 @@ class Draggable extends React.Component {
     );
   }
 }
+
+export default Draggable;
