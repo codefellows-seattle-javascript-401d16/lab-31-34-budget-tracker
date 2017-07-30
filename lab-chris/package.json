@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "jest": {
+  "moduleNameMapper": {
+    "\\.(scss|mp3|mov|mp4|wat|jpg|jpeg|gif|png|svg|tiff)$": "<rootDir>/src/__test__/lib/webpack-asset-faker.js"
+  },
+  "globals": {
+    "__DEBUG__": false
+  },
   "scripts": {
     "lint": "eslint.",
     "watch": "webpack-dev-server --inline --hot",

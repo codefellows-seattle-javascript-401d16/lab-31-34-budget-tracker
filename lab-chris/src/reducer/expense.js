@@ -12,6 +12,7 @@ let intialState = {};
 export default (state=intialState, action) => {
   let {type, payload} = action;
   let categoryID, categoryCards;
+
   switch(type){
   case 'CATEGORY_CREATE':
     validateCategory(payload);
