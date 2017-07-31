@@ -39,12 +39,12 @@ console.log('^^^', props);
 
 componentWillReceiveProps(props){
   let {expenses, category} = props;
-  let totalExpenes = expenses[category.id].reduce((prev, curr) => prev + curr.price, 0);
+  let totalExpenses = expenses[category.id].reduce((prev, curr) => prev + curr.price, 0);
   this.setState({
     expenseCount: expenses[category.id].length,
     // this property is not used but might get used in the future.
-    totalExpenes: totalExpenes,
-    budget: category.Budget - totalExpenes,
+    totalExpenses: totalExpenses,
+    budget: category.Budget - totalExpenses,
   });
 }
 handledropzone(){
@@ -79,15 +79,15 @@ handleDropzoneComplete(err, expense){
 }
   render() {
     let {category, categoryUpdate, categoryDelete, expenses} = this.props
-    let {budget, totalExpenes} = this.state
+    let {budget, totalExpenses} = this.state
     return (
 
       <div  className='category-container'>
         <div>
           {!this.state.editView ?
                  <div className='category-header'>
-                     <span><span><strong>NAME: </strong></span>{category.Name}</span>
-                     <span><span><strong>BUDGET: </strong></span>{budget}</span>
+                     <span><span><strong>CAT: </strong></span>{category.Name}</span>
+                     <span><span><strong>BUDGET: </strong></span>${budget}</span>
                      <img className='delete-button' src='https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-70-16.png' onClick={()=>{categoryDelete(category)}} />
                      <img className='edit-button'
                        src='https://cdn4.iconfinder.com/data/icons/48-bubbles/48/15.Pencil-16.png'

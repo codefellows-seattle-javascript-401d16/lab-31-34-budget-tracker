@@ -34,6 +34,7 @@ export default (state=initialState, action) => {
       break;
     case 'EXPENSE_UPDATE':
       validateExpenses(payload)
+      payload.price = Number(parseFloat(payload.price).toFixed(2));
       let oldState = state[payload.categoryID].map(expense => expense.id === payload.id ? payload : expense)
       return {...state, [payload.categoryID]: oldState}
     default:

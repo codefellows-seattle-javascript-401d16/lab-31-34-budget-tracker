@@ -6,7 +6,7 @@ class CategoryForm extends React.Component {
     super(props)
     this.state = {
       Name: props.category ? props.category.Name : '',
-      Budget: props.category? props.category.Budget : '',
+      Budget: props.category ? props.category.Budget : '',
       categoryNameIputFieldPlaceholder: 'Enter a new Category',
       categoryBudgetInputFieldPalceholder: 'Enter a Budget',
       categoryFormClassError: 'category-form',
