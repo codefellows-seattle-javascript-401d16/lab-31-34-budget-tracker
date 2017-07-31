@@ -96,8 +96,9 @@ input[type="submit"] {
   padding: 0.5em;
   border: 1px solid $color-primary;
   background: $color-background;
-  width: 10%;
-  display: inline;
+  width: 40%;
+  display: block;
+  margin-left: 32%;
 }
 
 button:hover,

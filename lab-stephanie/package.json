@@ -37,7 +37,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "build": "webpack",
     "watch": "webpack-dev-server --inline --hot"
   },
