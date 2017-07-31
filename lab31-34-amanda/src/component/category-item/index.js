@@ -29,16 +29,21 @@ class CategoryItem extends React.Component{
       <div className='category-item'>
         <Dropzone onComplete={this.handleDropzoneComplete} >
           <header>
-            <div className='category-item-content'>
+            <div className='category-content'>
               <h3> {category.name} </h3>
               <h3> {category.budget} </h3>
+            </div>
+            <div>
               <button
+                className='cat-delete'
                 onClick={() => categoryDelete(category)}>
               delete
               </button>
             </div>
+
             <div>
               <CategoryForm
+                className='cat-update'
                 buttonText='update'
                 category={category}
                 onComplete={categoryUpdate}
@@ -48,7 +53,7 @@ class CategoryItem extends React.Component{
 
           <main>
             <ExpenseForm
-
+              className='expense-create'
               categoryID={category.id}
               buttonText='create expense'
               onComplete={this.props.expenseCreate} />

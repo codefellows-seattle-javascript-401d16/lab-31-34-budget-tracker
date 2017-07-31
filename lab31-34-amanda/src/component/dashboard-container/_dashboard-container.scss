@@ -2,31 +2,18 @@
 
 
 .dashboard-container {
-    // margin: auto;
-    // padding: $pad;
-    // font-size: 1em;
-    // font-style: bold;
+    padding: $pad;
+    font-size: 1em;
+    font-style: bold;
     border: solid #FFE4E1;
     font: $font-sans-serif;
+    width: 50%
   }
 
 .category-item {
   float: left;
   border: 1px $color-lightgrey;
 }
-
-// .cat-form {
-//   textarea, input {
-//   padding: $pad;
-//   border: 1px solid $color-lightgrey;
-//   height: 100%;
-//   width: 25%;
-//
-//     &::placeholder {
-//       color: $color-lightgrey;
-//     }
-// }
-// }
 
 button,input[type="submit"] {
   background: $color-primary;

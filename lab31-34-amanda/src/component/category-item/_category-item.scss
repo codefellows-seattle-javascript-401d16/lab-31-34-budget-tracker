@@ -1,47 +1,23 @@
 @import "../../style/main.scss";
 
-
 textarea, input {
 padding: $pad;
 border: 1px solid $color-lightgrey;
-resize: none;
-width: 100%;
 float: left;
-
-&:focus {
-  border-bottom: 1px solid $color-darkgrey;
-}
 
 &::placeholder {
   color: $color-lightgrey;
-}
+  }
 }
 
 .category-item {
+  border: solid #FFA54F;
   width: 250px;
-  height: 100%;
 }
 
-.button {
-  width: 100%;
-  font-size: 0.75em;
-}
-
-.category-item-content {
-  margin: auto;
+.category-content {
   padding: $pad;
+  margin-top: $pad * 2;
   font-size: 1em;
-  border: solid green;
+  border: solid #b2ffb2;
 }
-
-// .cat-item-delete-button{
-//   width: 100%;
-//   font-size: 0.75em;
-// }
-//
-// .expense-button {
-//   width: 100%;
-//   font-size: 0.75em;
-// }
-
-// category-update
