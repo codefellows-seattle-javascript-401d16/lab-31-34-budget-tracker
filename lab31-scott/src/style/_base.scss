@@ -58,6 +58,7 @@ button {
 .edit-button {
   padding: $pad;
   border: 1px solid $color-green;
+  border-radius: .5em;
 
   &:hover {
     background-color: rgba($color-green, .2);
@@ -71,6 +72,7 @@ button {
 .delete-button {
   padding: $pad;
   border: 1px solid $color-red;
+  border-radius: .5em;
 
   &:hover {
     background-color: rgba($color-red, .2);
@@ -79,6 +81,10 @@ button {
   &:active {
     background: $color-darkgrey;
   }
+}
+
+.clearfloat {
+  clear: both;
 }
 
 // different types of list formats and their style

@@ -3,28 +3,34 @@ import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
 import Draggable from '../../draggable';
 import {expenseUpdate, expenseDestroy} from '../../../action/expense-actions.js';
+import './_expense-item.scss';
 
 class ExpenseItem extends React.Component{
   render(){
     console.log('EXP ITEM props: ', this.props);
     return(
-      <ul className='expense-list'>
-        Hello from expense ITEM.
-        <Draggable dataTransferItem={this.props.expenses}>
-          {this.props.expenses.map(expense => {
-            return <li key={expense.id} className='expense-item'>
-              <h3>Expense: {expense.title}</h3>
-              <h3>Amount: ${expense.amount}</h3>
-              <ExpenseForm
-                buttonText='Update Expense'
-                onComplete={this.props.expenseUpdate}
-                expense={expense}
-              />
-              <button onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
-            </li>;
-          })}
-        </Draggable>
-      </ul>
+      <div>
+        <div className='clearfloat'></div>
+        <ul className='expense-list'>
+          <div className='expense-header'>
+            <h6>Expenses for {this.props.category.name}</h6>
+          </div>
+          <Draggable dataTransferItem={this.props.expenses}>
+            {this.props.expenses.map(expense => {
+              return <li key={expense.id} className='expense-item'>
+                <h3>Expense: {expense.title}</h3>
+                <h3>Amount: ${expense.amount}</h3>
+                <ExpenseForm
+                  buttonText='Update Expense'
+                  onComplete={this.props.expenseUpdate}
+                  expense={expense}
+                />
+                <button className='delete-button' onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
+              </li>;
+            })}
+          </Draggable>
+        </ul>
+      </div>
     );
   }
 }
@@ -35,7 +41,7 @@ const mapStateToProps = (state, props) => {
   console.log('EXPI MSTP catID: ', props.categoryID);
   console.log('EXPI MSTP full: ', state.expenses[props.categoryID]);
   return {
-    expenses: state.expenses[props.categoryID],
+    expenses: state.expenses[props.category.id],
   };
 };
 

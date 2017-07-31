@@ -1,0 +1,16 @@
+@import '../../../style/main.scss';
+
+.expense-list {
+  margin-top: $pad;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+div.expense-header {
+  background-color: rgba($color-darkgrey, .75);
+  h6 {
+    text-align: center;
+    color: $color-white;
+  }
+}

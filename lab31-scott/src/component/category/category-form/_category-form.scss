@@ -1,7 +1,10 @@
 @import '../../../style/main.scss';
 
-.category-form {
-
+form.category-form {
+  input {
+    width: 95%;
+    margin: $pad 2.5%;
+  }
   button {
     width: 45%;
     float: left;

@@ -38,36 +38,40 @@ class CategoryItem extends React.Component{
     console.log('CAT ITEM props: ', this.props);
     console.log('CAT ITEM state: ', this.state);
     return(
-      <div className='category-list'>
-        <DropZone onComplete={this.handleDropZoneComplete} >
-          {this.props.categories.map(category => {
-            return <div key={category.id} className='category-item'>
-              <div className='category-header'>
-                <h3 className='category-name'>{category.name}</h3>
-                <h6 className='category-budget'>${category.budget}</h6>
-              </div>
-              <CategoryForm
-                buttonText='Edit Destination'
-                onComplete={this.props.categoryUpdate}
-                category={category}
-              />
-              <button
-                className='delete-button'
-                onClick={() => this.props.categoryDestroy(category)}
-              >
-                Delete Destination
-              </button>
-              <ExpenseItem
-                categoryID={category.id}
-              />
-              <ExpenseForm
-                onComplete={this.props.expenseCreate}
-                buttonText='Create Expense'
-                categoryID={category.id}
-              />
-            </div>;
-          })}
-        </DropZone>
+      <div>
+        <div className='clearfloat'></div>
+        <div className='category-list'>
+          <DropZone onComplete={this.handleDropZoneComplete} >
+            {this.props.categories.map(category => {
+              return <div key={category.id} className='category-item'>
+                <div className='category-header'>
+                  <h3 className='category-name'>{category.name}</h3>
+                  <h6 className='category-budget'>${category.budget}</h6>
+                </div>
+                <CategoryForm
+                  buttonText='Edit Destination'
+                  onComplete={this.props.categoryUpdate}
+                  category={category}
+                />
+                <button
+                  className='delete-button'
+                  onClick={() => this.props.categoryDestroy(category)}
+                >
+                  Delete Destination
+                </button>
+                <ExpenseItem
+                  category={category}
+                />
+                <ExpenseForm
+                  onComplete={this.props.expenseCreate}
+                  buttonText='Create Expense'
+                  categoryID={category.id}
+                />
+                <div className='clearfloat'></div>
+              </div>;
+            })}
+          </DropZone>
+        </div>
       </div>
     );
   }
