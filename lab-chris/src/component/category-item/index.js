@@ -54,7 +54,7 @@ class CategoryItem extends React.Component {
           </header>
 
           <main>
-            <h3>Expense</h3>
+            <h4>Expense</h4>
             <ExpenseForm
               categoryID={category.id}
               buttonText='create expense'

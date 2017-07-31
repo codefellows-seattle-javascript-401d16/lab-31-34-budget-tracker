@@ -1,3 +1,4 @@
+import '../../style/main.scss';
 import './dashboard.scss';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -14,7 +15,7 @@ class DashboardContainer extends React.Component {
   render(){
     return (
       <main className='dashboard'>
-        <h2> Budget App </h2>
+        <h2 className='center'> Budget App </h2>
         <CategoryForm
           buttonText='create category'
           onComplete={this.props.categoryCreate}

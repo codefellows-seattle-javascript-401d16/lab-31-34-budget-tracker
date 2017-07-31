@@ -1,8 +1,48 @@
+@import '../../style/_vars.scss';
+
+.center {
+  text-align: center;
+}
+
+.category-form {
+
+  input {
+    margin: $pad;
+    display: inline-block;
+    width: 30%;
+  }
+
+  button {
+    width: 30%;
+    display: inline-block;
+    margin: $pad
+  }
+}
+
+
 .category-item {
   float: left;
-  width: 250px;
-  height: 100vh;
+  width: $category-width;
+  height: 200vh;
   border: 1px solid black;
+  margin: $pad;
+
+  h3, h4 {
+    text-align: center;
+  }
+
+  input {
+    margin: $pad;
+    display: inline-block;
+    width: calc(47% - 0.5em);
+  }
+
+  button {
+    margin: $pad;
+    display: inline-block;
+    width: calc(47% - 0.5em);
+    float: left;
+  }
 }
 
 .dropzone {
@@ -11,5 +51,17 @@
 }
 
 .drop-ready {
-  background: #888;
+  background: $color-secondary;
+}
+
+.expense-form {
+  display: inline-block;
+
+  input {
+    width: calc(42% - 0.5em);
+  }
+}
+
+.expense-item {
+  list-style: none;
 }
