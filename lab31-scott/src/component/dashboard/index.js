@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import CategoryForm from '../category/category-form';
 import CategoryItem from '../category/category-item';
 import {categoryCreate, categoryReset} from '../../action/category-actions.js';
+import './_dashboard.scss';
 
 let renderIf = (test, component) => test ? component : undefined;
 
@@ -22,8 +23,8 @@ class DashboardContainer extends React.Component{
     return(
       <div className='dashboard'>
         <header>
-          2017 Travel Budget
-          ${this.props.totalBudget}
+          <h6>2017 Travel Budget</h6>
+          <h4>${this.state.totalBudget}</h4>
           <div className='graph'>
             graph goes here
           </div>

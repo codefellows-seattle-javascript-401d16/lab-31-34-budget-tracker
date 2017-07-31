@@ -12,7 +12,6 @@ class CategoryForm extends React.Component{
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('CAT FORM CONS props:', this.props);
   }
 
   componentWillReceiveProps(props){

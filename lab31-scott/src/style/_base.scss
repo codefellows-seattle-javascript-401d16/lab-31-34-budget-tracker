@@ -11,6 +11,7 @@ strong { font-weight: bold; }
 
 body {
   background-color: rgba($color-lightblue, .25);
+  opacity: 75%;
   //set body font size to 16px which is standard. Then when using em it will take the relative 16px x whatever em.
   font-size: 16px;
 }
@@ -33,7 +34,7 @@ label {
   font-weight: bolder;
   margin-bottom: $pad;
 }
-//style for form inputs
+//style for form inputs and text area tags
 textarea, input {
   padding: $pad;
   border: 1px solid $color-lightgrey;
@@ -48,19 +49,12 @@ textarea, input {
     color: $color-lightgrey;
   }
 }
-//all inputs style
-input {
-  border: 1px solid $color-lightgrey;
-
-  &:hover {
-    border: 1px solid $color-darkgrey;
-    &::placeholder {
-      color: $color-darkgrey;
-    }
-  }
-}
 
 //adjust button styles
+button {
+  margin-bottom: $pad;
+}
+
 .edit-button {
   padding: $pad;
   border: 1px solid $color-green;
