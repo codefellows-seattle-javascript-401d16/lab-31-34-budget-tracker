@@ -1,0 +1,73 @@
+@import "../../style/_vars.scss";
+
+.expense-item-container {
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  width: 95%;
+  height: 90px;
+  border: 1px solid #e3e5e8;
+  border-radius: 5px;
+  cursor: move;
+
+}
+.expense-item-box {
+  float: left;
+  background: #FBFCFC;
+  width: 85%;
+  height: 100%;
+}
+.expense-item-box title {
+  font-family: $fontface-main;
+  margin-top: 20px;
+  width: 80px;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: .9em;
+}
+.expense-item-box span {
+    font-size: .9em;
+}
+.expense-item-box amount {
+  font-family: $fontface-main;
+  margin-top: 20px;
+  width: 80px;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: .9em;
+}
+.expense-item-menu {
+  float: left;
+  background: #FBFCFC;
+  width: 15%;
+  height: 40%;
+}
+.expense-item-menu-img {
+  width: auto;
+  margin-top: 8px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.expense-item-menu-opts {
+  float: left;
+  width: 15%;
+  height: 60%;
+  background: #FBFCFC;
+  cursor: pointer;
+}
+.expense-item-opts-buttons {
+  width: auto;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.dropzone-expense{
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  width: 95%;
+  height: 90px;
+  border: 3px dashed #e3e5e8;
+  border-radius: 5px;
+}
