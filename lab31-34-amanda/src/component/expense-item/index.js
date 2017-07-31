@@ -14,21 +14,30 @@ class ExpenseItem extends React.Component {
     console.log('expenseUpdate!!!!!', this);
     return(
       <li className='expense-item'>
-      <Draggable dataTransferItem={expense}>
-      {renderIf(!this.state.editing,
-      <div onDoubleClick={() => this.setState({editing: true})}>
-      </div>
+        <Draggable dataTransferItem={expense}>
+          {renderIf(!this.state.editing,
+            <div onDoubleClick={() => this.setState({editing: true})}>
+              <p> {expense.content} </p>
+              <button onClick={() => expenseDelete(expense)}>delete </button>
+            </div>
 
-    )}
-        {renderIf(this.state.editing,
-        <div>)
-        <p> {expense.content} </p>
-        <button onClick={() => expenseDelete(expense)}>delete </button>
-        <ExpenseForm
-          expense={expense}
-          buttonText='update expense'
-          onComplete={expenseUpdate}
-        />
+          )}
+
+          {renderIf(this.state.editing,
+            <div>
+              <ExpenseForm
+                expense={expense}
+                buttonText='update expense'
+                onComplete={expenseUpdate}
+              />
+
+              <button
+                onClick={() => this.setState({editing: false})}>
+            cancel
+              </button>
+            </div>
+          )}
+        </Draggable>
       </li>
     );
   }

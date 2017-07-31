@@ -1,3 +1,8 @@
+let validateCategory = (category) => {
+  if(!category.id|| !category.title || !category.timestamp)
+    throw new Error('VALIDATION ERROR: category must have id, title, and timestap');
+};
+
 let initialState = {};
 export default (state=initialState, action) => {
   let {type, payload} = action;
