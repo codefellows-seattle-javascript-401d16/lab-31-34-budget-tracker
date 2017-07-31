@@ -1,0 +1,18 @@
+@import '../../style/_vars.scss';
+
+.category-form {
+
+  input {
+    margin-right: $pad;
+    display: inline-block;
+    width: calc(40% - 0.5em);
+  }
+
+  button {
+    width: 20%;
+    margin-right: $pad;
+    display: inline-block;
+    text-align: center;
+    background: $color-success * 0.8;
+  }
+}
