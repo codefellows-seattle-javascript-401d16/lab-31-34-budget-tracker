@@ -5,7 +5,6 @@ class CategoryForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = props.category ? {...props.category}:{title:''}
-
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -15,16 +14,16 @@ class CategoryForm extends React.Component {
     this.setState(props.category)
   }
 
-  
+
   handleChange(e){
-    this.setState({title: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
     console.log('this.propsssss',this.props);
   }
 
   handleSubmit(e){
     e.preventDefault()
     console.log('this.props on handleSubmit!',this.state);
-    // this.props.onComplete({...this.state})
+    this.props.onComplete({...this.state})
     if(!this.props.category)
       this.setState({title:''})
   }

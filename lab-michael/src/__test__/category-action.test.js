@@ -21,7 +21,12 @@ describe('testing category actions', ()=> {
     })
   })
 
-  // test('categoryupdate returns a CATEGORY_UPDATE action', ()=> {
-  //
-  // })
+  test('categoryupdate returns a CATEGORY_UPDATE action', ()=> {
+    let mockCategory = {id:'124', timestamp: new Date(), title: 'cool'}
+    let action = categoryUpdate(mockCategory)
+    expect(action).toEqual({
+      type: 'CATEGORY_UPDATE',
+      payload: mockCategory,
+    })
+  })
 })
