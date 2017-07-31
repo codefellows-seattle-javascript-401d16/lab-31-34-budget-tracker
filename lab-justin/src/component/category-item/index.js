@@ -1,5 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import {renderIf} from '../../lib/util.js';
+
 import CategoryForm from '../category-form';
+import ExpenseForm from '../expense-form';
+import ExpenseItem from '../expense-item';
+import {
+  categoryUpdate,
+  categoryDelete,
+} from '../../action/category-actions.js';
+
+import {
+  expenseCreate,
+} from '../../action/expense-actions.js';
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -9,28 +23,60 @@ class CategoryItem extends React.Component {
     };
   }
   render() {
-    let {category} = this.props;
+    let {category, categoryUpdate, categoryDelete} = this.props;
     return (
-      <div>
-        <h3> item name: {category.name} </h3>
-        <h3> item budget: {category.budget} </h3>
+      <div className='category-item' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
+        <h2> Category name: {category.name} </h2>
+        <h3> Category budget: {category.budget} </h3>
 
+        {renderIf(this.state.editing === true,
+          <CategoryForm
+            category={category}
+            onComplete={(data) => {
+              data.id = category.id;
+              categoryUpdate(data);
+            }}
+            buttonText='update'
+          />
+        )}
 
-        <CategoryForm
-          category={category}
+        <ExpenseForm
+          buttonText='add expense'
           onComplete={(data) => {
-            data.id = category.id;
-            this.props.categoryUpdate(data);
-          }}
-        buttonText='update budget'
+            data.categoryID = category.id;
+            this.props.expenseCreate(data);
+          }
+          }
         />
 
-        <button onClick = {() => this.props.categoryDelete(category)}>
-        Delete
+        {this.props.expenses[category.id].map((item =>
+          <ExpenseItem
+            key={item.id}
+            categoryID = {this.props.category.id}
+            expense={item}
+          />
+        ))}
+        <button onClick = {() => categoryDelete(category)}>
+        Delete Category
         </button>
       </div>
     );
   }
 }
 
-export default CategoryItem;
+let mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses,
+  };
+};
+
+let mapDispatchToProps = dispatch => ({
+  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+  categoryDelete: (category) => dispatch(categoryDelete(category)),
+  expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryItem);
