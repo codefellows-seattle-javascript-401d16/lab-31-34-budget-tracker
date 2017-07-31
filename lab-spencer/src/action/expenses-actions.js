@@ -10,6 +10,13 @@ export const expenseItemCreate = expense => {
   };
 };
 
+export const expenseItemInsert = expense => {
+  return {
+    type: 'EXPENSE_CREATE',
+    payload: expense,
+  };
+};
+
 export const expenseItemUpdate = expense => {
   expense.price = parseFloat(expense.price);
   return {

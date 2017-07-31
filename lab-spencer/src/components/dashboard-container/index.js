@@ -15,33 +15,29 @@ import {
 
 import BudgetForm from '../budget-form';
 import ExpenseForm from '../expense-form';
+import ExpenseItem from '../expense-item';
+import BudgetCategoryItem from '../budget-category-item';
 
 import {log, logError} from '../../lib/util.js';
 
+
 class DashboardContainer extends React.Component {
+  componentDidMount() {
+    this.props.budgetCreate({title: 'Food', budget: 200});
+    this.props.budgetCreate({title: 'Housing', budget: 4000});
+    this.props.budgetCreate({title: 'Car', budget: 2000});
+    this.props.budgetCreate({title: 'Other', budget: 350});
+  }
+
   render() {
     return (
       <main className='dashboard-container'>
-        <h2>Budget Manager</h2>
         <BudgetForm handleSubmit={this.props.budgetCreate} />
         {this.props.budgetCategories.map(budgetCategory =>
-          <div key={budgetCategory.id}>
-            <h3>{budgetCategory.title}: ${budgetCategory.budget}<button onClick={() => this.props.budgetDelete(budgetCategory)}>X</button></h3>
-            <ul>
-              {this.props.expenses.filter(expense =>
-                expense.categoryId === budgetCategory.id).map(expense =>
-                <li key={expense.id}>
-                  {expense.title}: ${expense.price}<button onClick={() => this.props.expenseDelete(expense)}>X</button>
-                </li>
-              )}
-              <li>
-                <ExpenseForm
-                  handleSubmit={this.props.expenseCreate}
-                  categoryId={budgetCategory.id}
-                />
-              </li>
-            </ul>
-          </div>
+          <BudgetCategoryItem
+            key={budgetCategory.id}
+            budgetCategory={budgetCategory}
+          />
         )}
       </main>
     );

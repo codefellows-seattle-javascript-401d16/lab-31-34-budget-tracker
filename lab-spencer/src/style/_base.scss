@@ -1,0 +1,66 @@
+h1 { font-size: 2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.3em; }
+h6 { font-size: 1.2em; }
+
+body {
+  background-color: $light-gray;
+}
+
+main {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6, header {
+  font-family: $font-headings;
+  color: $primary;
+  max-width: 75%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+p, span, article, input, button {
+  font-family: $font-bodies;
+}
+
+input {
+  display: block;
+  background-color: $secondary;
+  height: 1.5em;
+  color: $black;
+  border: 0.1em solid $black;
+  padding: 0.5em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+form {
+  display: inline-block;
+  width: calc(100% / 4);
+  padding: 0.5em;
+  border: 0.1em solid $black;
+  border-radius: 1em;
+}
+
+button {
+  display: block;
+  background-color: $secondary;
+  height: 1.5em;
+  color: $black;
+  border: 0.1em solid $black;
+  padding: 0.1em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  text-align: center;
+}
+
+
+li {
+  padding: 1em;
+  padding-top: 0;
+  form {
+    width: 100%;
+  }
+}

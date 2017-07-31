@@ -1,0 +1,53 @@
+.draggable {
+  li {
+    font-family: $font-bodies;
+    font-weight: bold;
+    padding: 0.25em;
+    padding-top: 0;
+  }
+  button {
+    width: auto;
+    display: inline;
+    margin: 0.25em;
+  }
+}
+
+.dropzone, .budget-category-edit {
+  display: inline-block;
+  width: calc(100% / 4 - 0.2em);
+  max-width: calc(100% / 4 - 0.2em);
+  border: 0.1em solid black;
+  background-color: $dark-gray;
+  border-radius: 1em;
+  margin: 0.1em;
+
+  div {
+    position: relative;
+  }
+
+  div > button {
+      width: auto;
+      position: absolute;
+      left: 0.4em;
+      top: 0.2em;
+  }
+
+  h3 {
+    padding: 0.25em;
+  }
+}
+
+.budget-category-edit {
+  padding-top: 1em;
+}
+
+.budget-form {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: $dark-gray;
+}
+
+.expense-form {
+}

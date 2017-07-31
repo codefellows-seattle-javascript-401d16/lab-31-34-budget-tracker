@@ -25,6 +25,7 @@ class BudgetForm extends React.Component {
   render() {
     return (
       <form className='budget-form' onSubmit={this.handleSubmit}>
+        <h2>Budget Manager</h2>
         <input
           name='title'
           type='text'
