@@ -6,7 +6,7 @@ class CategoryForm extends React.Component {
     super(props)
     this.state = {
       Name: props.category ? props.category.Name : '',
-      Budget: props.category? props.category.Budget : '',
+      Budget: props.category ? props.category.Budget : '',
       categoryNameIputFieldPlaceholder: 'Enter a new Category',
       categoryBudgetInputFieldPalceholder: 'Enter a Budget',
       categoryFormClassError: 'category-form',
@@ -67,6 +67,7 @@ class CategoryForm extends React.Component {
         <input
           name='Name'
           type='text'
+          maxLength='10'
           placeholder={categoryNameIputFieldPlaceholder}
           value={this.state.Name}
           onChange={this.handleChange}
@@ -74,6 +75,7 @@ class CategoryForm extends React.Component {
         <input
           name='Budget'
           type='text'
+          maxLength='4'
           placeholder={categoryBudgetInputFieldPalceholder}
           value={this.state.Budget}
           onChange={this.handleChange}

@@ -4,15 +4,16 @@
   margin: 0 auto;
   margin-top: 1%;
   margin-bottom: 2%;
-  width: 98%;
-  height: 100px;
-  border: 1px solid $color-lightgrey;
+  width: 95%;
+  height: 90px;
+  border: 1px solid #e3e5e8;
   border-radius: 5px;
+  cursor: move;
 
 }
 .expense-item-box {
   float: left;
-  background: #f7f8f9;
+  background: #FBFCFC;
   width: 85%;
   height: 100%;
 }
@@ -22,6 +23,10 @@
   width: 80px;
   display: inline-block;
   margin-left: 20px;
+  font-size: .9em;
+}
+.expense-item-box span {
+    font-size: .9em;
 }
 .expense-item-box amount {
   font-family: $fontface-main;
@@ -29,10 +34,11 @@
   width: 80px;
   display: inline-block;
   margin-left: 20px;
+  font-size: .9em;
 }
 .expense-item-menu {
   float: left;
-  background: #f7f8f9;
+  background: #FBFCFC;
   width: 15%;
   height: 40%;
 }
@@ -40,16 +46,28 @@
   width: auto;
   margin-top: 8px;
   margin-left: 15px;
+  cursor: pointer;
 }
 .expense-item-menu-opts {
   float: left;
   width: 15%;
   height: 60%;
-  background: #f7f8f9;
+  background: #FBFCFC;
+  cursor: pointer;
 }
 .expense-item-opts-buttons {
   width: auto;
   margin-left: 15px;
   margin-bottom: 5px;
   margin-top: 5px;
+  cursor: pointer;
+}
+.dropzone-expense{
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  width: 95%;
+  height: 90px;
+  border: 3px dashed #e3e5e8;
+  border-radius: 5px;
 }

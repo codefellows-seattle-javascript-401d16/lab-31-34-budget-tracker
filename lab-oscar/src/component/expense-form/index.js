@@ -25,17 +25,23 @@ handleChange(e){
 
 handleSubmit(e){
   e.preventDefault()
+  if(!this.props.expense){
+  this.setState({expenseName: '', price: ''})
+  this.props.showExpenseForm()
   this.props.onComplete({...this.state})
-  if(!this.props.expense)
-    this.setState({expenseName: '', price: ''})
-    this.props.expenseCounter()
-    this.props.showExpenseForm()
+  }
+  if(this.props.expense){
+    this.props.onComplete({...this.state})
+    this.props.showExpensesFunc()
+    this.props.showItemOpts()
+  }
 }
 
 
   render() {
+    let {updateItemClass} = this.props
     return (
-      <form className='expense-form' onSubmit={this.handleSubmit}>
+      <form className={updateItemClass ? updateItemClass : 'expense-form'} onSubmit={this.handleSubmit}>
         <input
           name='expenseName'
           type='text'
@@ -50,7 +56,8 @@ handleSubmit(e){
           value={this.state.price}
           onChange={this.handleChange}
         />
-        <img className='expense-submit-button'
+        <img
+          className={this.props.updateItemClass ? 'expense-update-submit-button' : 'expense-submit-button'}
           src='https://cdn4.iconfinder.com/data/icons/gradient-ui-1/512/plus-24.png'
           onClick={this.handleSubmit}
         />

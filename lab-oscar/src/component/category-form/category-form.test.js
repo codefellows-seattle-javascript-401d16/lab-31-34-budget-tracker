@@ -1,5 +1,5 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount, unmount} from 'enzyme';
 import CategoryForm from './index.js';
 
 describe('testing category form file', () => {
@@ -27,10 +27,11 @@ describe('testing category form file', () => {
     let wrapper = mount(
       <CategoryForm onComplete={() => {}} buttonText='submit' />
     )
-
-    wrapper.find('input').simulate('change', {
-      target: {name: 'Name', type: 'text', value: 'testing'}
+    let input = wrapper.find('input').nodes[0];
+    wrapper.find('input').nodes[0].simulate('change', {
+      target: {type: 'text', value: 'testing'}
     })
+    console.log('^^^', input);
     expect(wrapper.state('Name')).toEqual('testing')
   })
 })

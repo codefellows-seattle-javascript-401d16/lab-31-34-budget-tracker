@@ -5,15 +5,20 @@
   margin-top: 1%;
   border-bottom: 2px solid $color-button-add-border;
 }
+.app-logo {
+  width: 6%;
+  position: fixed;
+  left: 5%;
+  top: 1%;
+}
 h2 {
-  font-family: $fontface-fantasy;
+  font-family: $fontface-main;
   margin-bottom: .5%;
 }
 
 .category-main-container {
   display: inline-block;
   margin-top: .5%;
-  // margin-left: .5%;
 
   width: 100%;
 }
@@ -24,8 +29,4 @@ h2 {
   border: 1px solid $color-black;
   border-radius: 10px;
   display: inline-block;
-  // text-align: center;
-  // height: 30px;
-  // padding: .4em;
-  // background-color: #f0ad4e;
 }

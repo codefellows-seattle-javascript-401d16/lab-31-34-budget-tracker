@@ -17,6 +17,8 @@ export default (state=initialState, action) => {
       validateCategory(payload)
       return {...state, [payload.id]: []}
       break;
+    case 'LOAD_EXPENSES':
+    return {...state, [payload.id]: []}
     case 'CATEGORY_DELETE':
       validateCategory(payload)
       return {...state, [payload.id]: undefined}
@@ -34,6 +36,7 @@ export default (state=initialState, action) => {
       break;
     case 'EXPENSE_UPDATE':
       validateExpenses(payload)
+      payload.price = Number(parseFloat(payload.price).toFixed(2));
       let oldState = state[payload.categoryID].map(expense => expense.id === payload.id ? payload : expense)
       return {...state, [payload.categoryID]: oldState}
     default:

@@ -23,3 +23,8 @@ export const categoryUpdate = (category) => ({
   type: 'CATEGORY_UPDATE',
   payload: category,
 })
+
+export const loadLocalStorage = (category) => ({
+  type: 'LOAD_LOCALSTORE',
+  payload: category,
+})

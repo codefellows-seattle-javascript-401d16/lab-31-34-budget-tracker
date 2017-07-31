@@ -22,6 +22,9 @@ export default (state=intialState, action) => {
       return state.map(category =>
       category.id === payload.id ? payload : category)
       break;
+    case 'LOAD_LOCALSTORE':
+    return [...state, payload]
+
     default:
       return state
   }
