@@ -1,4 +1,4 @@
-let intialState = []
+let initialState = {}
 
 let validatePayload = payload => {
   if (!payload.id || !payload.name || !payload.budget || !payload.timestamp)
@@ -7,7 +7,7 @@ let validatePayload = payload => {
     )
 }
 
-export default (state = intialState, action) => {
+export default (state = initialState, action) => {
   let { type, payload } = action
   switch (type) {
   case 'CATEGORY_CREATE':
@@ -22,8 +22,9 @@ export default (state = intialState, action) => {
     return state.filter(category => category.id !== payload.id)
   case 'CATEGORY_RESET':
     validatePayload(payload)
-    return intialState
+    return initialState
   default:
+    console.log('default state in category.js', state)
     return state
   }
 }

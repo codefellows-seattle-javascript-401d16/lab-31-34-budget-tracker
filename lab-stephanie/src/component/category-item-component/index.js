@@ -37,7 +37,8 @@ class CategoryItem extends React.Component {
     if (err) return console.error(err)
 
     this.props.expenseDelete(expense)
-    this.props.expenses.categoryID = this.props.item.id
+    console.log('this.props.item in category item', this.props.item)
+    expense.categoryId = this.props.item.id
 
     this.props.expenseInsert(expense)
   }
