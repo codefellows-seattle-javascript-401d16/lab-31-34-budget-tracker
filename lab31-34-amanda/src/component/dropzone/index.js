@@ -1,5 +1,5 @@
 import React from 'react';
-import{classToggler} from '../lib/util.js';
+import {classToggler} from '../../lib/util.js';
 
 class Dropzone extends React.Component {
   constructor(props){
@@ -23,7 +23,7 @@ class Dropzone extends React.Component {
   }
 
   handleDragOver(e){
-    e.preventDefault;
+    e.preventDefault();
   }
 
   handleDrop(e){
@@ -57,3 +57,5 @@ class Dropzone extends React.Component {
 
   }
 }
+
+export default Dropzone;
