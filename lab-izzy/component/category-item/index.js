@@ -38,7 +38,7 @@ class CategoryItem extends React.Component{
         <Dropzone onComplete={this.handleDropzoneComplete} >
           <header>
             <div className='content'>
-              <h2> {category.title} </h2>
+              <p> {category.title} </p>
               <button onClick={() => categoryDelete(category)}>
                 delete
               </button>
