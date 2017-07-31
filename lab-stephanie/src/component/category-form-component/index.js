@@ -29,6 +29,7 @@ class CategoryForm extends React.Component {
           name="name"
           type="text"
           placeholder="name"
+          required="true"
           value={this.state.name}
           onChange={this.handleChange}
         />
@@ -36,6 +37,7 @@ class CategoryForm extends React.Component {
           name="budget"
           type="number"
           placeholder="budget"
+          required="true"
           value={this.state.budget}
           onChange={this.handleChange}
         />

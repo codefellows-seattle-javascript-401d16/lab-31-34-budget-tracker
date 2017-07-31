@@ -17,6 +17,7 @@ export default (state = initialState, action) => {
     return { ...state, [payload.id]: undefined }
 
   case 'EXPENSE_CREATE': {
+    console.log('expense create after dragndrop')
     let { categoryId } = payload
     let categoryExpenses = [...state[categoryId]]
     return { ...state, [categoryId]: [...categoryExpenses, payload] }
@@ -36,9 +37,6 @@ export default (state = initialState, action) => {
     validatePayload(payload)
     let { categoryId } = payload
     let categoryExpenses = [...state[categoryId]]
-    console.log('payload', payload)
-    console.log('categoryExpenses', categoryExpenses)
-    console.log('categoryId', categoryId)
     return {
       ...state,
       [categoryId]: categoryExpenses.filter(

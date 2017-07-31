@@ -6,6 +6,7 @@ import {
   expenseCreate,
   expenseUpdate,
   expenseDelete,
+  expenseInsert,
 } from '../../../action/expense-actions.js'
 
 let renderIf = (t, c) => (t ? c : undefined)
@@ -37,7 +38,6 @@ class ExpenseItem extends React.Component {
   }
 
   handleUpdateCostItem() {
-    console.log('updateExpenseItem')
     this.setState(state => ({ updateExpenseItem: !state.updateExpenseItem }))
   }
 
@@ -110,6 +110,9 @@ const mapDispatchToProps = (dispatch, getState) => {
     },
     expenseDelete: expense => {
       dispatch(expenseDelete(expense))
+    },
+    expenseInsert: expense => {
+      dispatch(expenseInsert(expense))
     },
   }
 }

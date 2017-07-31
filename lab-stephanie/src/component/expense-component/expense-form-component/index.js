@@ -33,6 +33,7 @@ class ExpenseForm extends React.Component {
           name="name"
           type="text"
           placeholder="name"
+          required="true"
           value={this.state.name}
           onChange={this.handleChange}
         />
@@ -40,6 +41,7 @@ class ExpenseForm extends React.Component {
           name="price"
           type="number"
           placeholder="price"
+          required="true"
           value={this.state.price}
           onChange={this.handleChange}
         />

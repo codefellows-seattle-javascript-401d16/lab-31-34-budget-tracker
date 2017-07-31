@@ -37,7 +37,6 @@ class CategoryItem extends React.Component {
     if (err) return console.error(err)
 
     this.props.expenseDelete(expense)
-    console.log('this.props.item.id in category item', this.props.item.id)
     this.props.expenses.categoryID = this.props.item.id
 
     this.props.expenseInsert(expense)
@@ -58,13 +57,10 @@ class CategoryItem extends React.Component {
   }
 
   handleUpdateCategory() {
-    console.log('updateCategory')
     this.setState(state => ({ updateCategory: !state.updateCategory }))
-    console.log('after updateCategory', this.state.updateCategory)
   }
 
   render() {
-    console.log('rendering after update')
     let categoryId = this.props.item.id
     return (
       <div className="container">
@@ -73,7 +69,6 @@ class CategoryItem extends React.Component {
             {renderIf(
               this.state.updateCategory,
               <div className="budget-item-update">
-                {console.log('rendering after update')}
                 <input
                   name="name"
                   type="text"
@@ -102,9 +97,6 @@ class CategoryItem extends React.Component {
                 </h3>
                 <h3>
                   Budget: {this.props.item.budget}
-                </h3>
-                <h3>
-                  Last Updated: {this.props.item.timestamp.toString()}
                 </h3>
                 <button
                   onClick={() => this.props.categoryDelete(this.props.item)}
