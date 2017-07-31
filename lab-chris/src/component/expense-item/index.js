@@ -22,7 +22,7 @@ class ExpenseItem extends React.Component {
 
   render(){
     let {expense, expenseDelete, expenseUpdate} = this.props;
-    console.log('expenseUpdate', expenseUpdate);
+    // console.log('expenseUpdate', expenseUpdate);
     return (
       <li className='expense-item'>
         <Draggable dataTransferItem={expense}>
@@ -39,7 +39,7 @@ class ExpenseItem extends React.Component {
               <ExpenseForm
                 expense={expense}
                 buttonText='update expense'
-                onComplete={expenseUpdate}
+                onComplete={this.handleexpenseUpdate}
               />
               <button onClick={() => this.setState({editing: false})}> cancel </button>
             </div>

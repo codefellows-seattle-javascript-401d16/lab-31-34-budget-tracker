@@ -8,7 +8,7 @@ class Draggable extends React.Component {
 
   handleDragStart(e){
     let jsonItem = JSON.stringify(this.props.dataTransferItem);
-    e.dataTransferItem.setData('application/json', jsonItem);
+    e.dataTransfer.setData('application/json', jsonItem);
   }
 
   render(){

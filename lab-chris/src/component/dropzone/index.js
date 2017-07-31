@@ -27,15 +27,14 @@ class Dropzone extends React.Component {
 
   handleDrop(e){
     e.preventDefault();
-    try{
+    try {
       let item = JSON.parse(e.dataTransfer.getData('application/json'));
       this.props.onComplete(null, item);
-    } catch (error){
+    } catch (error) {
       this.props.onComplete(error);
     }
     this.setState({dropReady: false});
   }
-
 
   render(){
     let className = classToggler({
@@ -45,11 +44,11 @@ class Dropzone extends React.Component {
 
     return(
       <div
-        className = {className}
-        onDrop={this.handlnDrop}
+        className={className}
+        onDrop={this.handleDrop}
         onDragOver={this.handleDragOver}
-        onDragEnter={this.handlnDragEnter}
-        onDragLeave={this.handlnDragLeave}
+        onDragEnter={this.handleDragEnter}
+        onDragLeave={this.handleDragLeave}
       >
         {this.props.children}
       </div>
