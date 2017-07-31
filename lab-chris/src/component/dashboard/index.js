@@ -1,5 +1,6 @@
+import '../../style/main.scss';
+import './dashboard.scss';
 import React from 'react';
-
 import {connect} from 'react-redux';
 
 import {
@@ -10,10 +11,11 @@ import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component {
+
   render(){
     return (
-      <main className='dashboardr'>
-        <h2> Budget App </h2>
+      <main className='dashboard'>
+        <h2 className='center'> Budget App </h2>
         <CategoryForm
           buttonText='create category'
           onComplete={this.props.categoryCreate}
@@ -40,7 +42,4 @@ const mapDispatchToProps = (dispatch, getState) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
