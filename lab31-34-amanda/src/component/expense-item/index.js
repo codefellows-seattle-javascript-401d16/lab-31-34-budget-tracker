@@ -28,7 +28,8 @@ class ExpenseItem extends React.Component {
           {renderIf(!this.state.editing,
             <div onDoubleClick={() => this.setState({editing: true})}>
               <p> {expense.content} </p>
-              <button onClick={() => expenseDelete(expense)}> delete </button>
+
+              <button onClick={() => expenseDelete(expense)}>delete </button>
             </div>
           )}
 
@@ -42,7 +43,8 @@ class ExpenseItem extends React.Component {
 
               <button
                 onClick={() => this.setState({editing: false})}>
-        cancel
+
+            cancel
               </button>
             </div>
           )}
