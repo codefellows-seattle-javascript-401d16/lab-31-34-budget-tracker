@@ -7,6 +7,7 @@ import {expenseCreate, expenseDestroy, expenseReset, expenseInsert} from '../../
 import ExpenseItem from '../../expense/expense-item';
 import '../../../style/main.scss';
 import DropZone from '../../drop-zone';
+import './_category-item.scss';
 
 class CategoryItem extends React.Component{
   constructor(props){
@@ -43,7 +44,7 @@ class CategoryItem extends React.Component{
             return <div key={category.id} className='category-item'>
               <div className='category-header'>
                 <h3 className='category-name'>{category.name}</h3>
-                <h3 className='category-budget'>${category.budget}</h3>
+                <h6 className='category-budget'>${category.budget}</h6>
               </div>
               <CategoryForm
                 buttonText='Edit Destination'

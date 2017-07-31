@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../style/main.scss';
+import './_category-form.scss';
 
 class CategoryForm extends React.Component{
   constructor(props){
