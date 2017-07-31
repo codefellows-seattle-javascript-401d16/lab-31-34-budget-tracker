@@ -27,7 +27,7 @@ describe ('testing CategoryForm', () => {
       <CategoryForm onComplete={() => {}} buttonText='submit' />
     );
 
-    wrapper.find('input').simulate('change', { //ERROR: "Method “simulate” is only meant to be run on a single node. 2 found instead."
+    wrapper.find('input[name="name"]').simulate('change', {
       target: { name: 'title', value: 'cool' , type: 'text'},
     });
 
