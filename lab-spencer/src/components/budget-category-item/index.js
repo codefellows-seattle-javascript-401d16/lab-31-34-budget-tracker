@@ -70,7 +70,7 @@ class BudgetCategoryItem extends React.Component {
   render() {
     return (
       this.state.editing ?
-        <li>
+        <li className='budget-category-edit'>
           <input
             type='text'
             name='title'
@@ -96,18 +96,19 @@ class BudgetCategoryItem extends React.Component {
         :
         <Dropzone onComplete={this.handleDropzoneComplete}>
           <div key={this.state.id}>
-            <h3 onDoubleClick={() => this.setState({ editing: true })}>{this.state.title}: ${this.state.budget}<button onClick={() => this.props.budgetDelete(this.state)}>X</button></h3>
+            <h3 onDoubleClick={() => this.setState({ editing: true })}>{this.state.title}<br /> ${this.state.budget}</h3>
+            <button onClick={() => this.props.budgetDelete(this.state)}>X</button>
             <ul>
-              {this.props.expenses.filter(expense =>
-                expense.categoryId === this.state.id).map(expense =>
-                <ExpenseItem expense={expense} key={expense.id} handleUpdate={this.props.expenseUpdate} handleDelete={this.props.expenseDelete} />
-              )}
               <li>
                 <ExpenseForm
                   handleSubmit={this.props.expenseCreate}
                   categoryId={this.state.id}
                 />
               </li>
+              {this.props.expenses.filter(expense =>
+                expense.categoryId === this.state.id).map(expense =>
+                <ExpenseItem expense={expense} key={expense.id} handleUpdate={this.props.expenseUpdate} handleDelete={this.props.expenseDelete} />
+              )}
             </ul>
           </div>
         </Dropzone>

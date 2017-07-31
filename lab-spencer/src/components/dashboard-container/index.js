@@ -32,7 +32,6 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <main className='dashboard-container'>
-        <h2>Budget Manager</h2>
         <BudgetForm handleSubmit={this.props.budgetCreate} />
         {this.props.budgetCategories.map(budgetCategory =>
           <BudgetCategoryItem

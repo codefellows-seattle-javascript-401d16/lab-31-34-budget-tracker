@@ -68,8 +68,8 @@ class ExpenseItem extends React.Component {
         </li>
         :
         <Draggable dataTransferItem={this.state}>
-          <li onDoubleClick={() => this.setState({ editing: true })}>
-            {this.state.title}: ${this.state.price}<button onClick={this.handleDelete}>X</button>
+          <li onDoubleClick={() => this.setState({ editing: true })} className='expense-item'>
+            <button onClick={this.handleDelete}>X</button>{this.state.title}: ${this.state.price}
           </li>
         </Draggable>
     );

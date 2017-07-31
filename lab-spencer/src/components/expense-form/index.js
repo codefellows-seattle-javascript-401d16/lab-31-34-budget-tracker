@@ -5,7 +5,7 @@ class ExpenseForm extends React.Component {
     super(props);
     this.state = {
       title: props.title || '',
-      price: props.price || 0,
+      price: props.price || '',
       categoryId: props.categoryId,
       editing: false,
     };
@@ -38,7 +38,7 @@ class ExpenseForm extends React.Component {
           name='price'
           type='number'
           step={0.01}
-          placeholder='Price'
+          placeholder='Price ($)'
           value={this.state.price}
           onChange={this.handleChange}
           required
