@@ -1,3 +1,5 @@
+//imddleware
+
 import{log, logError} from './util.js';
 
 let reporter = store => next => action => {
