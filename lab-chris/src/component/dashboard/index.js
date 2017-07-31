@@ -10,10 +10,6 @@ import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
 class DashboardContainer extends React.Component {
-  componentDidMount(){
-    this.props.categoryCreate({title: 'ready', budget: 100});
-    this.props.categoryCreate({title: 'in progress', budget: 200});
-  }
 
   render(){
     return (

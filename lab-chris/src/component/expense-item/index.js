@@ -39,7 +39,7 @@ class ExpenseItem extends React.Component {
               <ExpenseForm
                 expense={expense}
                 buttonText='update expense'
-                onComplete={this.handleexpenseUpdate}
+                onComplete={this.handleExpenseUpdate}
               />
               <button onClick={() => this.setState({editing: false})}> cancel </button>
             </div>

@@ -9,6 +9,8 @@ class ExpenseForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log('THIS ONE', this.props.onComplete);
+    console.log('PROPS', this.props);
   }
 
   componentWillReceiveProps(props){
