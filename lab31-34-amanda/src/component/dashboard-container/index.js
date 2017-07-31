@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import './_dashboard-container.scss'; scss keeps breaking  my test event wiht the hack
+import './_dashboard-container.scss';
+// scss keeps breaking  my test event wiht the hack
 
 import { categoryCreate, categoryUpdate,categoryDelete}
   from '../../action/category-action.js';
@@ -13,11 +14,11 @@ class DashboardContainer extends React.Component {
   render(){
     return (
       <main className='dashboard-container'>
-        <h2> dashboard </h2>
+        <h2> Budgeting Tool </h2>
         <CategoryForm
-          buttonText='create category'
-          onComplete={this.props.categoryCreate}
-        />
+          className='cat-form'
+          buttonText='new category'
+          onComplete={this.props.categoryCreate} />
 
         {this.props.categorys.map((item) =>
           <CategoryItem

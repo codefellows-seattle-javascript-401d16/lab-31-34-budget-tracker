@@ -5,6 +5,7 @@
   "license": "MIT",
   "jest": {
     "moduleNameMapper": {
+      "\\.(scss|css)$":"<rootDir>/src/__test__/lib/webpack-asset-faker.js",
       "\\.(scss|jpg|jpeg|gif|png|svg|tiff)$":"<rootDir>/src/__test__/lib/webpack-asset-faker.js"
     },
     "globals": {

@@ -1,8 +1,26 @@
+@import "../../style/main.scss";
+
+
+.dashboard-container {
+    padding: $pad;
+    font-size: 1em;
+    font-style: bold;
+    border: solid #FFE4E1;
+    font: $font-sans-serif;
+    width: 50%
+  }
 
 .category-item {
   float: left;
-  width: 250px;
-  height: 50%;
-  border: 1px solid black;
-  background: pink;
+  border: 1px $color-lightgrey;
+}
+
+button,input[type="submit"] {
+  background: $color-primary;
+  padding: $pad;
+  font-size: 0.75em;
+  border-radius: 5px;
+    &:hover {
+      background: $color-secondary;
+    }
 }

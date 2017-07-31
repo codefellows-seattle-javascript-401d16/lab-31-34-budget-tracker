@@ -3,6 +3,7 @@ import {shallow} from 'enzyme';
 
 import DashboardContainer from './index.js';
 import createAppStore from '../../lib/store.js';
+import './_dashboard-container.scss';
 
 describe('dashboard-container', () => {
   test('it should have a category props', () => {
