@@ -1,0 +1,17 @@
+@import "../../style/_vars.scss";
+
+.expense-name-and-price {
+  padding-left: 1em;
+}
+
+.expense-item {
+  list-style: none;
+  padding-bottom: 1em;
+}
+
+.delete-expense {
+  padding-left: 1em;
+  background: none;
+  font-weight: bold;
+  text-decoration: underline;
+}
