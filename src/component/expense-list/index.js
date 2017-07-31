@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import ExpenseForm from '../expense-form'
+import {renderIf} from '../../lib/util.js'
+import Drag from '../drag'
 import {expenseUpdate, expenseDelete} from '../../action/expense-action.js'
 
 class ExpenseList extends React.Component {
@@ -10,14 +12,16 @@ class ExpenseList extends React.Component {
     let {expense, expenseUpdate, expenseDelete} = this.props
     return(
       <li>
-        <div className='remove'>
-          <p>{expense.cost}</p>
-          <button onClick={() => expenseDelete(expense)}> delete </button>
-        </div>
-        <ExpenseForm
-          expense={expense}
-          submitText='Update Expense'
-          onComplete={expenseUpdate} />
+        <Drag dataTransferItem={expense}>
+          <div className='remove'>
+            <p>{expense.cost}</p>
+            <button onClick={() => expenseDelete(expense)}> delete </button>
+          </div>
+          <ExpenseForm
+            expense={expense}
+            submitText='Update Expense'
+            onComplete={expenseUpdate} />
+        </Drag>
       </li>
     )
   }

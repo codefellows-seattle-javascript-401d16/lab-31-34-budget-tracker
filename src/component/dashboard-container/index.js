@@ -6,12 +6,12 @@ import CategoryForm from '../category-form'
 import CategoryList from '../category-list'
 
 class DashboardContainer extends React.Component {
-  // componentDidMount(){
-  //   this.props.categoryCreate({title: 'groceries'})
-  //   this.props.categoryCreate({title: 'work'})
-  //   this.props.categoryCreate({title: 'toys'})
-  //   this.props.categoryCreate({title: 'travel'})
-  // }
+  componentDidMount(){
+    this.props.categoryCreate({title: 'groceries'})
+    this.props.categoryCreate({title: 'work'})
+    this.props.categoryCreate({title: 'toys'})
+    this.props.categoryCreate({title: 'travel'})
+  }
   render(){
     console.log(this.props.categorys)
     return(

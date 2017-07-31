@@ -1,4 +1,7 @@
-'use strict'
+let validatePayload = (payload) => {
+  if(!payload.id || !payload.title || !payload.timestamp)
+    throw new Error('Validation Failed: payload must have id, title, and timestamp')
+}
 
 let originalState = []
 

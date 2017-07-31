@@ -1,4 +1,11 @@
-
+let validateCategory = (category) => {
+  if(!category.id || !category.title || !category.timestamp)
+    throw new Error('Validation Failed: category must have id, title, and timestamp')
+}
+let validateExpense = (expense) => {
+  if(!expense.id || !expense.cost  || !expense.categoryID)
+    throw new Error('Validation Failed: expense must have id, cost, and timestamp')
+}
 let originalState = {}
 
 export default (state=originalState, action) => {
