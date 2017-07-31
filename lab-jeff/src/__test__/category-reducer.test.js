@@ -1,3 +1,5 @@
+import React from 'react';
+import {shallow} from 'enzyme';
 import reducer from '../reducer/category.js';
 
 

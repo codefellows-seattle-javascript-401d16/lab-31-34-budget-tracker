@@ -11,6 +11,7 @@ describe('testing category actions', () => {
     expect(action.payload.id).toBeTruthy();
     expect(action.payload.timestamp).toBeTruthy();
     expect(action.payload.title).toBe('food');
+    expect(action.payload.budget).toBe(200);
   });
 
   test('categoryDelete returns a CATEGORY_DELETE action', () => {

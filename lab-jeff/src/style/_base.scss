@@ -7,15 +7,15 @@ span, em, strong {display: inline;}
 span,em,strong {display: inline;}
 
 body {
-  background-color: $color-white;
+  background-color: #D97823;
   font-size: 16px;
 }
 
-@for $i from 1 through 6 {
-  h#{$i} {
-    font-size: calc(1em * i * 1.09);
-  }
-}
+// @for $i from 1 through 6 {
+//   h#{$i} {
+//     font-size: calc(1em * i * 1.09);
+//   }
+// }
 
 h1 { font-size: calc(1em * 2.2); }
 h2 { font-size: calc(1em * 1.9); }
@@ -42,13 +42,13 @@ textarea,input {
   margin-bottom: $pad;
 }
 
-&:focus {
-  border: 1px solid $color-darkgray;
-}
+// &:focus {
+//   border: 1px solid $color-darkgray;
+// }
 
-%::placeholder {
-  color: $color-lightgray
-}
+// %::placeholder {
+//   color: $color-lightgray
+// }
 
 input::placeholder {
   color: #aaa;
@@ -68,9 +68,9 @@ button,input[type="submit"] {
   border: none;
 }
 
-&:hover {
-
-}
+// &:hover {
+//
+// }
 
 button:hover,input[type="submit"]:hover {
   background: #777;

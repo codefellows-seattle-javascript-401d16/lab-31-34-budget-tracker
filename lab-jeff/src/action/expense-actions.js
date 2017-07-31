@@ -1,14 +1,16 @@
 import uuid from 'uuid/v1';
 
-export const expenseCreate = (expense) => {
-  expense.id = uuid();
-  expense.timestamp = new Date();
-  console.log('Expense Action', expense);
-  return {
+export const expenseCreate = (expense) => ({
+  type: 'EXPENSE_CREATE',
+  payload: {...expense, id: uuid(), timestamp: new Date()},
+});
+
+
+export const expenseInsert = (expense) =>
+  ({
     type: 'EXPENSE_CREATE',
-    payload: expense,
-  };
-};
+    payload: {...expense},
+  });
 
 export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
@@ -16,7 +18,6 @@ export const expenseUpdate = (expense) => ({
 });
 
 export const expenseDelete = (expense) => {
-  console.log('Expense Delete', expense);
   return {
     type: 'EXPENSE_DELETE',
     payload: expense,

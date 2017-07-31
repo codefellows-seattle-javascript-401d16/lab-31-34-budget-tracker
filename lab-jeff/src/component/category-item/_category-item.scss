@@ -1,0 +1,35 @@
+@import "../../style/_vars.scss";
+
+
+.category-item {
+  float: left;
+  width: 28.5%;
+  margin: $pad;
+  height: 80vh;
+  overflow-y: scroll;
+  // background: $color-primary;
+  border: 1px solid $color-lightgray;
+  margin-left: 1em;
+}
+
+.category-item-title {
+  font-weight: bold;
+  display: inline;
+}
+
+.category-item ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.category-item-name {
+  text-align: center;
+}
+
+.category-item-budget {
+  display: inline;
+}
+
+.content {
+  margin-bottom: 2em;
+}
