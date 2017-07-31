@@ -12,7 +12,7 @@ class DashboardContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-
+      totalBudget: 10000,
     };
   }
 
@@ -21,17 +21,24 @@ class DashboardContainer extends React.Component{
     console.log('DASH props: ', this.props);
     console.log('DASH state: ', this.state);
     return(
-      <main className='dashboard'>
-        This is the dashboard
-
-        <CategoryForm
-          buttonText='Create Category'
-          onComplete={this.props.categoryCreate}
-          category=''
-        />
-        <CategoryItem
-        />
-      </main>
+      <div className='dashboard'>
+        <header>
+          2017 Travel Budget
+          ${this.props.totalBudget}
+          <div className='graph'>
+            graph goes here
+          </div>
+        </header>
+        <main>
+          <CategoryItem
+          />
+          <CategoryForm
+            buttonText='+'
+            onComplete={this.props.categoryCreate}
+            category=''
+          />
+        </main>
+      </div>
     );
   }
 }

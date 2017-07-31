@@ -29,12 +29,14 @@ class App extends React.Component{
   render(){
     return(
       <div className="app">
+        <header>
+          My Dashboard
+        </header>
         <Provider
           store={store}
         >
           <BrowserRouter>
             <div>
-            This is the app
               <Route
                 exact path='/'
                 component={DashboardContainer}

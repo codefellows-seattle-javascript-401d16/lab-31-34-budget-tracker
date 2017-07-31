@@ -50,7 +50,7 @@ class ExpenseForm extends React.Component{
           value={this.state.amount}
           onChange={this.handleChange}
         />
-        <button type='submit'>{this.props.buttonText}</button>
+        <button className='edit-button' type='submit'>{this.props.buttonText}</button>
       </form>
     );
   }

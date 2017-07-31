@@ -29,7 +29,15 @@ class ExpenseItem extends React.Component{
   }
 }
 
-const mapStateToProps = (state, props) => ({expenses: state.expenses[props.categoryID]});
+const mapStateToProps = (state, props) => {
+  console.log('EXPI MSTP S: ', state);
+  console.log('EXPI MSTP SE: ', state.expenses);
+  console.log('EXPI MSTP catID: ', props.categoryID);
+  console.log('EXPI MSTP full: ', state.expenses[props.categoryID]);
+  return {
+    expenses: state.expenses[props.categoryID],
+  };
+};
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {

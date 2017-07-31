@@ -8,7 +8,7 @@ class CategoryForm extends React.Component{
       id: props.category.id ? props.category.id : null,
       timestamp: null,
       name: props.category.name ? props.category.name : '',
-      budget: props.category.budget ? props.category.budget : 0,
+      budget: props.category.budget ? props.category.budget : '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,18 +40,18 @@ class CategoryForm extends React.Component{
         <input
           type='text'
           name='name'
-          placeholder='Name'
+          placeholder='New Destination'
           value={this.state.name}
           onChange={this.handleChange}
         />
         <input
           type='number'
           name='budget'
-          placeholder='Budget Amount'
+          placeholder='New Budget'
           value={this.state.budget}
           onChange={this.handleChange}
         />
-        <button type='submit'>{this.props.buttonText}</button>
+        <button className='delete-button' type='submit'>{this.props.buttonText}</button>
 
       </form>
     );
