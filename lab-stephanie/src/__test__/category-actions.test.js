@@ -1,43 +1,43 @@
 import {
-  expenseCreate,
-  expenseUpdate,
-  expenseDelete,
-} from '../action/expense-actions.js'
+  categoryCreate,
+  categoryUpdate,
+  categoryDelete,
+} from '../action/category-actions.js'
 
-describe('testing expense actions', () => {
-  test('expenseCreate returns a EXPENSE_CREATE action', () => {
-    let action = expenseCreate({ name: 'rent', price: 500 })
-    expect(action.type).toEqual('EXPENSE_CREATE')
+describe('testing category actions', () => {
+  test('categoryCreate returns a CATEGORY_CREATE action', () => {
+    let action = categoryCreate({ name: 'rent', budget: 500 })
+    expect(action.type).toEqual('CATEGORY_CREATE')
     expect(action.payload.id).toBeTruthy()
     expect(action.payload.timestamp).toBeTruthy()
     expect(action.payload.name).toBe('rent')
-    expect(action.payload.price).toBe(500)
+    expect(action.payload.budget).toBe(500)
   })
 
-  test('expenseDelete returns a EXPENSE_DELETE action', () => {
+  test('categoryDelete returns a CATEGORY_DELETE action', () => {
     let mockCategory = {
-      id: '124',
+      id: 'ksjfdksjdgh',
       timestamp: new Date(),
       name: 'rent',
-      price: 500,
+      budget: 500,
     }
-    let action = expenseDelete(mockCategory)
+    let action = categoryDelete(mockCategory)
     expect(action).toEqual({
-      type: 'EXPENSE_DELETE',
+      type: 'CATEGORY_DELETE',
       payload: mockCategory,
     })
   })
 
-  test('expenseUpdate returns a EXPENSE_UPDATE action', () => {
+  test('categoryUpdate returns a CATEGORY_UPDATE action', () => {
     let mockCategory = {
-      id: '124',
+      id: 'sdfkjashf',
       timestamp: new Date(),
       name: 'rent',
-      price: 500,
+      budget: 500,
     }
-    let action = expenseUpdate(mockCategory)
+    let action = categoryUpdate(mockCategory)
     expect(action).toEqual({
-      type: 'EXPENSE_UPDATE',
+      type: 'CATEGORY_UPDATE',
       payload: mockCategory,
     })
   })
