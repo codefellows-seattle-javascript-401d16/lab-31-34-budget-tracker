@@ -6,8 +6,24 @@ import DashboardContainer from '../dashboard-container';
 
 const store = createAppStore();
 
+
+
 class App extends React.Component {
 
+  componentWillMount(){
+   try {
+     let newStore = JSON.parse(localStorage.getItem('expenseTracker'))
+     newStore.categorys.forEach(item =>{
+       store.dispatch({type: 'LOAD_LOCALSTORE', payload: item})
+       store.dispatch({type: 'LOAD_EXPENSES', payload: item})
+     });
+    //  store.dispatch({type: 'LOAD_LOCALSTORE', payload: newStore.categorys});
+
+   } catch(error) {
+     console.log('ErrorHere', error);
+
+   }
+   }
   render(){
     return(
       <div>

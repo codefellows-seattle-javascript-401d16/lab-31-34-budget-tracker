@@ -3,6 +3,7 @@ let reporter = store => next => action => {
   try {
     let result = next(action)
     console.log('__STATE__', store.getState());
+    localStorage.setItem('expenseTracker', JSON.stringify(store.getState())) 
     return result
   } catch (error) {
     error.action = action

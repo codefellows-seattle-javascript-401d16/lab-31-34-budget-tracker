@@ -17,6 +17,8 @@ export default (state=initialState, action) => {
       validateCategory(payload)
       return {...state, [payload.id]: []}
       break;
+    case 'LOAD_EXPENSES':
+    return {...state, [payload.id]: []}
     case 'CATEGORY_DELETE':
       validateCategory(payload)
       return {...state, [payload.id]: undefined}
