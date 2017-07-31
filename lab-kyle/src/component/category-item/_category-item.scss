@@ -1,9 +1,13 @@
+@import "../../style/_vars.scss";
+
 .category-item {
   list-style-type: none;
   float: left;
-  border: 2px solid black;
+  border: 2px solid $color-primary;
+  border-radius: 10px;
   width: 20%;
   height: 100vh;
   margin: 0.5em;
   padding: 0.5em;
+  background: $color-third;
 }

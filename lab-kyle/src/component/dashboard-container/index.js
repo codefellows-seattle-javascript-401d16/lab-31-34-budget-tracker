@@ -1,3 +1,4 @@
+import './_dashboard-container.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -22,7 +23,9 @@ class DashboardContainer extends React.Component {
     console.log('dashboard state', this.props.categories)
     return (
       <div className="dashboard-container">
-        <h1>Budget Tracker</h1>
+        <div className="header">
+          <h1>Budget Tracker</h1>
+        </div>
         <CategoryForm
           buttonLabel="Submit"
           onComplete={this.props.categoryCreate}
