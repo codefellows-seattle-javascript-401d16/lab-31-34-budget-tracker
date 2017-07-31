@@ -3,6 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 import DashboardContainer from '../dashboard';
+import NavBar from '../navbar';
 //import store module that creates our store based on the app state
 import createAppStore from '../../lib/store.js';
 // import '../../style/main.scss';
@@ -29,14 +30,12 @@ class App extends React.Component{
   render(){
     return(
       <div className="app">
-        <header>
-          My Dashboard
-        </header>
         <Provider
           store={store}
         >
           <BrowserRouter>
             <div>
+              <NavBar />
               <Route
                 exact path='/'
                 component={DashboardContainer}
