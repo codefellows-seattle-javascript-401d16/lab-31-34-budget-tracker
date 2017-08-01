@@ -13,19 +13,24 @@ class DashboardContainer extends React.Component {
 
   render(){
     return (
-      <main className='dashboard-container'>
-        <h2> Budgeting Tool </h2>
-        <CategoryForm
-          className='cat-form'
-          buttonText='new category'
-          onComplete={this.props.categoryCreate} />
+      <div>
+        <main className='dashboard-container'>
+          <h2> Budgeting Tool </h2>
+          <CategoryForm
+            className='cat-form'
+            buttonText='new category'
+            onComplete={this.props.categoryCreate} />
 
-        {this.props.categorys.map((item) =>
-          <CategoryItem
-            category={item}
-            key={item.id} />
-        )}
-      </main>
+
+        </main>
+        <div className='category-list'>
+          {this.props.categorys.map((item) =>
+            <CategoryItem
+              category={item}
+              key={item.id} />
+          )}
+        </div>
+      </div>
     );
   }
 }
@@ -44,4 +49,4 @@ const mapDispatchToProps = (dispatch, getState) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect( mapStateToProps, mapDispatchToProps)(DashboardContainer);
