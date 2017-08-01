@@ -5,8 +5,6 @@ import CategoryItem from '../category-item'
 
 import {
   categoryCreate,
-  categoryUpdate,
-  categoryDelete,
 } from '../../action/category-action.js'
 
 
@@ -36,14 +34,12 @@ class DashboardContainer extends React.Component{
 }
 
 const mapStateToProps = (state)=> {
-  // console.log(state);
   return{
     categories: state.categories,
   }
 }
 
 const mapDispatchToProps = (dispatch, getState)=> {
-  // console.log(dispatch, getState);
   return {
     categoryCreate:(category)=> dispatch(categoryCreate(category)),
   }

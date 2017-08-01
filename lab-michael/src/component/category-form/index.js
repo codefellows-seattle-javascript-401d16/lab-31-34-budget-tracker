@@ -17,12 +17,12 @@ class CategoryForm extends React.Component {
 
   handleChange(e){
     this.setState({[e.target.name]: e.target.value})
-    console.log('this.propsssss',this.props);
+    // console.log('this.propsssss',this.props);
   }
 
   handleSubmit(e){
     e.preventDefault()
-    console.log('this.props on handleSubmit!',this.state);
+    // console.log('this.props on handleSubmit!',this.state);
     this.props.onComplete({...this.state})
     if(!this.props.category)
       this.setState({title:''})

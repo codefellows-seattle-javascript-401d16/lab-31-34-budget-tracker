@@ -8,7 +8,7 @@ class ExpenseForm extends React.Component {
     // this.state = props.category ? {...props.category}:{expense:''}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    console.log('EXPENSE FORM',this.props.expense);
+    // console.log('EXPENSE FORM',this.props.expense);
   }
 
   componentWillReceiveProps(props){
@@ -19,13 +19,13 @@ class ExpenseForm extends React.Component {
 
   handleChange(e){
     this.setState({[e.target.name]: e.target.value})
-    console.log('this.propsssss on expense FORM',this.props);
+    // console.log('this.propsssss on expense FORM',this.props);
   }
 
   handleSubmit(e){
     e.preventDefault()
-    console.log('this.props on handleSubmit!',this.state);
-    console.log(this.props);
+    // console.log('this.props on handleSubmit!',this.state);
+    // console.log(this.props);
     this.props.onComplete({...this.state})
     // if(!this.props.expense.categoryID)
     //   this.setState({categoryID:this.props.expense.categoryID})
@@ -37,6 +37,7 @@ class ExpenseForm extends React.Component {
     return (
       <form className='expense-form' onSubmit={this.handleSubmit}>
       <input
+      id='title'
       name='title'
       type='text'
       placeholder='title'
@@ -45,6 +46,7 @@ class ExpenseForm extends React.Component {
       />
 
       <input
+      id='expense'
       name='expense'
       type='number'
       placeholder='expense'

@@ -2,7 +2,7 @@ let reporter = store => next => action => {
   console.log('__ACTION__', action)
 
   try {
-    let result = next(action) //next updates the state, next is the dispatch middleware
+    let result = next(action) 
     console.log('__STATE__', store.getState())
 
   } catch (error){

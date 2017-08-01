@@ -13,7 +13,7 @@ describe('testing category actions', ()=> {
     expect(action.payload.title).toBe('cool')
   })
   test('category delete returns a category delete action', () => {
-    let category = {id:'124', timestamp: newDate(), title: 'cool'}
+    let mockCategory = {id:'124', timestamp: new Date(), title: 'cool'}
     let action = categoryDelete(mockCategory)
     expect(action).toEqual({
       type: 'CATEGORY_DELETE',

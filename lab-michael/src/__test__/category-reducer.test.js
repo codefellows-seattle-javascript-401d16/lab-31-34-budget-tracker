@@ -1,3 +1,5 @@
+import categoryReducer from '../reducer/category.js'
+
 describe('testing category reducer', () => {
   test('should pass',() => {
     let result = categoryReducer(undefined, {type:null})
@@ -7,44 +9,42 @@ describe('testing category reducer', () => {
   test('CATEGORY_CREATE append to the array', () => {
     let actionOne = {
       type: 'CATEGORY_CREATE',
-      payload: 'hello world',
+      payload: {id:123, title:'hello world', timestamp:new Date()},
     }
     let result = categoryReducer([], actionOne)
     expect(result.length).toBe(1)
-    expect(result[0]).toBe(action.payload)
+    expect(result[0]).toBe(actionOne.payload)
     let actionTwo = {
       type: 'CATEGORY_CREATE',
-      payload: 'hello world',
+      payload: {id:456, title:'sup dude', timestamp:new Date()},
     }
-    state = categoryReducer(state, actionTwo)
+    let state = categoryReducer(result, actionTwo)
     expect(state.length).toBe(2)
-    expect(state)
   })
 
 
-  test('CATEGORY_DELETE should delete an item from the array', () => {
+  test('CATEGORY_DELETE should delete a category from the array', () => {
     let mockState = [
-      {id: 'abc', title: 'cool'},
-      {id: '234', title: 'cool'},
-      {id: 'a567', title: 'cool'},
+      {id: 'abc', title: 'cool',timestamp: new Date()},
+      {id: '234', title: 'cool',timestamp: new Date()},
+      {id: 'a567', title: 'cool',timestamp: new Date()},
     ]
 
     let actionOne = {
       type: 'CATEGORY_DELETE',
-      payload: {id: 'abc', title:'hax'},
+      payload: mockState[2],
     }
 
-    let state = categoryReducer(mockState, actionOne)
+    let firstState = categoryReducer(mockState, actionOne)
 
-
-    expect(state.length).toBe(3)
-    expect(state).toEqual(mockState.filter(item => item.id != '123'))
+    // console.log('this is the firstState!!!!!!',mockState.length, firstState.length)
+    expect(firstState.length).toBe(2)
+    expect(firstState).toEqual(mockState.filter(item => item.id != 'a567'))
     let actionTwo = {
-      type: 'CATEGORY_CREATE',
-      payload: 'hello world',
+      type: 'CATEGORY_DELETE',
+      payload: mockState[1],
     }
-    state = categoryReducer(state, actionTwo)
-    expect(state.length).toBe(2)
-    expect(state)
+    let secondState = categoryReducer(firstState, actionTwo)
+    expect(secondState.length).toBe(1)
   })
 })
