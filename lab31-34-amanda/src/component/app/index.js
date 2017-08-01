@@ -16,7 +16,7 @@ class App extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className='app'>
         <Provider store={store}>
           <BrowserRouter>
             <Route exact path='/' component={DashboardContainer} />
