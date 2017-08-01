@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {renderIf} from '../../lib/util.js';
-
-import CategoryForm from '../category-form';
+import Dropzone from '../dropzone';
 import ExpenseForm from '../expense-form';
 import ExpenseItem from '../expense-item';
+import CategoryForm from '../category-form';
+
 import {
   categoryUpdate,
   categoryDelete,
@@ -13,67 +13,79 @@ import {
 
 import {
   expenseCreate,
+  expenseInsert,
+  expenseDelete,
 } from '../../action/expense-actions.js';
 
 class CategoryItem extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      editing: false,
-    };
+
+    this.handleDropzoneComplete = this.handleDropzoneComplete.bind(this);
   }
-  render() {
-    let {category, categoryUpdate, categoryDelete} = this.props;
+
+  handleDropzoneComplete(err, expense){
+    if (err)
+      return console.error(err);
+    this.props.expenseDelete(expense);
+
+    expense.categoryID = this.props.category.id;
+
+    this.props.expenseInsert(expense);
+  }
+
+  render(){
+    let {category, categoryUpdate, categoryDelete, expenses} = this.props;
     return (
-      <div className='category-item' onDoubleClick={() => this.setState(state => ({editing: !state.editing}))}>
-        <h2> Category name: {category.name} </h2>
-        <h3> Category budget: {category.budget} </h3>
+      <div className='category-item'>
+        <Dropzone onComplete={this.handleDropzoneComplete} >
+          <header>
+            <div className='name'>
+              <h2> {category.name} </h2>
+              <h3> budget: ${category.budget} </h3>
+              <button onClick={() => categoryDelete(category)}>
+              delete
+              </button>
+            </div>
+            <div className='editing'>
+              <CategoryForm
+                buttonText='update'
+                category={category}
+                onComplete={categoryUpdate}
+              />
+            </div>
+          </header>
 
-        {renderIf(this.state.editing === true,
-          <CategoryForm
-            category={category}
-            onComplete={(data) => {
-              data.id = category.id;
-              categoryUpdate(data);
-            }}
-            buttonText='update'
-          />
-        )}
+          <main>
+            <ExpenseForm
+              categoryID={category.id}
+              buttonText='create expense'
+              onComplete={this.props.expenseCreate}
+            />
 
-        <ExpenseForm
-          buttonText='add expense'
-          onComplete={(data) => {
-            data.categoryID = category.id;
-            this.props.expenseCreate(data);
-          }
-          }
-        />
+            <ul>
+              {expenses.map(expense =>
+                <ExpenseItem key={expense.id} expense={expense} />
+              )}
+            </ul>
+          </main>
+        </Dropzone>
 
-        {this.props.expenses[category.id].map((item =>
-          <ExpenseItem
-            key={item.id}
-            categoryID = {this.props.category.id}
-            expense={item}
-          />
-        ))}
-        <button onClick = {() => categoryDelete(category)}>
-        Delete Category
-        </button>
       </div>
     );
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-  };
-};
+let mapStateToProps = (state, props) => ({
+  expenses: state.expenses[props.category.id]
+});
 
 let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
   expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+  expenseInsert: (expense) => dispatch(expenseInsert(expense)),
+  expenseDelete: (expense) => dispatch(expenseDelete(expense)),
 });
 
 export default connect(

@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "jest": {
+    "moduleNameMapper": {
+      "\\.(css|sass|scss|mp3|mov|mp4|wat|jpg|jpeg|gif|png|svg|tiff)$": "<rootDir>/__mocks__/styleMock.js"
+    },
     "globals": {
-      "__DEBUG__": false,
-      "process.env": {
-        "NODE_ENV": "testing"
-      }
+      "__DEBUG__": false
     }
   },
   "scripts": {
@@ -47,7 +47,6 @@
     "superagent": "^3.5.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
-    "uuid": "^3.1.0",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
   }
