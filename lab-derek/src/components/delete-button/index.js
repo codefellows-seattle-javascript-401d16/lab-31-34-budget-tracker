@@ -10,8 +10,8 @@ class DeleteButton extends React.Component {
 
   handleClick(e){
     e.preventDefault();
-    console.log('this.props.category', this.props.category);
-    this.props.onClick(this.props.category);
+    console.log('props', this.props);
+    this.props.onClick(this.props.parentElement);
   }
 
 

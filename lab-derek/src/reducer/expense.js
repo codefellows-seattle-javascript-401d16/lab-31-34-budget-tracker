@@ -35,6 +35,7 @@ export default (state=initialState, action) => {
       expense => expense.id === payload.id ? payload : expense)};
 
   case 'EXPENSE_DELETE':
+    console.log('hit reducer');
     validateExpense(payload);
     return {...state, [payload.categoryID]: state[payload.categoryID].filter(
       expense => expense.id !== payload.id)};

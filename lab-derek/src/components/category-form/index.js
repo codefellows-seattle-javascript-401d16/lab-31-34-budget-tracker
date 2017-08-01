@@ -24,7 +24,8 @@ class CategoryForm extends React.Component {
     e.preventDefault();
     console.log('cat update form', this.state);
     this.props.onComplete(Object.assign({}, this.state));
-    this.setState({name: '', budget: 0});
+    if(!this.props.category)
+      this.setState({name: '', budget: 0});
   }
 
   render() {

@@ -10,7 +10,7 @@
 ##### expense
 * in this app a expense should contain at least the following propertys
   * DONE:  `id` a uuid
-  * TODO:  `categoryID` an id that corresponds to an existing category
+  * DONE:  `categoryID` an id that corresponds to an existing category
   * DONE:  `timestamp` a date from when the category was created
   * DONE:  `name` a string that is the name of the category
   * DONE:  `price` a number that is the total amount of $ in the category
@@ -18,8 +18,8 @@
 
 ##### redux
 ###### app reducer
-* TODO:  export a reducer that hols the entire app state from `reducer/index.js`
-* TODO:  create a reducer that will combine you categories reducer and expenses reducer
+* DONE:  export a reducer that hols the entire app state from `reducer/index.js`
+* DONE:  create a reducer that will combine you categories reducer and expenses reducer
 
 
 ###### expenses reducer
@@ -31,10 +31,10 @@
 * TODO:  if you need others feel free to add them
 
 ###### action creators
-* TODO:  you should create an action createor for each interaction supported by your expenses reducer
+* DONE:  you should create an action createor for each interaction supported by your expenses reducer
 
 ###### store
-* TODO:  in `lib/store.js` export a function  that will return a redux store from your app reducer
+* DONE:  in `lib/store.js` export a function  that will return a redux store from your app reducer
 
 ##### Components
 Create the following components and structure them according to the following diagram.  
@@ -52,19 +52,19 @@ App
 ```
 
 ###### Update the CategoryItem Component
-* TODO:  should keep all of the features described in lab-31
-* TODO:  add an ExpenseForm to your category item that enables the user to create expenses on your app state
-* TODO:  display list all the ExpenseItems belonging to the category
+* DONE:  should keep all of the features described in lab-31
+* DONE:  add an ExpenseForm to your category item that enables the user to create expenses on your app state
+* DONE:  display list all the ExpenseItems belonging to the category
 
 
 ##### ExpenseForm Component
-* TODO:  should have an `onComplete` prop that will be invoked with the form state on submit
-* TODO:  should support an `expense` prop that will both set the intial form state, and update the state in the hook on `componentWillReceiveProps()`
-* TODO:  should have a `buttonText` prop that will configure the submit button's text
+* DONE:  should have an `onComplete` prop that will be invoked with the form state on submit
+* DONE:  should support an `expense` prop that will both set the intial form state, and update the state in the hook on `componentWillReceiveProps()`
+* DONE:  should have a `buttonText` prop that will configure the submit button's text
 
 ##### ExpenseItem Component
-* TODO:  should have a button that will delete the expense from the appState `onClick`
-* TODO:  should display the `name` and `price` of the component
+* DONE:  should have a button that will delete the expense from the appState `onClick`
+* DONE:  should display the `name` and `price` of the component
 * TODO:  should display an ExpenseForm that will enable the user to update the expense in the app state
 
 #### Test

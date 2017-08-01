@@ -6,7 +6,6 @@ import DeleteButton from '../delete-button';
 import CategoryForm from '../category-form';
 
 import {
-  categoryCreate,
   categoryUpdate,
   categoryDelete,
 } from '../../actions/category-actions.js';
@@ -26,11 +25,7 @@ class CategoryItem extends React.Component {
       <div>
         <h3>{category.name}</h3>
         <h4>Budget: ${category.budget}</h4>
-        <DeleteButton
-          type='submit'
-          submitText='Delete'
-          onClick={categoryDelete}
-          category={category} />
+        <button onClick = {() => categoryDelete(category)}> delete </button>
         <CategoryForm
           category={category}
           submitText='Update Budget Category'
@@ -59,12 +54,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    categoryCreate: category => dispatch(categoryCreate(category)),
     categoryUpdate: category => dispatch(categoryUpdate(category)),
     categoryDelete: category => dispatch(categoryDelete(category)),
     expenseCreate: expense => dispatch(expenseCreate(expense)),
-    expenseUpdate: expense => dispatch(expenseUpdate(expense)),
-    expenseDelete: expense => dispatch(expenseDelete(expense)),
   };
 };
 
