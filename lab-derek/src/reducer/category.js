@@ -11,12 +11,10 @@ export default (state=initialState, action) => {
   switch(type) {
   case 'CATEGORY_CREATE':
     validatePayload(payload);
-    console.log('hit cat create');
     return [...state, payload];
 
   case 'CATEGORY_UPDATE':
     validatePayload(payload);
-    console.log('hit cat update');
     return state.map(category => category.id === payload.id ? payload : category);
 
   case 'CATEGORY_DELETE':

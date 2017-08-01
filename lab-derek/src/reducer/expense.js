@@ -23,7 +23,6 @@ export default (state=initialState, action) => {
     return {...state, [payload.id]: undefined};
 
   case 'EXPENSE_CREATE':
-    console.log('payload', payload);
     validateExpense(payload);
     let {categoryID} = payload;
     let categoryExpenses = [...state[categoryID]];
@@ -35,7 +34,6 @@ export default (state=initialState, action) => {
       expense => expense.id === payload.id ? payload : expense)};
 
   case 'EXPENSE_DELETE':
-    console.log('hit reducer');
     validateExpense(payload);
     return {...state, [payload.categoryID]: state[payload.categoryID].filter(
       expense => expense.id !== payload.id)};
