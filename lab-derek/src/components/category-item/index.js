@@ -38,7 +38,8 @@ class CategoryItem extends React.Component {
         <ExpenseForm
           submitText='Create Expense'
           category={category}
-          onComplete={expenseUpdate} />
+          categoryID={category.id}
+          onComplete={expenseCreate} />
         {expenses[category.id].map((expense) =>
           <div key={expense.id}>
             <ExpenseItem

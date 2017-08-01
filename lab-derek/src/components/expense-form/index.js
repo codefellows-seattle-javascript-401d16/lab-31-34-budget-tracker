@@ -3,11 +3,8 @@ import React from 'react';
 class ExpenseForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      name: props.expense ? props.expense.name : '',
-      price: props.expense ? props.expense.price : 0,
-      categoryId: props.expense ? props.expense.categoryId : '',
-    };
+    console.log('props', props);
+    this.state = props.expense ? {...props.expense} : {name: '', price: 0, categoryID: props.categoryID};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,7 +23,6 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({categoryId: this.props.category.id});
     this.props.onComplete(Object.assign({}, this.state));
     this.setState({name: '', budget: 0, categoryId: ''});
   }
@@ -34,7 +30,7 @@ class ExpenseForm extends React.Component {
   render() {
     return(
       <form className='expense-form'
-      onSubmit={this.handleSubmit}>
+        onSubmit={this.handleSubmit}>
         <input
           name='name'
           type='text'

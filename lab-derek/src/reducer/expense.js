@@ -4,8 +4,8 @@ let validateCategory = (category) => {
 };
 
 let validateExpense = (expense) => {
-  if(!expense.id || !expense.name || !expense.budget)
-    throw new Error('VALIDATION ERROR: expense must have name, budget, and id');
+  if(!expense.id || !expense.name || !expense.price)
+    throw new Error('VALIDATION ERROR: expense must have name, price, and id');
 };
 
 let initialState = {};
@@ -23,6 +23,7 @@ export default (state=initialState, action) => {
     return {...state, [payload.id]: undefined};
 
   case 'EXPENSE_CREATE':
+    console.log('payload', payload);
     validateExpense(payload);
     let {categoryID} = payload;
     let categoryExpenses = [...state[categoryID]];
@@ -37,9 +38,6 @@ export default (state=initialState, action) => {
     validateExpense(payload);
     return {...state, [payload.categoryID]: state[payload.categoryID].filter(
       expense => expense.id !== payload.id)};
-  //
-  // case 'EXPENSE_RESET':
-  //   return initialState;
 
   default:
     return state;
