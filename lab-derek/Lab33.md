@@ -2,20 +2,20 @@
 ===
 
 ## Submission Instructions
-  * continue working from lab 32
-  * submit a pull request to the project
+  * DONE: continue working from lab 32
+  * DONE: submit a pull request to the project
 
 ## Requirements  
 #### Feature Tasks
-* complete the lab 31 and 32 tasks
-* add a reporter middleware to your app's redux store
-* add validation to your redux reducers
+  * DONE: complete the lab 31 and 32 tasks
+  * DONE: add a reporter middleware to your app's redux store
+  * DONE: add validation to your redux reducers
 
 #### Test
-* Test every component except app
-* Test all of your action creators
-* Test each reducer used in your apps combineReducers
-  * test that the validation is working!
+  * TODO: Test every component except app
+  * TODO: Test all of your action creators
+  * TODO: Test each reducer used in your apps combineReducers
+  * TODO: test that the validation is working!
 
 ####  Documentation  
 Write a description of the project in your README.md

@@ -10,7 +10,6 @@ class DeleteButton extends React.Component {
 
   handleClick(e){
     e.preventDefault();
-    console.log('props', this.props);
     this.props.onClick(this.props.parentElement);
   }
 
@@ -18,7 +17,7 @@ class DeleteButton extends React.Component {
   render(){
     return (
       <button type='button' onClick={this.handleClick}> {this.props.submitText} </button>
-    )
+    );
   }
 }
 

@@ -9,10 +9,6 @@ const store = CreateAppStore();
 class App extends React.Component {
 
   componentDidMount() {
-    store.subscribe(() => {
-      console.log('<<<<<<<<<<STATE>>>>>>>>>>>', store.getState());
-    });
-
     store.dispatch({type: null});
   }
 
