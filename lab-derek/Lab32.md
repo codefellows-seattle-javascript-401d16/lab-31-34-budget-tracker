@@ -65,7 +65,7 @@ App
 ##### ExpenseItem Component
 * DONE:  should have a button that will delete the expense from the appState `onClick`
 * DONE:  should display the `name` and `price` of the component
-* TODO:  should display an ExpenseForm that will enable the user to update the expense in the app state
+* DONE:  should display an ExpenseForm that will enable the user to update the expense in the app state
 
 #### Test
 * TODO:  Test your ExpenseForm and CategoryForm

@@ -25,7 +25,11 @@ class CategoryItem extends React.Component {
       <div>
         <h3>{category.name}</h3>
         <h4>Budget: ${category.budget}</h4>
-        <button onClick = {() => categoryDelete(category)}> delete </button>
+        <DeleteButton
+          onClick={categoryDelete}
+          submitText='delete'
+          parentElement={category}
+        />        
         <CategoryForm
           category={category}
           submitText='Update Budget Category'

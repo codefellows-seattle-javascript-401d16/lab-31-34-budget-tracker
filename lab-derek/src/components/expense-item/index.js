@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import DeleteButton from '../delete-button';
+import ExpenseForm from '../expense-form';
 
 import {
   expenseUpdate,
@@ -17,7 +18,15 @@ class ExpenseItem extends React.Component {
       <div>
         <h4>{expense.name}</h4>
         <h5>Budget: ${expense.price}</h5>
-        <button onClick = {() => expenseDelete(expense)}> delete </button>
+        <DeleteButton
+          onClick={expenseDelete}
+          submitText='delete'
+          parentElement={expense}
+        />
+        <ExpenseForm
+          expense={expense}
+          submitText='Update Expense'
+          onComplete={expenseUpdate} />
       </div>
     );
   }
