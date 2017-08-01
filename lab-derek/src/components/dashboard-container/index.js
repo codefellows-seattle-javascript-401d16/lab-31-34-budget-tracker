@@ -6,10 +6,10 @@ import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
 
 import {
-  budgetCreate,
-  budgetUpdate,
-  budgetDelete,
-} from '../../actions/budget-category-actions.js';
+  categoryCreate,
+  categoryUpdate,
+  categoryDelete,
+} from '../../actions/category-actions.js';
 
 import {
   expenseCreate,
@@ -26,7 +26,7 @@ class DashboardContainer extends React.Component {
         <h2> Budget Dashboard </h2>
         <CategoryForm
           submitText='Add Budget Category'
-          onComplete={this.props.budgetCreate} />
+          onComplete={this.props.categoryCreate} />
         {this.props.categories.map((category) =>
           <div key={category.id}>
             <CategoryItem
@@ -48,9 +48,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    budgetCreate: category => dispatch(budgetCreate(category)),
-    budgetUpdate: category => dispatch(budgetUpdate(category)),
-    budgetDelete: category => dispatch(budgetDelete(category)),
+    categoryCreate: category => dispatch(categoryCreate(category)),
+    categoryUpdate: category => dispatch(categoryUpdate(category)),
+    categoryDelete: category => dispatch(categoryDelete(category)),
     expenseCreate: expense => dispatch(expenseCreate(expense)),
     expenseUpdate: expense => dispatch(expenseUpdate(expense)),
     expenseDelete: expense => dispatch(expenseDelete(expense)),

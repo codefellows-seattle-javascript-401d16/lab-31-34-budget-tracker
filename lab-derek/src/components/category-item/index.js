@@ -6,10 +6,10 @@ import DeleteButton from '../delete-button';
 import CategoryForm from '../category-form';
 
 import {
-  budgetCreate,
-  budgetUpdate,
-  budgetDelete,
-} from '../../actions/budget-category-actions.js';
+  categoryCreate,
+  categoryUpdate,
+  categoryDelete,
+} from '../../actions/category-actions.js';
 
 import {
   expenseCreate,
@@ -20,7 +20,7 @@ import {
 class CategoryItem extends React.Component {
   render(){
 
-    let {category, budgetUpdate, budgetDelete, expenses, expenseCreate} = this.props;
+    let {category, categoryUpdate, categoryDelete, expenses, expenseCreate} = this.props;
 
     return(
       <div>
@@ -29,12 +29,12 @@ class CategoryItem extends React.Component {
         <DeleteButton
           type='submit'
           submitText='Delete'
-          onClick={budgetDelete}
+          onClick={categoryDelete}
           category={category} />
         <CategoryForm
           category={category}
           submitText='Update Budget Category'
-          onComplete={budgetUpdate} />
+          onComplete={categoryUpdate} />
         <ExpenseForm
           submitText='Create Expense'
           category={category}
@@ -59,9 +59,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    budgetCreate: category => dispatch(budgetCreate(category)),
-    budgetUpdate: category => dispatch(budgetUpdate(category)),
-    budgetDelete: category => dispatch(budgetDelete(category)),
+    categoryCreate: category => dispatch(categoryCreate(category)),
+    categoryUpdate: category => dispatch(categoryUpdate(category)),
+    categoryDelete: category => dispatch(categoryDelete(category)),
     expenseCreate: expense => dispatch(expenseCreate(expense)),
     expenseUpdate: expense => dispatch(expenseUpdate(expense)),
     expenseDelete: expense => dispatch(expenseDelete(expense)),
