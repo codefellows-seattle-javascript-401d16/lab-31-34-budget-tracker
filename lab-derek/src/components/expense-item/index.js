@@ -12,12 +12,16 @@ import {
 
 
 class ExpenseItem extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
   render(){
 
     let {expense, expenseUpdate, expenseDelete} = this.props;
 
     return(
-      <Draggable dataTransferItem={this.props.expense}>
+      <Draggable dataTransferItem={expense}>
         <div className='expense-item'>
           <h4>{expense.name}</h4>
           <h5>Budget: ${expense.price}</h5>

@@ -33,6 +33,7 @@ class CategoryItem extends React.Component {
     expense.categoryID = this.props.category.id;
     this.props.expenseInsert(expense);
   }
+
   render(){
 
     let {category, categoryUpdate, categoryDelete, expenses, expenseCreate} = this.props;
@@ -59,7 +60,8 @@ class CategoryItem extends React.Component {
           {expenses[category.id].map((expense) =>
             <div key={expense.id}>
               <ExpenseItem
-                expense={expense} />
+                expense={expense}
+              />
             </div>
           )}
         </div>
