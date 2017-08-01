@@ -6,6 +6,8 @@ import {
   expenseDelete,
 } from '../../action/expense-action.js'
 
+import Draggable from '../draggable'
+
 
 
 
@@ -14,6 +16,7 @@ class ExpenseItem extends React.Component {
     let {expense} = this.props
     return (
           <div className='expense-item'>
+          <Draggable dataTransferItem={expense}>
           <div>
           <div className='content'>
             <p> Title: {expense.title} </p>
@@ -38,6 +41,7 @@ class ExpenseItem extends React.Component {
             }}/>
           </div>
         </div>
+        </Draggable>
       </div>
 
     )

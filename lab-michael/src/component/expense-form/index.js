@@ -29,8 +29,11 @@ class ExpenseForm extends React.Component {
     this.props.onComplete({...this.state})
     // if(!this.props.expense.categoryID)
     //   this.setState({categoryID:this.props.expense.categoryID})
-    // if(!this.props.expense)
-    //   this.setState({title:''})
+    if(!this.props.expense) {
+      this.setState({title:''})
+      this.setState({expense:''})
+    }
+
   }
 
   render(){
