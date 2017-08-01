@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import DeleteButton from '../delete-button';
+
+import Draggable from '../draggable';
 import ExpenseForm from '../expense-form';
+import DeleteButton from '../delete-button';
 
 import {
   expenseUpdate,
@@ -10,24 +12,30 @@ import {
 
 
 class ExpenseItem extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
   render(){
 
     let {expense, expenseUpdate, expenseDelete} = this.props;
 
     return(
-      <div>
-        <h4>{expense.name}</h4>
-        <h5>Budget: ${expense.price}</h5>
-        <DeleteButton
-          onClick={expenseDelete}
-          submitText='delete'
-          parentElement={expense}
-        />
-        <ExpenseForm
-          expense={expense}
-          submitText='Update Expense'
-          onComplete={expenseUpdate} />
-      </div>
+      <Draggable dataTransferItem={expense}>
+        <div className='expense-item'>
+          <h4>{expense.name}</h4>
+          <h5>Budget: ${expense.price}</h5>
+          <DeleteButton
+            onClick={expenseDelete}
+            submitText='delete'
+            parentElement={expense}
+          />
+          <ExpenseForm
+            expense={expense}
+            submitText='Update Expense'
+            onComplete={expenseUpdate} />
+        </div>
+      </Draggable>
     );
   }
 }
