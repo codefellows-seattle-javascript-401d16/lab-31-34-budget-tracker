@@ -1,12 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import {
-  categoryCreate,
-} from '../../action/category-action.js'
+import { categoryCreate } from '../../action/category-action.js'
 
 import CategoryForm from '../category-form-component'
 import CategoryItem from '../category-item-component'
+import { expenseCreate } from '../../action/expense-action.js'
 
 class DashboardContainer extends React.Component {
   render() {
@@ -34,7 +32,8 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state,
+    categories: state.categories,
+    expenses: state.expenses,
   }
 }
 

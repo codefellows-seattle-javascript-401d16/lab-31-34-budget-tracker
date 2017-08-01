@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {categoryCreate} from '../../action/category-action.js'
 
 class CategoryForm extends React.Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    // this.props.onComplete({...this.state})
     this.props.categoryCreate(Object.assign({}, this.state))
   }
 
@@ -47,4 +48,16 @@ class CategoryForm extends React.Component {
   }
 }
 
-export default CategoryForm
+const mapStateToProps = state => {
+  return {
+    categories: state.categories
+  }
+}
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    categoryCreate: category => dispatch(categoryCreate(category)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm)
