@@ -6,6 +6,7 @@ class ExpenseForm extends React.Component {
     this.state = {
       name: props.expense ? props.expense.name : '',
       price: props.expense ? props.expense.price : 0,
+      categoryId: props.expense ? props.expense.categoryId : '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,8 +26,9 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({categoryId: this.props.category.id});
     this.props.onComplete(Object.assign({}, this.state));
-    this.setState({name: '', budget: 0});
+    this.setState({name: '', budget: 0, categoryId: ''});
   }
 
   render() {

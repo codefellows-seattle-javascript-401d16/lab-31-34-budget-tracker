@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
+import ExpenseItem from '../expense-item';
 import DeleteButton from '../delete-button';
 import CategoryForm from '../category-form';
 
@@ -18,30 +19,40 @@ import {
 
 class CategoryItem extends React.Component {
   render(){
+
+    let {category, categoryUpdate, categoryDelete, expenses, expenseCreate} = this.props;
+
     return(
       <div>
-        <h3>{this.props.category.name}</h3>
-        <h4>Budget: ${this.props.category.budget}</h4>
-          <DeleteButton
-            type='submit'
-            submitText='Delete'
-            onClick={this.props.budgetDelete}
-            category={this.props.category} />
-          <CategoryForm
-            category={this.props.category}
-            submitText='Update Budget Category'
-            onComplete={this.props.budgetUpdate} />
-          <ExpenseForm
-              submitText='Create Expense'
-              onComplete={this.props.expenseUpdate} />
+        <h3>{category.name}</h3>
+        <h4>Budget: ${category.budget}</h4>
+        <DeleteButton
+          type='submit'
+          submitText='Delete'
+          onClick={budgetDelete}
+          category={category} />
+        <CategoryForm
+          category={category}
+          submitText='Update Budget Category'
+          onComplete={budgetUpdate} />
+        <ExpenseForm
+          submitText='Create Expense'
+          category={category}
+          onComplete={expenseUpdate} />
+        {expenses[category.id].map((expense) =>
+          <div key={expense.id}>
+            <ExpenseItem
+              expense={expense} />
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    categories: state,
+    expenses: state.expenses,
   };
 };
 
