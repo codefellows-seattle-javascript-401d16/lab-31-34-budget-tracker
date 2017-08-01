@@ -20,7 +20,7 @@ import {
 class CategoryItem extends React.Component {
   render(){
 
-    let {category, categoryUpdate, categoryDelete, expenses, expenseCreate} = this.props;
+    let {category, budgetUpdate, budgetDelete, expenses, expenseCreate} = this.props;
 
     return(
       <div>
