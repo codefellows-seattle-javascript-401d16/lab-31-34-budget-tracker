@@ -1,21 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import {
-  categoryCreate,
-  categoryUpdate,
-  categoryDelete,
-} from '../../action/category-action.js'
+import { categoryCreate } from '../../action/category-action.js'
 
 import CategoryForm from '../category-form-component'
 import CategoryItem from '../category-item-component'
+import { expenseCreate } from '../../action/expense-action.js'
 
 class DashboardContainer extends React.Component {
   render() {
     return (
       <main className="dashboard-container">
         <h2> dashboard </h2>
-        <CategoryForm categoryCreate={this.props.categoryCreate} />
+        <CategoryForm onComplete={this.props.categoryCreate} />
         <ul id="categories">
           {this.props.categories.map((item, i) => {
             return (
@@ -36,7 +32,8 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state,
+    categories: state.categories,
+    expenses: state.expenses,
   }
 }
 

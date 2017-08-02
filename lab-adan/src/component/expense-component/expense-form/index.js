@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {categoryCreate} from '../../action/category-action.js'
 
-class CategoryForm extends React.Component {
+import { expenseCreate } from '../../../action/expense-action.js'
+
+class ExpenseForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : '',
+      name: props.expense ? props.expense.name : '',
+      price: props.expense ? props.expense.price : '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,12 +22,13 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.categoryCreate(Object.assign({}, this.state))
+    this.props.onComplete({ ...this.state })
   }
 
   render() {
+    let { expenses, categoryId } = this.props
     return (
-      <form className="category-form" onSubmit={this.handleSubmit}>
+      <form className="expense-form" onSubmit={this.handleSubmit}>
         <input
           name="name"
           type="text"
@@ -35,14 +37,14 @@ class CategoryForm extends React.Component {
           onChange={this.handleChange}
         />
         <input
-          name="budget"
+          name="price"
           type="number"
-          placeholder="budget"
-          value={this.state.budget}
+          placeholder="price"
+          value={this.state.price}
           onChange={this.handleChange}
         />
 
-        <button type="submit">add budget</button>
+        <button type="submit">add cost item</button>
       </form>
     )
   }
@@ -50,14 +52,16 @@ class CategoryForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories
+    expense: state.expense,
   }
 }
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    categoryCreate: category => dispatch(categoryCreate(category)),
+    expenseCreate: expense => {
+      dispatch(expenseCreate(expense))
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm)
