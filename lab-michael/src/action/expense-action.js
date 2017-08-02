@@ -10,14 +10,19 @@ export const expenseCreate = (expense) => {
   }
 }
 
+export const expenseInsert = (expense) => ({
+  type: 'EXPENSE_CREATE',
+  payload: {...expense},
+})
+
 export const expenseUpdate = (expense) => ({
   type: 'EXPENSE_UPDATE',
-  payload: expense,
+  payload: {...expense},
 })
 
 export const expenseDelete = (expense) => ({
   type: 'EXPENSE_DELETE',
-  payload: expense,
+  payload: {...expense},
 })
 
 export const expenseReset = () => ({type: 'EXPENSE_RESET'})

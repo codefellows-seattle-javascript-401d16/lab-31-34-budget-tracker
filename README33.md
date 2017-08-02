@@ -12,8 +12,8 @@
 * add validation to your redux reducers
 
 #### Test
-* Test every component except app
-* Test all of your action creators
+* Test every component except app Does this include the item components? if the form is tested?
+* Test all of your action creators DONE
 * Test each reducer used in your apps combineReducers DONE
   * test that the validation is working! DONE
 
