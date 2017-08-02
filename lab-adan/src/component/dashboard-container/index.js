@@ -1,3 +1,4 @@
+import './_dashboard-container.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { categoryCreate } from '../../action/category-action.js'
@@ -10,7 +11,7 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <main className="dashboard-container">
-        <h2> dashboard </h2>
+        <h2> Budget Dashboard </h2>
         <CategoryForm onComplete={this.props.categoryCreate} />
         <ul id="categories">
           {this.props.categories.map((item, i) => {
