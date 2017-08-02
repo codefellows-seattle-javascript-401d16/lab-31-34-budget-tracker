@@ -7,7 +7,7 @@ import {
   expenseUpdate,
   expenseDelete,
   expenseInsert,
-} from '../../../action/expense-actions.js'
+} from '../../../action/expense-action.js'
 
 let renderIf = (t, c) => (t ? c : undefined)
 class ExpenseItem extends React.Component {
