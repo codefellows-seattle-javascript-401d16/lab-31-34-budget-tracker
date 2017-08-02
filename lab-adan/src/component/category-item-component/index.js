@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import CategoryForm from '../category-form-component'
-
 import ExpenseForm from '../expense-component/expense-form'
 import ExpenseItem from '../expense-component/expense-item'
+import Dropzone from '../dropzone'
 
 import {
   expenseCreate,
   expenseUpdate,
   expenseDelete,
+  expenseInsert,
 } from '../../action/expense-action.js'
 
 import {
@@ -31,6 +31,16 @@ class CategoryItem extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleUpdateCategory = this.handleUpdateCategory.bind(this)
+    this.handleDropzoneComplete = this.handleDropzoneComplete.bind(this)
+  }
+  handleDropzoneComplete(err, expense) {
+    if (err) return console.error(err)
+
+    this.props.expenseDelete(expense)
+    console.log('this.props.item in category item', this.props.item)
+    expense.categoryId = this.props.item.id
+
+    this.props.expenseInsert(expense)
   }
 
   handleChange(e) {
@@ -48,85 +58,80 @@ class CategoryItem extends React.Component {
   }
 
   handleUpdateCategory() {
-    console.log('updateCategory')
     this.setState(state => ({ updateCategory: !state.updateCategory }))
-    console.log('after updateCategory', this.state.updateCategory)
   }
 
   render() {
-    console.log('rendering after update')
     let categoryId = this.props.item.id
     return (
       <div className="container">
-        <div onDoubleClick={this.handleUpdateCategory}>
-          {renderIf(
-            this.state.updateCategory,
-            <div className="budget-item-update">
-              {console.log('rendering after update')}
-              <input
-                name="name"
-                type="text"
-                value={this.props.item.name}
-                onChange={this.handleChange}
-                onBlur={() => this.props.categoryUpdate(this.props.item)}
-              />
-              <input
-                name="budget"
-                type="number"
-                value={this.props.item.budget}
-                onChange={this.handleChange}
-                onBlur={() => {
-                  this.props.categoryUpdate(this.props.item)
-                  this.setState({ updateCategory: false })
-                }}
-              />
-            </div>
-          )}
+        <Dropzone onComplete={this.handleDropzoneComplete}>
+          <div onDoubleClick={this.handleUpdateCategory}>
+            {renderIf(
+              this.state.updateCategory,
+              <div className="budget-item-update">
+                <input
+                  name="name"
+                  type="text"
+                  value={this.props.item.name}
+                  onChange={this.handleChange}
+                  onBlur={() => this.props.categoryUpdate(this.props.item)}
+                />
+                <input
+                  name="budget"
+                  type="number"
+                  value={this.props.item.budget}
+                  onChange={this.handleChange}
+                  onBlur={() => {
+                    this.props.categoryUpdate(this.props.item)
+                    this.setState({ updateCategory: false })
+                  }}
+                />
+              </div>
+            )}
 
+            {renderIf(
+              !this.state.updateCategory,
+              <div key={this.props.item.id}>
+                <h3>
+                  Category: {this.props.item.name}
+                </h3>
+                <h3>
+                  Budget: {this.props.item.budget}
+                </h3>
+                <button
+                  onClick={() => this.props.categoryDelete(this.props.item)}
+                  className="note-item-delete"
+                >
+                  x
+                </button>
+                <ExpenseForm
+                  onComplete={data => {
+                    data.categoryId = this.props.item.id
+                    this.props.expenseCreate(data)
+                    expenseDoesExist = true
+                  }}
+                />
+              </div>
+            )}
+          </div>
           {renderIf(
-            !this.state.updateCategory,
-            <div key={this.props.item.id}>
-              <h3>
-                Category Name:{this.props.item.name}
-              </h3>
-              <h3>
-                Item Budget: {this.props.item.budget}
-              </h3>
-              <h3>
-                Last Updated: {this.props.item.timestamp.toString()}
-              </h3>
-              <button
-                onClick={() => this.props.categoryDelete(this.props.item)}
-                className="note-item-delete"
-              >
-                x
-              </button>
-              <ExpenseForm
-                onComplete={data => {
-                  data.categoryId = this.props.item.id
-                  this.props.expenseCreate(data)
-                  expenseDoesExist = true
-                }}
-              />
-            </div>
+            expenseDoesExist,
+            <ul id="category-expenses">
+              {this.props.expenses[categoryId].map((item, i) => {
+                return (
+                  <li key={item.id}>
+                    <ExpenseItem
+                      item={item}
+                      expenseUpdate={this.props.categoryUpdate}
+                      expenseDelete={this.props.categoryDelete}
+                    />
+                  </li>
+                )
+              })}
+            </ul>
           )}
-        </div>
-        {renderIf(
-          expenseDoesExist,
-          <ul id="category-expenses">
-            {this.props.expenses[categoryId].map((item, i) => {
-              return (
-                <li key={item.id}>
-                  <ExpenseItem
-                    item={item}
-                    expenseUpdate={this.props.categoryUpdate}
-                    expenseDelete={this.props.categoryDelete}
-                  />
-                </li>
-              )
-            })}
-          </ul>
-        )}
+        </Dropzone>
       </div>
     )
   }
@@ -149,6 +154,9 @@ const mapDispatchToProps = (dispatch, getState) => {
     },
     expenseDelete: expense => {
       dispatch(expenseDelete(expense))
+    },
+    expenseInsert: expense => {
+      dispatch(expenseInsert(expense))
     },
     categoryUpdate: category => {
       dispatch(categoryUpdate(category))
