@@ -1,0 +1,38 @@
+@import "./_vars.scss";
+
+* {
+  position: static;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-decoration: none;
+  color: $color-black;
+  border: none;
+  outline: none;
+  background: none;
+  white-space: normal;
+  list-style: none;
+  display: inline;
+}
+
+form *:focus {
+  border: none;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  color: black;
+}
+
+
+title, script, link {
+  display: none;
+}
