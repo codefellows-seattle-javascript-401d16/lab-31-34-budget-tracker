@@ -5,6 +5,10 @@ import Dropzone from '../dropzone';
 import ExpenseItem from '../expense-item';
 import ExpenseForm from '../expense-form';
 import CategoryForm from '../category-form';
+import {
+  categoryUpdate,
+  categoryDelete,
+} from '../../action/category-actions.js';
 
 import {
   expenseCreate,
@@ -12,10 +16,6 @@ import {
   expenseDelete,
 } from '../../action/expense-actions.js';
 
-import {
-  categoryUpdate,
-  categoryDelete,
-} from '../../action/category-actions.js';
 
 class CategoryItem extends React.Component{
   constructor(props){
@@ -24,11 +24,15 @@ class CategoryItem extends React.Component{
     this.handleDropzoneComplete = this.handleDropzoneComplete.bind(this);
   }
 
-  handleDropZoneComplete(err, expense){
+  handleDropzoneComplete(err, expense){
     if (err)
       return console.error(err);
 
     this.props.expenseDelete(expense);
+
+    expense.categoryID = this.props.category.id;
+
+    this.props.expenseInsert(expense);
   }
 
   render(){
