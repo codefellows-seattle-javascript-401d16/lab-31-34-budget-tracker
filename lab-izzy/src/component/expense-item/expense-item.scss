@@ -1,0 +1,25 @@
+@import '../../style/_vars.scss';
+
+.expense-item {
+  margin: 0;
+  list-style: none;
+  margin-bottom: $pad;
+  padding-bottom: $pad;
+  border-bottom: solid 1px $color-primary;
+
+  button {
+    width: 20%;
+    height: 100%;
+    display: inline-block;
+    background: $color-error;
+  }
+
+  p {
+    height: 100%;
+    padding: $pad;
+    margin-right: $pad;
+    display: inline-block;
+    width: calc(40% - 0.5em);
+    background: $color-secondary;
+  }
+}

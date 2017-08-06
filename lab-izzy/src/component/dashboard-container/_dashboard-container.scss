@@ -1,0 +1,25 @@
+@import '../../style/_vars.scss';
+
+.dashboard-container {
+  .dashboard-main {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: $pad * 2;
+  }
+}
+.category-item {
+  float: left;
+  width: 250px;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.dropzone {
+  height: 100%;
+  width: 100%;
+  background: #93d3fb;
+}
+
+.drop-ready {
+  background: #0f0;
+}
