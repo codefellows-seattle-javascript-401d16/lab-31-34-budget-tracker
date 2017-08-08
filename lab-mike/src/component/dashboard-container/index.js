@@ -1,13 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-class DashboardContainer extends React.Component {
+import {
+  categoryCreate,
+  categoryUpdate,
+  categoryDelete,
+} from '../../action/category-actions.js';
+import CategoryForm from '../category-form';
 
+class DashboardContainer extends React.Component {
   render () {
     return (
-      <main>
+      <main className='dashboard-container'>
+        <CategoryForm
+          buttonText='Create Category'
+          onComplete={this.props.categoryCreate}
+        />
       </main>
-    )
+    );
   }
 
 }
