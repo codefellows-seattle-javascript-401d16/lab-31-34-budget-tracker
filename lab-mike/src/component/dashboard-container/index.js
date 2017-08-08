@@ -13,13 +13,26 @@ class DashboardContainer extends React.Component {
     return (
       <main className='dashboard-container'>
         <CategoryForm
-          buttonText='Create Category'
+          buttonContent='Create Category'
           onComplete={this.props.categoryCreate}
         />
       </main>
     );
   }
-
 }
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    categoryCreate: (category) => dispatch(categoryCreate(category)),
+    categoryUpdate: (category) => dispatch(categoryUpdate(category)),
+    categoryDelete: (category) => dispatch(categoryDelete(category)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

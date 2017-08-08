@@ -1,5 +1,6 @@
 'use strict';
 
+const production = process.env.NODE_ENV === 'production';
 const HtmlPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 
