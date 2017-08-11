@@ -17,9 +17,12 @@ class DropZone extends React.Component{
   handleDrop(e){
     e.preventDefault();
     console.log('hit handle drop');
+    console.log('DZ props: ', this.props);
     try {
+      let category = this.props.category;
       let item = JSON.parse(e.dataTransfer.getData('application/json'));
-      this.props.onComplete(null, item);
+      console.log('item: ', item);
+      this.props.onComplete(null, item, category);
     } catch (error) {
       this.props.onComplete(error);
     }

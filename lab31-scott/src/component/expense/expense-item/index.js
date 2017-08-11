@@ -15,9 +15,9 @@ class ExpenseItem extends React.Component{
           <div className='expense-header'>
             <h6>Expenses for {this.props.category.name}</h6>
           </div>
-          <Draggable dataTransferItem={this.props.expenses}>
-            {this.props.expenses.map(expense => {
-              return <li key={expense.id} className='expense-item'>
+          {this.props.expenses.map(expense => {
+            return <Draggable key={expense.id} dataTransferItem={expense}>
+              <li key={expense.id} className='expense-item'>
                 <h3>Expense: {expense.title}</h3>
                 <h3>Amount: ${expense.amount}</h3>
                 <ExpenseForm
@@ -26,9 +26,9 @@ class ExpenseItem extends React.Component{
                   expense={expense}
                 />
                 <button className='delete-button' onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
-              </li>;
-            })}
-          </Draggable>
+              </li>
+            </Draggable>;
+          })}
         </ul>
       </div>
     );
@@ -36,10 +36,6 @@ class ExpenseItem extends React.Component{
 }
 
 const mapStateToProps = (state, props) => {
-  console.log('EXPI MSTP S: ', state);
-  console.log('EXPI MSTP SE: ', state.expenses);
-  console.log('EXPI MSTP catID: ', props.categoryID);
-  console.log('EXPI MSTP full: ', state.expenses[props.categoryID]);
   return {
     expenses: state.expenses[props.category.id],
   };

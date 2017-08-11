@@ -19,16 +19,17 @@ class CategoryItem extends React.Component{
     this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this);
   }
 
-  handleDropZoneComplete(error, expense){
+  handleDropZoneComplete(error, expense, category){
     console.log('hit DZ complete');
-    console.log('DZ props:', this.props.category);
     if(error) return console.error(error);
     // send the expense to be removed from the old category
     console.log('DZ expense: ', expense);
     this.props.expenseDestroy(expense);
+    console.log('HDZ props: ', this.props);
+    console.log('HDZ category: ', category);
     //give the expense a new category ID based on the drop zone
     console.log('DZ expense2: ', expense);
-    expense.categoryID = this.props.category.id;
+    expense.categoryID = category.id;
     //send the expense into the new INSERT action which routes through the create expense reducer
     this.props.expenseInsert(expense);
 
@@ -41,9 +42,9 @@ class CategoryItem extends React.Component{
       <div>
         <div className='clearfloat'></div>
         <div className='category-list'>
-          <DropZone onComplete={this.handleDropZoneComplete} >
-            {this.props.categories.map(category => {
-              return <div key={category.id} className='category-item'>
+          {this.props.categories.map(category => {
+            return <DropZone key={category.id} category={category} onComplete={this.handleDropZoneComplete} >
+              <div className='category-item'>
                 <div className='category-header'>
                   <h3 className='category-name'>{category.name}</h3>
                   <h6 className='category-budget'>${category.budget}</h6>
@@ -68,9 +69,9 @@ class CategoryItem extends React.Component{
                   categoryID={category.id}
                 />
                 <div className='clearfloat'></div>
-              </div>;
-            })}
-          </DropZone>
+              </div>
+            </DropZone>;
+          })}
         </div>
       </div>
     );
@@ -83,6 +84,7 @@ const mapStateToProps = (state, props) => {
   return {
     categories: state.categories,
     expenses: state.expenses,
+    category: state.category,
   };
 };
 
@@ -93,6 +95,7 @@ const mapDispatchToProps = (dispatch, action) => {
     expenseCreate: (expense) => dispatch(expenseCreate(expense)),
     expenseDestroy: (expense) => dispatch(expenseDestroy(expense)),
     expenseReset: (expense) => dispatch(expenseReset(expense)),
+    expenseInsert: (expense) => dispatch(expenseInsert(expense)),
   };
 };
 

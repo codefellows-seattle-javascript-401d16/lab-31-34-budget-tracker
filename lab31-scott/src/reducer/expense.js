@@ -42,8 +42,12 @@ export default (state = initialState, action) => {
     };
 
   case 'EXPENSE_DESTROY':
-    expenseValidator(payload);
+    console.log('PAYLOAD: ', payload);
+    console.log('STATE: ', state);
+    // expenseValidator(payload);
     categoryID = payload.categoryID;
+    console.log('STATE cat: ', state[categoryID]);
+    console.log('PCID: ', payload.categoryID);
     categoryExpenses = state[categoryID];
     return {...state, [categoryID]: categoryExpenses.filter(expense => {
       return expense.id !== payload.id;}),
