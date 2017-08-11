@@ -18,14 +18,11 @@ export default (state = initialState, action) => {
   switch(type){
   //case for create
   case 'CATEGORY_CREATE':
-    console.log('payload: ', payload);
     payloadValidator(payload);
     return [...state, payload];
   //case for update
   case 'CATEGORY_UPDATE':
     return state.map(item => {
-      console.log('ACTION: ', item);
-      console.log('ACTION: ', payload);
       return item.id === payload.id ? payload : item;
     });
   //case for destroy

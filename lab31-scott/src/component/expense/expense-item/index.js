@@ -7,7 +7,6 @@ import './_expense-item.scss';
 
 class ExpenseItem extends React.Component{
   render(){
-    console.log('EXP ITEM props: ', this.props);
     return(
       <div>
         <div className='clearfloat'></div>

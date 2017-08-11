@@ -13,22 +13,27 @@ class CategoryItem extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      remainingBudget: '',
 
     };
 
     this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this);
+    // this.handleRemainingBudget = this.handleRemainingBudget.bind(this);
+  }
+
+  componentWillMount(){
+    let categoryID = this.props.categories;
+    console.log('category ID: ', categoryID);
+    let result = this.props.expenses[categoryID];
+    console.log('expense catid:', result);
   }
 
   handleDropZoneComplete(error, expense, category){
-    console.log('hit DZ complete');
     if(error) return console.error(error);
     // send the expense to be removed from the old category
-    console.log('DZ expense: ', expense);
     this.props.expenseDestroy(expense);
     console.log('HDZ props: ', this.props);
-    console.log('HDZ category: ', category);
     //give the expense a new category ID based on the drop zone
-    console.log('DZ expense2: ', expense);
     expense.categoryID = category.id;
     //send the expense into the new INSERT action which routes through the create expense reducer
     this.props.expenseInsert(expense);
@@ -84,7 +89,6 @@ const mapStateToProps = (state, props) => {
   return {
     categories: state.categories,
     expenses: state.expenses,
-    category: state.category,
   };
 };
 

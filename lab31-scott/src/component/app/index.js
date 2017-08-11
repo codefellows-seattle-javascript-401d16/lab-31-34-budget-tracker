@@ -25,6 +25,8 @@ class App extends React.Component{
     store.dispatch({type: 'CATEGORY_CREATE', payload: {name: 'Brazil Trip', budget: 4000, id: 789, timestamp: 321}});
     store.dispatch({type: 'CATEGORY_CREATE', payload: {name: 'Australia Trip', budget: 7000, id: 987, timestamp: 321}});
     store.dispatch({type: 'EXPENSE_CREATE', payload: {title: 'Plane Ticket', amount: 400, id: 123, categoryID: 123, timestamp: 321}});
+    store.dispatch({type: 'EXPENSE_CREATE', payload: {title: 'Coffee', amount: 15, id: 456, categoryID: 123, timestamp: 321}});
+    store.dispatch({type: 'EXPENSE_CREATE', payload: {title: 'Plane Ticket', amount: 300, id: 789, categoryID: 456, timestamp: 321}});
   }
 
   render(){

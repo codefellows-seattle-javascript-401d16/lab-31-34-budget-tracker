@@ -25,7 +25,6 @@ class CategoryForm extends React.Component{
   }
 
   handleSubmit(e){
-    console.log('CAT FORM state:', this.state);
     e.preventDefault();
     this.props.onComplete(Object.assign({},this.state));
     console.log('CAT FORM props:', this.props);
@@ -34,6 +33,7 @@ class CategoryForm extends React.Component{
   }
 
   render(){
+    console.log('CAT FORM state:', this.state);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input

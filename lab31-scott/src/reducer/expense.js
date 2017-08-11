@@ -25,7 +25,6 @@ export default (state = initialState, action) => {
   case 'EXPENSE_CREATE':
     expenseValidator(payload);
     //when an expense is created, get the categoryID from the payload
-    console.log('payload: ', payload);
     categoryID = payload.categoryID;
     //get the array of expenses from the category state
     categoryExpenses = state[categoryID];
@@ -36,13 +35,11 @@ export default (state = initialState, action) => {
     expenseValidator(payload);
     categoryID = payload.categoryID;
     categoryExpenses = state[categoryID];
-    console.log('categoryexp: ', categoryExpenses);
     return {...state, [categoryID]: categoryExpenses.map(expense => {
       return expense.id === payload.id ? payload : expense;}),
     };
 
   case 'EXPENSE_DESTROY':
-    console.log('PAYLOAD: ', payload);
     console.log('STATE: ', state);
     // expenseValidator(payload);
     categoryID = payload.categoryID;
