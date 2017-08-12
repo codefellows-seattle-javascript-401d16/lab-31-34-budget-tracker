@@ -1,0 +1,17 @@
+@import '../../style/main.scss';
+
+.dashboard header{
+  text-align: center;
+  height: 20%;
+
+  h4 {
+    color: $color-green;
+  }
+  div {
+    width: 25%;
+    margin-left: calc(75%/2);
+    margin-bottom: $pad;
+    border: 1px solid $color-black;
+
+  }
+}
