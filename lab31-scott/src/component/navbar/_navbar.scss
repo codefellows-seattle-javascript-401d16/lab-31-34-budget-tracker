@@ -1,0 +1,11 @@
+@import "../../style/main.scss";
+
+nav.navbar {
+  height: 10%;
+  background-color: $color-green;
+  color: $color-white;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  padding: $pad 0;
+}

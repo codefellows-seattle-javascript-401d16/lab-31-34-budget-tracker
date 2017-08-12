@@ -1,0 +1,22 @@
+@import '../../../style/main.scss';
+
+.category-item {
+
+  .category-header {
+    background-color: $color-darkgrey;
+    text-align: center;
+    margin-bottom: $pad;
+    margin-top: $pad;
+
+    h3, h6 {
+      color: $color-white;
+    }
+  }
+
+  button {
+    width: 45%;
+    float: left;
+    margin: 0 2.5%;
+  }
+
+}

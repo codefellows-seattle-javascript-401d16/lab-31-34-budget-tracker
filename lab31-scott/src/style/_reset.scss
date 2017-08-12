@@ -1,0 +1,33 @@
+//how to import other files.
+@import "./_vars.scss";
+// position margin padding boxsizing width fontsize fontweight fontstyle textdeecoration border outline backgroun whitepaces color liststyles
+//form :focus  with border and outline
+* {
+  // reset a box element. Remember all elements are now blocks.
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  // font props to reset
+  font-family: $font-aviner;
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  white-space: normal;
+  color: $color-black;
+
+  // other resets
+  background: none;
+
+}
+//change form action displays
+form *:focus {
+  border: none;
+  outline: none;
+}
