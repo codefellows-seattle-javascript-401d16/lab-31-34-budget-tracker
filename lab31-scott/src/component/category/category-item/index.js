@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CategoryForm from '../category-form';
-import {categoryUpdate, categoryDestroy} from '../../../action/category-actions.js';
+import {categoryUpdate, categoryDestroy, categoryBudgetSubtraction} from '../../../action/category-actions.js';
 import ExpenseForm from '../../expense/expense-form';
 import {expenseCreate, expenseDestroy, expenseReset, expenseInsert} from '../../../action/expense-actions.js';
 import ExpenseItem from '../../expense/expense-item';
@@ -13,19 +13,17 @@ class CategoryItem extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      remainingBudget: '',
-
     };
 
     this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this);
-    // this.handleRemainingBudget = this.handleRemainingBudget.bind(this);
+    this.handleExpenseCreate = this.handleExpenseCreate.bind(this);
   }
 
-  componentWillMount(){
-    let categoryID = this.props.categories;
-    console.log('category ID: ', categoryID);
-    let result = this.props.expenses[categoryID];
-    console.log('expense catid:', result);
+  handleExpenseCreate(expense){
+    console.log('expense create: ', expense);
+    this.props.expenseCreate(expense);
+    this.props.subExpAmtFromCat(expense);
+
   }
 
   handleDropZoneComplete(error, expense, category){
@@ -69,7 +67,7 @@ class CategoryItem extends React.Component{
                   category={category}
                 />
                 <ExpenseForm
-                  onComplete={this.props.expenseCreate}
+                  onComplete={this.handleExpenseCreate}
                   buttonText='Create Expense'
                   categoryID={category.id}
                 />
@@ -82,7 +80,7 @@ class CategoryItem extends React.Component{
     );
   }
 }
-// is this mapping state of the module it's hosted in?
+
 const mapStateToProps = (state, props) => {
   console.log('CAT MSTP: ', state);
   console.log('CAT MSTP catid: ', props);
@@ -100,6 +98,7 @@ const mapDispatchToProps = (dispatch, action) => {
     expenseDestroy: (expense) => dispatch(expenseDestroy(expense)),
     expenseReset: (expense) => dispatch(expenseReset(expense)),
     expenseInsert: (expense) => dispatch(expenseInsert(expense)),
+    subExpAmtFromCat: (expense) => dispatch(categoryBudgetSubtraction(expense)),
   };
 };
 

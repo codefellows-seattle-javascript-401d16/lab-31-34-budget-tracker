@@ -9,6 +9,7 @@ class CategoryForm extends React.Component{
       timestamp: null,
       name: props.category.name ? props.category.name : '',
       budget: props.category.budget ? props.category.budget : '',
+      remainingBudget: props.category.remainingBudget ? props.category.remainingBudget : '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

@@ -33,6 +33,16 @@ export default (state = initialState, action) => {
   //case for a reset categories to empty array
   case 'CATEGORY_RESET':
     return initialState;
+
+  case 'CATEGORY_AMOUNT_SUBTRACT':
+    console.log('state:', state);
+    console.log('expense PL: ', payload);
+    //map through the state until you find the payload id
+    //subtract payload.amount from state.id match
+    //maybe set up this action/reducer to a category prop
+    //put it on the category item state with MSTP
+    return;
+
   //set a default to return the state incase it doesn't match any case
   default: return state;
   }

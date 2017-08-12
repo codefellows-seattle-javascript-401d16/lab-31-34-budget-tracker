@@ -5,6 +5,8 @@ import Draggable from '../../draggable';
 import {expenseUpdate, expenseDestroy} from '../../../action/expense-actions.js';
 import './_expense-item.scss';
 
+//add actions to each C U D on expense that does math to change category budget
+
 class ExpenseItem extends React.Component{
   render(){
     return(
