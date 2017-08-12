@@ -33,3 +33,8 @@ export const categoryBudgetSubtraction = (expense) => ({
   type: 'CATEGORY_AMOUNT_SUBTRACT',
   payload: expense,
 });
+
+export const categoryBudgetAddition = (expense) => ({
+  type: 'CATEGORY_AMOUNT_ADD',
+  payload: expense,
+});

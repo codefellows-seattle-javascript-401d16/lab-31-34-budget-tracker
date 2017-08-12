@@ -3,11 +3,23 @@ import {connect} from 'react-redux';
 import ExpenseForm from '../expense-form';
 import Draggable from '../../draggable';
 import {expenseUpdate, expenseDestroy} from '../../../action/expense-actions.js';
+import {categoryBudgetAddition} from '../../../action/category-actions.js';
 import './_expense-item.scss';
 
 //add actions to each C U D on expense that does math to change category budget
 
 class ExpenseItem extends React.Component{
+  constructor(props){
+    super(props);
+    this.handleExpenseDestroy = this.handleExpenseDestroy.bind(this);
+  }
+
+  handleExpenseDestroy(expense){
+    console.log('hit HED');
+    this.props.expenseDestroy(expense);
+    this.props.addExpAmtToCat(expense);
+  }
+
   render(){
     return(
       <div>
@@ -26,7 +38,7 @@ class ExpenseItem extends React.Component{
                   onComplete={this.props.expenseUpdate}
                   expense={expense}
                 />
-                <button className='delete-button' onClick={() => this.props.expenseDestroy(expense)}>Delete Expense</button>
+                <button className='delete-button' onClick={() => this.handleExpenseDestroy(expense)}>Delete Expense</button>
               </li>
             </Draggable>;
           })}
@@ -46,6 +58,7 @@ const mapDispatchToProps = (dispatch, getState) => {
   return {
     expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
     expenseDestroy: (expense) => dispatch(expenseDestroy(expense)),
+    addExpAmtToCat: (expense) => dispatch(categoryBudgetAddition(expense)),
   };
 };
 
