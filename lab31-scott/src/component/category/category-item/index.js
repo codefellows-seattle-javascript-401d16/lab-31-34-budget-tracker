@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CategoryForm from '../category-form';
-import {categoryUpdate, categoryDestroy, categoryBudgetSubtraction} from '../../../action/category-actions.js';
+import {categoryUpdate, categoryDestroy, categoryBudgetSubtraction, categoryBudgetAddition} from '../../../action/category-actions.js';
 import ExpenseForm from '../../expense/expense-form';
 import {expenseCreate, expenseDestroy, expenseReset, expenseInsert} from '../../../action/expense-actions.js';
 import ExpenseItem from '../../expense/expense-item';
@@ -30,6 +30,7 @@ class CategoryItem extends React.Component{
     if(error) return console.error(error);
     // send the expense to be removed from the old category
     this.props.expenseDestroy(expense);
+    this.props.addExpAmtToCat(expense);
     console.log('HDZ props: ', this.props);
     //give the expense a new category ID based on the drop zone
     expense.categoryID = category.id;
@@ -99,6 +100,7 @@ const mapDispatchToProps = (dispatch, action) => {
     expenseReset: (expense) => dispatch(expenseReset(expense)),
     expenseInsert: (expense) => dispatch(expenseInsert(expense)),
     subExpAmtFromCat: (expense) => dispatch(categoryBudgetSubtraction(expense)),
+    addExpAmtToCat: (expense) => dispatch(categoryBudgetAddition(expense)),
   };
 };
 
