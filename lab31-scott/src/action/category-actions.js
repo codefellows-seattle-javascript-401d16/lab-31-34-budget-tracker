@@ -28,3 +28,13 @@ export const categoryDestroy = (category) => ({
 export const categoryReset = () => ({
   type: 'CATEGORY_RESET',
 });
+
+export const categoryBudgetSubtraction = (expense) => ({
+  type: 'CATEGORY_AMOUNT_SUBTRACT',
+  payload: expense,
+});
+
+export const categoryBudgetAddition = (expense) => ({
+  type: 'CATEGORY_AMOUNT_ADD',
+  payload: expense,
+});

@@ -1,0 +1,96 @@
+@import "./_vars.scss";
+
+// put the elements back to their display type.
+html, body { position: relative; }
+head, script, link  { display: none; }
+p { display: inline-block; }
+span,em,strong { display: inline; }
+//adjust font styles
+em { font-style: italic; }
+strong { font-weight: bold; }
+
+body {
+  background-color: rgba($color-lightblue, .25);
+  opacity: 75%;
+  //set body font size to 16px which is standard. Then when using em it will take the relative 16px x whatever em.
+  font-size: 16px;
+}
+
+blockquote {
+  border-left: $pad solid $color-lightgrey;
+  padding-left: $pad;
+}
+
+h1{font-size: 1em * 2};
+h2{font-size: 1em * 1.8};
+h3{font-size: 1em * 1.6};
+h4{font-size: 1em * 1.4};
+h5{font-size: 1em * 1.2};
+h6{font-size: 1em * 1};
+
+// form
+label {
+  font-size: 1.25em;
+  font-weight: bolder;
+  margin-bottom: $pad;
+}
+//style for form inputs and text area tags
+textarea, input {
+  padding: $pad;
+  border: 1px solid $color-lightgrey;
+  margin-bottom: $pad;
+  resize: none;
+
+  &:focus {
+    border: 1px solid $color-darkgrey;
+  }
+
+  &::placeholder {
+    color: $color-lightgrey;
+  }
+}
+
+//adjust button styles
+button {
+  margin-bottom: $pad;
+}
+
+.edit-button {
+  padding: $pad;
+  border: 1px solid $color-green;
+  border-radius: .5em;
+
+  &:hover {
+    background-color: rgba($color-green, .2);
+  }
+
+  &:active {
+    background: $color-darkgrey;
+  }
+}
+
+.delete-button {
+  padding: $pad;
+  border: 1px solid $color-red;
+  border-radius: .5em;
+
+  &:hover {
+    background-color: rgba($color-red, .2);
+  }
+
+  &:active {
+    background: $color-darkgrey;
+  }
+}
+
+.clearfloat {
+  clear: both;
+}
+
+// different types of list formats and their style
+// ul,ol,li { margin-left: $pad * 2; }
+// li { display: list-item; }
+// ul li { list-style: disc; }
+// ol li { list-style: decimal; }
+// ol ol li , ul ol li { list-style: lower-alpha; }
+// ol ul li , ul ul li { list-style: square; }

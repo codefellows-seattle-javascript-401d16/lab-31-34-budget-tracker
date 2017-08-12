@@ -1,16 +1,22 @@
 import React from 'react';
+import './_category-form.scss';
 
 class CategoryForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      id: '',
-      timestamp: '',
-      name: '',
-      budget: 0,
+      id: props.category.id ? props.category.id : null,
+      timestamp: null,
+      name: props.category.name ? props.category.name : '',
+      budget: props.category.budget ? props.category.budget : '',
+      remainingBudget: props.category.remainingBudget ? props.category.remainingBudget : '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(props){
+    if(props.category) this.setState(props.category);
   }
 
   handleChange(e){
@@ -20,30 +26,32 @@ class CategoryForm extends React.Component{
   }
 
   handleSubmit(e){
-    console.log('form', this.props);
     e.preventDefault();
-    this.props.onComplete(this.state);
+    this.props.onComplete(Object.assign({},this.state));
+    console.log('CAT FORM props:', this.props);
+    if(!this.props.category) this.setState({name: '', budget: ''});
+
   }
 
   render(){
+    console.log('CAT FORM state:', this.state);
     return(
       <form className='category-form' onSubmit={this.handleSubmit}>
-       This is category form
         <input
-          type= {this.props.buttonText === 'Delete Category'? 'hidden' : 'text'}
+          type='text'
           name='name'
-          placeholder='Name'
+          placeholder='New Destination'
           value={this.state.name}
           onChange={this.handleChange}
         />
         <input
-          type={this.props.buttonText === 'Delete Category'? 'hidden' : 'number'}
+          type='number'
           name='budget'
-          placeholder='Budget Amount'
+          placeholder='New Budget'
           value={this.state.budget}
           onChange={this.handleChange}
         />
-        <button type='submit'>{this.props.buttonText}</button>
+        <button className='edit-button' type='submit'>{this.props.buttonText}</button>
 
       </form>
     );
