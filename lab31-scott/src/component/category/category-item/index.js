@@ -36,6 +36,7 @@ class CategoryItem extends React.Component{
     expense.categoryID = category.id;
     //send the expense into the new INSERT action which routes through the create expense reducer
     this.props.expenseInsert(expense);
+    this.props.subExpAmtFromCat(expense);
 
   }
 
