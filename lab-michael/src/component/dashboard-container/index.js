@@ -1,3 +1,4 @@
+import './_dashboard-container.scss'
 import React from 'react'
 import {connect} from 'react-redux'
 import CategoryForm from '../category-form'
@@ -5,8 +6,6 @@ import CategoryItem from '../category-item'
 
 import {
   categoryCreate,
-  categoryUpdate,
-  categoryDelete,
 } from '../../action/category-action.js'
 
 
@@ -19,9 +18,9 @@ class DashboardContainer extends React.Component{
     console.log('categories', this.props.categories);
   return(
     <main className='dashboard-container'>
-    <h1> dashboard</h1>
+    <h1> Michaels Budget Tracker! </h1>
     <CategoryForm
-    buttonTest='creating a category'
+    buttonText='create a category'
     onComplete={this.props.categoryCreate}
     />
     {console.log('hitting category item',this.props.categories)}
@@ -36,14 +35,12 @@ class DashboardContainer extends React.Component{
 }
 
 const mapStateToProps = (state)=> {
-  // console.log(state);
   return{
     categories: state.categories,
   }
 }
 
 const mapDispatchToProps = (dispatch, getState)=> {
-  // console.log(dispatch, getState);
   return {
     categoryCreate:(category)=> dispatch(categoryCreate(category)),
   }

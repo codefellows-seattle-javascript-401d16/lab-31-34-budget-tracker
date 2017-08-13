@@ -8,21 +8,42 @@ import {
 
 import {
   expenseCreate,
+  expenseDelete,
+  expenseInsert,
 } from '../../action/expense-action.js'
 
 import ExpenseForm from '../expense-form'
-
+import DropZone from '../drop-zone'
 import ExpenseItem from '../expense-item'
 
 
 
 
+
 class CategoryItem extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this)
+  }
+
+  handleDropZoneComplete(err, expense){
+    if (err)
+      return console.error(err)
+    this.props.expenseDelete(expense)
+
+    expense.categoryID = this.props.category.id
+    console.log('this.props!!',this.props);
+    console.log('expenseDelete',expenseDelete);
+    this.props.expenseInsert(expense)
+  }
+
   render(){
     console.log('this.propsssssssin category!!!',this.props)
     let {category} = this.props
     return (
           <div className='category-item'>
+          <DropZone onComplete={this.handleDropZoneComplete}>
           <div>
           <div className='content'>
             <p> Title: {category.title} </p>
@@ -61,6 +82,7 @@ class CategoryItem extends React.Component {
           )}
 
         </div>
+        </DropZone>
       </div>
     )
   }
@@ -76,6 +98,8 @@ let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
   categoryDelete: (category) => dispatch(categoryDelete(category)),
   expenseCreate: (expense) => dispatch(expenseCreate(expense)),
+  expenseDelete: (expense) => dispatch(expenseDelete(expense)),
+  expenseInsert: (expense) => dispatch(expenseInsert(expense)),
 })
 
 export default connect(
