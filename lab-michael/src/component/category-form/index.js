@@ -1,5 +1,10 @@
+import './_category-form.scss'
 import React from 'react'
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import categoryIcon from 'material-ui/svg-icons/'
+import ActionAndroid from 'material-ui/svg-icons/action/android'
 
 class CategoryForm extends React.Component {
   constructor(props) {
@@ -30,17 +35,26 @@ class CategoryForm extends React.Component {
 
   render(){
     return (
+      <MuiThemeProvider>
       <form className='category-form' onSubmit={this.handleSubmit}>
-      <input
-      name='title'
-      type='text'
-      placeholder='title'
-      value={this.state.title}
-      onChange={this.handleChange}
+      <TextField
+      name="title"
+      hintText="Category Title"
+     floatingLabelText="Category Title"
+     value={this.state.title}
+     autocomplete="off"
+     onChange={this.handleChange}
+     />
+     <br/>
+     <RaisedButton
+     className="category-submit"
+      label="Submit"
+      primary={true}
+      onClick={this.handleSubmit}
+      icon={<ActionAndroid/>}
       />
-
-      <button type='submit'>{this.props.buttonText} </button>
       </form>
+      </MuiThemeProvider>
     )
   }
 }
