@@ -6,6 +6,17 @@ import categoryIcon from 'material-ui/svg-icons/'
 // import ActionAndroid from 'material-ui/svg-icons/action/feedback'
 import AppBar from 'material-ui/appbar'
 import ActionAndroid from 'material-ui/svg-icons/communication/forum'
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
+
+
 class ExpenseForm extends React.Component {
   constructor(props) {
     super(props)
@@ -50,10 +61,10 @@ class ExpenseForm extends React.Component {
          fontFamily:'Playfair Display'
        }}
        hintStyle = {{
-         fontFamily:'Playfair Display'
+         fontFamily:'Playfair Display',
        }}
        inputStyle = {{
-         fontFamily:'Playfair Display'
+         fontFamily:'Playfair Display',
        }}
        />
 
@@ -61,12 +72,14 @@ class ExpenseForm extends React.Component {
         <RaisedButton
         className="category-submit"
          label={this.props.buttonText}
-         primary={true}
+         primary={false}
          onClick={this.handleSubmit}
          icon={<ActionAndroid/>}
          labelStyle = {{
-           fontFamily:'Playfair Display'
+           fontFamily:'Playfair Display',
+
          }}
+         backgroundColor='#4ED4A6'
          />
       </form>
     )

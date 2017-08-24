@@ -32,9 +32,9 @@ class DashboardContainer extends React.Component {
         {console.log('hitting category item', this.props.categories)}
         {this.props.categories.map(item =>
           <div key={item.id}>
-            <Paper zDepth={5} />
             <CategoryItem category={item} />
           </div>
+
         )}
       </main>
       </MuiThemeProvider>

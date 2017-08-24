@@ -30,6 +30,14 @@ import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper'
 import FlatButton from 'material-ui/FlatButton'
 
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -148,11 +156,27 @@ class CategoryItem extends React.Component {
           />
           </div>
           {console.log('category.id!!!!!!',this.props.expenses)}
+          <Table>
+          <TableHeader
+          adjustForCheckBox={false}
+          displaySelectAll={false}
+          >
+            <TableRow>
+              <TableHeaderColumn>Expenses</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+          displayRowCheckbox={false}
+          >
+
+
           {this.props.expenses.map((item)=>
             <div key={item.id}>
             <ExpenseItem expense={item}/>
             </div>
           )}
+          </TableBody>
+          </Table>
 
 
         </DropZone>

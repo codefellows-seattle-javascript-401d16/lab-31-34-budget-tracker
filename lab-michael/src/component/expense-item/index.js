@@ -1,3 +1,4 @@
+import './_expense-item.scss'
 import React from 'react'
 import {connect} from 'react-redux'
 import ExpenseForm from '../expense-form'
@@ -16,8 +17,15 @@ import categoryIcon from 'material-ui/svg-icons/'
 // import ActionAndroid from 'material-ui/svg-icons/action/feedback'
 import AppBar from 'material-ui/appbar'
 import ActionAndroid from 'material-ui/svg-icons/communication/forum'
-import FlatButton from 'material-ui/flatButton'
-
+import FlatButton from 'material-ui/FlatButton'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 class ExpenseItem extends React.Component {
   constructor(props){
@@ -44,21 +52,28 @@ class ExpenseItem extends React.Component {
           <Draggable dataTransferItem={expense}>
           <div>
           <div className='content'>
-          <AppBar
-          title={expense.title}
-          showMenuIconButton={false}
-          titleStyle = {{
-            fontFamily:'Playfair Display'
-          }}
-          iconElementRight={<FlatButton label="Edit"
-          onClick={()=>{
-            this.renderTitleEdit()
-          }}
-          />}
-          style={{
-              backgroundColor: '#4ED4A6',
-            }}
-          />
+          <TableRow>
+          <TableRowColumn><FlatButton
+              label="Update"
+              style={{fontFamily:"Playfair Display"}}
+              onClick={()=>{
+                this.renderTitleEdit()
+              }}
+            />
+            <FlatButton
+                label="Delete"
+                style={{fontFamily:"Playfair Display"}}
+                onClick={() =>{
+                  this.props.expenseDelete(expense); console.log('hitting the delete button!')
+                }}
+              />
+            </TableRowColumn>
+            <TableRowColumn
+            style={{fontFamily:"Playfair Display"}}
+            >{expense.title}</TableRowColumn>
+          </TableRow>
+
+
 
           {this.state.editing ?
             <div className='editing'>
@@ -73,24 +88,6 @@ class ExpenseItem extends React.Component {
             : null
           }
             {console.log('this is expense!!',expense)}
-            <p> Expense: {expense.expense} </p>
-            <button
-            className='delete-button'
-            onClick={() =>{
-              this.props.expenseDelete(expense); console.log('hitting the delete button!')
-            }}>
-              Delete
-            </button>
-          </div>
-
-          <div className='editing'>
-           <ExpenseForm
-            expense={expense}
-            buttonText='Update Expense'
-            onComplete={(data)=> {
-              data.id = expense.id;
-              this.props.expenseUpdate(data);
-            }}/>
           </div>
         </div>
         </Draggable>
