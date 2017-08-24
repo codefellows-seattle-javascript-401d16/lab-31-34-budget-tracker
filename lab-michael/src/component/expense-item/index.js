@@ -9,9 +9,34 @@ import {
 import Draggable from '../draggable'
 
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import categoryIcon from 'material-ui/svg-icons/'
+// import ActionAndroid from 'material-ui/svg-icons/action/feedback'
+import AppBar from 'material-ui/appbar'
+import ActionAndroid from 'material-ui/svg-icons/communication/forum'
+import FlatButton from 'material-ui/flatButton'
 
 
 class ExpenseItem extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      editing:false,
+    }
+    this.renderTitleEdit = this.renderTitleEdit.bind(this)
+  }
+
+  renderTitleEdit(){
+    // event.preventDefault();
+    this.setState(prevState => ({
+      editing: !prevState.editing
+    }));
+    console.log(this.state.editing,'popEdit!!!');
+    }
+
+
   render(){
     let {expense} = this.props
     return (
@@ -19,7 +44,34 @@ class ExpenseItem extends React.Component {
           <Draggable dataTransferItem={expense}>
           <div>
           <div className='content'>
-            <p> Title: {expense.title} </p>
+          <AppBar
+          title={expense.title}
+          showMenuIconButton={false}
+          titleStyle = {{
+            fontFamily:'Playfair Display'
+          }}
+          iconElementRight={<FlatButton label="Edit"
+          onClick={()=>{
+            this.renderTitleEdit()
+          }}
+          />}
+          style={{
+              backgroundColor: '#4ED4A6',
+            }}
+          />
+
+          {this.state.editing ?
+            <div className='editing'>
+            <ExpenseForm
+            buttonText='Update'
+            expense={expense}
+            floatingLabelText={false}
+            hintText={false}
+            onComplete={this.props.expenseUpdate}
+            />
+            </div>
+            : null
+          }
             {console.log('this is expense!!',expense)}
             <p> Expense: {expense.expense} </p>
             <button

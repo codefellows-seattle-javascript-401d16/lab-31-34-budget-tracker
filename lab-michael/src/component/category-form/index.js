@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import categoryIcon from 'material-ui/svg-icons/'
-import ActionAndroid from 'material-ui/svg-icons/action/android'
+import ActionAndroid from 'material-ui/svg-icons/action/feedback'
 import AppBar from 'material-ui/appbar'
 class CategoryForm extends React.Component {
   constructor(props) {
@@ -39,18 +39,28 @@ class CategoryForm extends React.Component {
       <form className='category-form' onSubmit={this.handleSubmit}>
       <TextField
       name="title"
-      hintText="Category Title"
      floatingLabelText="Category Title"
      value={this.state.title}
      onChange={this.handleChange}
+     floatingLabelStyle = {{
+       fontFamily:'Playfair Display'
+     }}
+     hintStyle = {{
+       fontFamily:'Playfair Display'
+     }}
+     inputStyle = {{
+       fontFamily:'Playfair Display'
+     }}
      />
-     <br/>
      <RaisedButton
      className="category-submit"
-      label="Create Category"
+      label={this.props.buttonText}
       primary={true}
       onClick={this.handleSubmit}
       icon={<ActionAndroid/>}
+      labelStyle = {{
+        fontFamily:'Playfair Display'
+      }}
       />
       </form>
       </MuiThemeProvider>
