@@ -7,3 +7,8 @@ export const log = (...args) =>
 
 export const logError = (...args) =>
   __DEBUG__ ? console.error(...args) : undefined
+
+
+
+
+export const renderIf = (test, component) => (test ? component : null)
