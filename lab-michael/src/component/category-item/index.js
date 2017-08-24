@@ -15,16 +15,34 @@ import {
 import ExpenseForm from '../expense-form'
 import DropZone from '../drop-zone'
 import ExpenseItem from '../expense-item'
+import Util from '../../lib/util.js'
 
 
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import categoryIcon from 'material-ui/svg-icons/'
+import ActionAndroid from 'material-ui/svg-icons/action/android'
+import AppBar from 'material-ui/appbar'
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper'
+import FlatButton from 'material-ui/FlatButton'
 
 
 class CategoryItem extends React.Component {
   constructor(props){
     super(props)
-
+    this.state= {
+      PopOpen:false,
+      editing:false,
+    }
     this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this)
+    this.handleClickPop = this.handleClickPop.bind(this)
+    this.handleClosePop = this.handleClosePop.bind(this)
+
+    this.renderTitleEdit = this.renderTitleEdit.bind(this)
   }
 
   handleDropZoneComplete(err, expense){
@@ -38,31 +56,92 @@ class CategoryItem extends React.Component {
     this.props.expenseInsert(expense)
   }
 
+  handleClickPop(){
+    event.preventDefault();
+
+    this.setState({
+      PopOpen: true,
+      anchorEl: event.currentTarget,
+    });
+    console.log(this.state.PopOpen,'popopen!!');
+  }
+
+  renderTitleEdit(){
+    // event.preventDefault();
+    this.setState(prevState => ({
+      editing: !prevState.editing
+    }));
+    console.log(this.state.editing,'popEdit!!!');
+    }
+
+  handleClosePop(){
+    this.setState({
+      PopOpen: false,
+    });
+    console.log('pop close!!',this.state.PopOpen);
+  };
+
   render(){
     console.log('this.propsssssssin category!!!',this.props)
     let {category} = this.props
+
+    let Edit = React.createClass({
+      render() {
+          return (
+            <FlatButton
+             label="Edit"
+             labelStyle={{ color: 'white' }}
+             onClick={this.renderTitleEdit}
+             />
+          )
+      }
+    });
+    let Updated = <CategoryForm
+     category={category}
+     buttonText='update'
+     onComplete={this.props.categoryUpdate}
+     />
     return (
+      <Paper zDepth={5}>
           <div className='category-item'>
           <DropZone onComplete={this.handleDropZoneComplete}>
-          <div>
           <div className='content'>
-            <p> Title: {category.title} </p>
-            <button
-            className='delete-button'
-            onClick={() =>{
+          <AppBar
+          title={category.title}
+          iconClassNameRight="EDIT"
+          onLeftIconButtonTouchTap={this.handleClickPop}
+          iconElementRight={<Edit/>}
+          />
+          <Popover
+            open={this.state.PopOpen}
+            anchorEl={this.state.anchorEl}
+            onRequestClose={this.handleClosePop}
+            anchorOrigin={{horizontal: 'middle', vertical: 'center'}}
+            targetOrigin={{horizontal: 'middle'}}
+          >
+          <Menu>
+            <MenuItem primaryText="DELETE Category" onClick={() =>{
               this.props.categoryDelete(category)
-            }}>
-              Delete
-            </button>
-          </div>
-
-          <div className='editing'>
-           <CategoryForm
-            category={category}
-            buttonText='update'
-            onComplete={this.props.categoryUpdate}
+            }}
             />
+            <MenuItem primaryText="EDIT Category" onClick={()=>{
+              this.renderTitleEdit()
+            }}
+            />
+          </Menu>
+        </Popover>
+        {console.log(this.state.editing,'this is the State!!!')}
+        {this.state.editing ?
+          <div className='editing'>
+          <CategoryForm
+          category={category}
+          buttonText='update'
+          onComplete={this.props.categoryUpdate}
+          />
           </div>
+          : null
+        }
+        </div>
 
           <div className='expense-form'>
           <ExpenseForm
@@ -81,9 +160,10 @@ class CategoryItem extends React.Component {
             </div>
           )}
 
-        </div>
+
         </DropZone>
       </div>
+    </Paper>
     )
   }
 }
@@ -106,3 +186,8 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(CategoryItem)
+
+
+
+// anchorOrigin={{horizontal: 'center', vertical: 'center'}}
+// targetOrigin={{horizontal: 'left', vertical: 'top'}}

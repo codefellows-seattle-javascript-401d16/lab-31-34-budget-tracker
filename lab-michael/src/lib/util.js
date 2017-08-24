@@ -11,4 +11,4 @@ export const logError = (...args) =>
 
 
 
-export const renderIf = (test, component) => (test ? component : undefined)
+export const renderIf = (test, component) => (test ? component : null)

@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import categoryIcon from 'material-ui/svg-icons/'
 import ActionAndroid from 'material-ui/svg-icons/action/android'
-
+import AppBar from 'material-ui/appbar'
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props)
@@ -42,13 +42,12 @@ class CategoryForm extends React.Component {
       hintText="Category Title"
      floatingLabelText="Category Title"
      value={this.state.title}
-     autocomplete="off"
      onChange={this.handleChange}
      />
      <br/>
      <RaisedButton
      className="category-submit"
-      label="Submit"
+      label="Create Category"
       primary={true}
       onClick={this.handleSubmit}
       icon={<ActionAndroid/>}
