@@ -30,6 +30,14 @@ import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper'
 import FlatButton from 'material-ui/FlatButton'
 
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -39,9 +47,6 @@ class CategoryItem extends React.Component {
       editing:false,
     }
     this.handleDropZoneComplete = this.handleDropZoneComplete.bind(this)
-    this.handleClickPop = this.handleClickPop.bind(this)
-    this.handleClosePop = this.handleClosePop.bind(this)
-
     this.renderTitleEdit = this.renderTitleEdit.bind(this)
   }
 
@@ -84,18 +89,6 @@ class CategoryItem extends React.Component {
   render(){
     console.log('this.propsssssssin category!!!',this.props)
     let {category} = this.props
-
-    let Edit = React.createClass({
-      render() {
-          return (
-            <FlatButton
-             label="Edit"
-             labelStyle={{ color: 'white' }}
-             onClick={this.renderTitleEdit}
-             />
-          )
-      }
-    });
     let Updated = <CategoryForm
      category={category}
      buttonText='update'
@@ -108,9 +101,16 @@ class CategoryItem extends React.Component {
           <div className='content'>
           <AppBar
           title={category.title}
-          iconClassNameRight="EDIT"
-          onLeftIconButtonTouchTap={this.handleClickPop}
-          iconElementRight={<Edit/>}
+          showMenuIconButton={false}
+          titleStyle = {{
+            fontFamily:'Playfair Display'
+          }}
+          iconElementRight={<FlatButton label="Edit"
+          onClick={()=>{
+            this.renderTitleEdit()
+          }}
+          />
+        }
           />
           <Popover
             open={this.state.PopOpen}
@@ -134,8 +134,10 @@ class CategoryItem extends React.Component {
         {this.state.editing ?
           <div className='editing'>
           <CategoryForm
+          buttonText='Update'
           category={category}
-          buttonText='update'
+          floatingLabelText={false}
+          hintText={false}
           onComplete={this.props.categoryUpdate}
           />
           </div>
@@ -145,7 +147,7 @@ class CategoryItem extends React.Component {
 
           <div className='expense-form'>
           <ExpenseForm
-            buttonText='creating an expense'
+            buttonText='Add Expense'
             onComplete={data=> {
               console.log('this is in the expense form on complete!!!',category.id);
               data.categoryID = category.id
@@ -154,11 +156,27 @@ class CategoryItem extends React.Component {
           />
           </div>
           {console.log('category.id!!!!!!',this.props.expenses)}
+          <Table>
+          <TableHeader
+          adjustForCheckBox={false}
+          displaySelectAll={false}
+          >
+            <TableRow>
+              <TableHeaderColumn>Expenses</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+          displayRowCheckbox={false}
+          >
+
+
           {this.props.expenses.map((item)=>
             <div key={item.id}>
             <ExpenseItem expense={item}/>
             </div>
           )}
+          </TableBody>
+          </Table>
 
 
         </DropZone>
@@ -188,6 +206,10 @@ export default connect(
 )(CategoryItem)
 
 
-
+// {/*iconElementRight={()=>{
+//   this.setState(prevState => ({
+//     editing: !prevState.editing
+//   }));
+// }}*/}
 // anchorOrigin={{horizontal: 'center', vertical: 'center'}}
 // targetOrigin={{horizontal: 'left', vertical: 'top'}}

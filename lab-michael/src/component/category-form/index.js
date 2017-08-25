@@ -4,8 +4,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import categoryIcon from 'material-ui/svg-icons/'
-import ActionAndroid from 'material-ui/svg-icons/action/android'
+import ActionAndroid from 'material-ui/svg-icons/action/feedback'
 import AppBar from 'material-ui/appbar'
+import Paper from 'material-ui/Paper'
+
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props)
@@ -35,25 +37,35 @@ class CategoryForm extends React.Component {
 
   render(){
     return (
-      <MuiThemeProvider>
-      <form className='category-form' onSubmit={this.handleSubmit}>
+  <MuiThemeProvider>
+    <form className='category-form' onSubmit={this.handleSubmit}>
       <TextField
-      name="title"
-      hintText="Category Title"
-     floatingLabelText="Category Title"
-     value={this.state.title}
-     onChange={this.handleChange}
-     />
-     <br/>
+        name="title"
+        floatingLabelText="Category Title"
+        value={this.state.title}
+        onChange={this.handleChange}
+        floatingLabelStyle = {{
+         fontFamily:'Playfair Display'
+        }}
+        hintStyle = {{
+         fontFamily:'Playfair Display'
+        }}
+        inputStyle = {{
+         fontFamily:'Playfair Display'
+        }}
+      />
      <RaisedButton
-     className="category-submit"
-      label="Create Category"
+      className="category-submit"
+      label={this.props.buttonText}
       primary={true}
       onClick={this.handleSubmit}
       icon={<ActionAndroid/>}
-      />
-      </form>
-      </MuiThemeProvider>
+      labelStyle = {{
+        fontFamily:'Playfair Display'
+      }}
+    />
+  </form>
+  </MuiThemeProvider>
     )
   }
 }

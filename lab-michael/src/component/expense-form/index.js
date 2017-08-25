@@ -1,4 +1,21 @@
 import React from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import categoryIcon from 'material-ui/svg-icons/'
+// import ActionAndroid from 'material-ui/svg-icons/action/feedback'
+import AppBar from 'material-ui/appbar'
+import ActionAndroid from 'material-ui/svg-icons/communication/forum'
+
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
+
 
 class ExpenseForm extends React.Component {
   constructor(props) {
@@ -35,27 +52,35 @@ class ExpenseForm extends React.Component {
   render() {
     return (
       <form className="expense-form" onSubmit={this.handleSubmit}>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          placeholder="title"
-          value={this.state.title}
-          onChange={this.handleChange}
-        />
+        <TextField
+        name="title"
+        hintText="Expense Title"
+       value={this.state.title}
+       onChange={this.handleChange}
+       floatingLabelStyle = {{
+         fontFamily:'Playfair Display'
+       }}
+       hintStyle = {{
+         fontFamily:'Playfair Display',
+       }}
+       inputStyle = {{
+         fontFamily:'Playfair Display',
+       }}
+       />
 
-        {/*}<input
-      id='expense'
-      name='expense'
-      type='number'
-      placeholder='expense'
-      value={this.state.expense}
-      onChange={this.handleChange}
-      />*/}
 
-        <button type="submit">
-          {this.props.buttonText}
-        </button>
+        <RaisedButton
+        className="category-submit"
+         label={this.props.buttonText}
+         primary={false}
+         onClick={this.handleSubmit}
+         icon={<ActionAndroid/>}
+         labelStyle = {{
+           fontFamily:'Playfair Display',
+
+         }}
+         backgroundColor='#4ED4A6'
+         />
       </form>
     )
   }

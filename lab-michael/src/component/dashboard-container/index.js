@@ -25,15 +25,16 @@ class DashboardContainer extends React.Component {
       <main className="dashboard-container">
         <h1> Michaels Budget Tracker! </h1>
         <CategoryForm
+
           buttonText="create a category"
           onComplete={this.props.categoryCreate}
         />
         {console.log('hitting category item', this.props.categories)}
         {this.props.categories.map(item =>
           <div key={item.id}>
-            <Paper zDepth={5} />
             <CategoryItem category={item} />
           </div>
+
         )}
       </main>
       </MuiThemeProvider>
